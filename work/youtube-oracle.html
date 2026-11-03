@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>YouTube Oracle · Case study · Mohammed Saleeq Sunil</title>
+  <meta name="description" content="Predicts whether a video will go viral, and shows exactly why. A case study by Mohammed Saleeq Sunil.">
+  <meta name="theme-color" content="#000000">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="YouTube Oracle · Mohammed Saleeq Sunil">
+  <meta property="og:description" content="Predicts whether a video will go viral, and shows exactly why.">
+  <meta property="og:image" content="../assets/work/yo-home-sm.jpg">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../styles.css">
+  <script>document.documentElement.classList.add('js')</script>
+</head>
+<body class="case">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="nav" id="nav">
+  <div class="wrap-wide nav-inner">
+    <a class="brand" href="../index.html" aria-label="Mohammed Saleeq Sunil, home"><span class="brand-mark" aria-hidden="true">MS</span><span>Mohammed Saleeq Sunil</span></a>
+    <nav aria-label="Primary"><div class="nav-links" id="nav-links"><a href="../index.html#about">About</a><a href="../index.html#experience">Experience</a><a href="../index.html#work">Work</a><a href="../index.html#recognition">Recognition</a><a href="../index.html#skills">Skills</a><a href="../index.html#contact">Contact</a></div></nav>
+    <div class="nav-actions">
+      <a class="btn btn-primary btn-sm" href="../index.html#contact">Hire me</a>
+      <button class="menu-btn" id="menu-btn" aria-controls="nav-links" aria-expanded="false" aria-label="Open menu"><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<section class="case-hero dark" aria-labelledby="case-title">
+  <div class="wrap-wide case-hero-copy">
+    <a class="crumb" href="../index.html#work">All work</a>
+    <p class="eyebrow">Machine learning · Live product</p>
+    <h1 class="headline" id="case-title">YouTube Oracle</h1>
+    <p class="lede">Predicts whether a video will go viral, and shows exactly why.</p>
+    <div class="cta-row"><a class="btn btn-primary" href="https://youtube-oracle.vercel.app" target="_blank" rel="noopener">Try the live demo</a><a class="more" href="https://github.com/slytherin-py/youtube-oracle" target="_blank" rel="noopener">View code</a></div>
+  </div>
+  <div class="wrap-wide case-hero-media reveal"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>youtube-oracle.vercel.app</span></div><picture><source srcset="../assets/work/yo-home.webp" type="image/webp"><img class="" src="../assets/work/yo-home-sm.jpg" alt="YouTube Oracle home page with a field to paste a YouTube URL" data-zoom="../assets/work/yo-home.webp"></picture></div></div>
+</section>
+
+<section class="facts" aria-label="Project facts"><div class="wrap-wide"><dl><div><dt>Role</dt><dd>Solo builder: data, model, backend, frontend</dd></div><div><dt>When</dt><dd>2026</dd></div><div><dt>Stack</dt><dd>Python, XGBoost, SHAP, FastAPI, React</dd></div><div><dt>Status</dt><dd>Live v0. Data pipeline collecting.</dd></div></dl></div></section>
+
+<section class="section-tight" aria-labelledby="res-h"><div class="wrap-wide">
+  <h2 class="sr-only" id="res-h">Results</h2>
+  <div class="metrics"><div class="m reveal" style="--d:0.00s"><b>0.954</b><span>ROC-AUC</span></div><div class="m reveal" style="--d:0.06s"><b>0.975</b><span>PR-AUC</span></div><div class="m reveal" style="--d:0.12s"><b>89%</b><span>Accuracy</span></div><div class="m reveal" style="--d:0.18s"><b>0.92</b><span>Precision on viral</span></div></div><p class="note center-note">Measured on 1,271 held-out videos from a later time period than the training data.</p>
+</div></section>
+
+<section class="section-tight gray" aria-labelledby="prob-h"><div class="wrap-wide split">
+  <div class="reveal"><p class="eyebrow">The problem</p><h2 class="problem-text" id="prob-h" style="margin-top:10px">Most people only find out a video went viral after the fact. I wanted to make the call in the first few hours, and to show why, not just print a score.</h2></div>
+  <ul class="checks reveal" style="--d:.08s"><li>I can only use signals from the first few hours</li><li>The test score can&#x27;t be flattered by leakage</li><li>Every prediction needs a reason you can read</li><li>Live predictions get logged so anyone can check me</li></ul>
+</div></section>
+
+<section class="section-tight" aria-labelledby="how-h"><div class="wrap-wide">
+  <h2 class="title reveal" id="how-h">How I built it.</h2>
+  <ol class="steps"><li class="step reveal" style="--d:0.00s"><span class="step-n">01</span><h3>Clean the data</h3><p>I cut 40,949 Kaggle trending rows down to 6,351 unique videos and kept each one&#x27;s first snapshot, since that&#x27;s what the live model will see.</p></li><li class="step reveal" style="--d:0.06s"><span class="step-n">02</span><h3>Define viral</h3><p>Viral means 1M+ views. That&#x27;s 34.3% of videos: rare enough to matter, common enough to learn from.</p></li><li class="step reveal" style="--d:0.12s"><span class="step-n">03</span><h3>Engineer features</h3><p>I built 21 features from title style, publish time, tags, description and early engagement.</p></li><li class="step reveal" style="--d:0.00s"><span class="step-n">04</span><h3>Split by time</h3><p>I trained on the oldest 80% and tested on the newest 20%. No future data leaks into training.</p></li><li class="step reveal" style="--d:0.06s"><span class="step-n">05</span><h3>Explain it</h3><p>Every prediction ships with a SHAP waterfall, so you see what pushed it up and what pulled it down.</p></li><li class="step reveal" style="--d:0.12s"><span class="step-n">06</span><h3>Collect live data</h3><p>An hourly job catches videos at about 6 hours old. A daily job comes back a week later and records what happened.</p></li></ol>
+</div></section>
+<section class="section-tight dark" aria-labelledby="arch-h"><div class="wrap-wide">
+  <h2 class="title reveal" id="arch-h">Under the hood.</h2>
+  <div class="arch reveal"><div class="arch-node"><b>YouTube Data API</b><span>hourly + daily jobs</span></div><span class="arch-arrow" aria-hidden="true"></span><div class="arch-node"><b>SQLite</b><span>labeled snapshots</span></div><span class="arch-arrow" aria-hidden="true"></span><div class="arch-node"><b>XGBoost</b><span>virality probability</span></div><span class="arch-arrow" aria-hidden="true"></span><div class="arch-node"><b>SHAP</b><span>per-video reasons</span></div><span class="arch-arrow" aria-hidden="true"></span><div class="arch-node"><b>FastAPI</b><span>prediction API</span></div><span class="arch-arrow" aria-hidden="true"></span><div class="arch-node"><b>React</b><span>public site</span></div></div></div></section><section class="section-tight gray" aria-labelledby="gal-h"><div class="wrap-wide">
+  <h2 class="title reveal" id="gal-h">Inside the model.</h2>
+  <p class="hint reveal">Click any image to enlarge.</p>
+  <div class="gallery"><figure class="shot shot-light reveal" style="--d:0.00s"><div class="chart-card"><picture><source srcset="../assets/work/yo-nb-19.webp" type="image/webp"><img class="" src="../assets/work/yo-nb-19-sm.jpg" alt="SHAP waterfall chart for a single prediction" loading="lazy" decoding="async" data-zoom="../assets/work/yo-nb-19.webp"></picture></div><figcaption>SHAP waterfall for one video. Red features raised the prediction and blue ones lowered it. This is the explanation users see.</figcaption></figure><figure class="shot shot-light reveal" style="--d:0.08s"><div class="chart-card"><picture><source srcset="../assets/work/yo-nb-18.webp" type="image/webp"><img class="" src="../assets/work/yo-nb-18-sm.jpg" alt="SHAP beeswarm summary chart of feature impact" loading="lazy" decoding="async" data-zoom="../assets/work/yo-nb-18.webp"></picture></div><figcaption>SHAP summary across 500 test videos. Early views and time to trending carry the most weight.</figcaption></figure><figure class="shot shot-light reveal" style="--d:0.00s"><div class="chart-card"><picture><source srcset="../assets/work/yo-nb-16.webp" type="image/webp"><img class="" src="../assets/work/yo-nb-16-sm.jpg" alt="Bar chart of the top 15 features by importance" loading="lazy" decoding="async" data-zoom="../assets/work/yo-nb-16.webp"></picture></div><figcaption>XGBoost feature importance, top 15 features.</figcaption></figure></div></div></section><section class="section-tight dark" aria-labelledby="cm-h"><div class="wrap-wide split">
+  <div class="reveal"><h2 class="title" id="cm-h">How often it's right.</h2>
+  <p class="lede" style="margin-top:16px">On 1,271 newer videos it never saw, the model caught <strong>700 of 785</strong> viral videos and was right <strong>92%</strong> of the times it said viral.</p></div>
+  <div class="reveal" style="--d:.08s"><div class="cm-wrap"><svg class="viz" viewBox="0 0 400 330" role="img" aria-labelledby="cm-t">
+  <title id="cm-t">Confusion matrix on 1,271 held-out videos: 425 true negatives, 61 false positives, 85 false negatives, 700 true positives</title>
+  <g font-family="-apple-system, Inter, sans-serif" text-anchor="middle">
+    <text x="250" y="20" font-size="12" fill="#86868b">Predicted</text>
+    <text x="180" y="44" font-size="12" fill="#a1a1a6">Not viral</text><text x="320" y="44" font-size="12" fill="#a1a1a6">Viral</text>
+    <text x="20" y="175" font-size="12" fill="#86868b" transform="rotate(-90 20 175)">Actual</text>
+    <text x="96" y="122" font-size="12" fill="#a1a1a6" text-anchor="end">Not viral</text><text x="96" y="246" font-size="12" fill="#a1a1a6" text-anchor="end">Viral</text>
+    <rect x="112" y="56" width="136" height="120" rx="14" fill="#2997ff" fill-opacity=".55"/><rect x="252" y="56" width="136" height="120" rx="14" fill="#2997ff" fill-opacity=".1"/>
+    <rect x="112" y="180" width="136" height="120" rx="14" fill="#2997ff" fill-opacity=".13"/><rect x="252" y="180" width="136" height="120" rx="14" fill="#2997ff" fill-opacity=".85"/>
+    <g font-size="34" font-weight="700" fill="#f5f5f7"><text x="180" y="126">425</text><text x="320" y="126">61</text><text x="180" y="250">85</text><text x="320" y="250">700</text></g>
+    <g font-size="11" fill="#d2d2d7"><text x="180" y="148">true negative</text><text x="320" y="148">false positive</text><text x="180" y="272">false negative</text><text x="320" y="272">true positive</text></g>
+  </g></svg></div></div></div></section><section class="section-tight"><div class="wrap-wide reflect"><div class="reflect-card reveal"><h3>What I learned</h3><ul><li>A random split would&#x27;ve let future videos leak into training. Splitting by time gave me a score I can trust.</li><li>Early engagement dominates the model, so I catch live videos at 6 hours to match what it learned from.</li></ul></div><div class="reflect-card reveal"><h3>What's next</h3><ul><li>I&#x27;m adding LLM title analysis and thumbnail features from a vision model</li><li>Then I&#x27;ll retrain on the data my own pipeline has collected</li><li>After that, a public scorecard of every prediction against what really happened</li></ul></div></div></section>
+<div class="wrap-wide"><p class="note case-note">v0 model trained on the Kaggle US trending dataset (2017 to 2018).</p></div>
+
+<section class="section-tight" aria-label="Next case study"><div class="wrap-wide">
+  <a class="next-case reveal" href="schemaai.html">
+    <div><p class="eyebrow">Next case study</p><h2 class="title">SchemaAI</h2><p>Plain English in, ER diagram, SQL and sample data out.</p><span class="more">Read it</span></div>
+    <div class="next-media work-media"><picture><source srcset="../assets/work/sa-er.webp" type="image/webp"><img class="" src="../assets/work/sa-er-sm.jpg" alt="SchemaAI screenshot" loading="lazy" decoding="async"></picture></div>
+  </a>
+</div></section>
+
+<section class="section-tight dark cta-band" aria-labelledby="cta-h"><div class="wrap">
+  <h2 class="headline reveal" id="cta-h">Let's build what's <span class="gradient-text">next.</span></h2>
+  <div class="cta-row reveal" style="--d:.08s">
+    <a class="btn btn-primary" href="../index.html#contact">Hire me</a>
+    <a class="btn btn-ghost" href="mailto:mohammedsaleeqs@gmail.com?subject=Opportunity%20for%20Mohammed">Email me</a>
+    <a class="more" href="../assets/Mohammed_Saleeq_Sunil_Resume.pdf" download>Download resume</a>
+  </div>
+</div></section>
+</main>
+<footer class="footer"><div class="wrap-wide footer-inner">
+  <p>© <span id="year">2026</span> Mohammed Saleeq Sunil</p>
+  <nav aria-label="Footer"><a href="mailto:mohammedsaleeqs@gmail.com">Email</a><a href="https://www.linkedin.com/in/mohammed-saleeq-sunil" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/slytherin-py" target="_blank" rel="noopener">GitHub</a><a href="../assets/Mohammed_Saleeq_Sunil_Resume.pdf" download>Resume</a></nav>
+</div></footer>
+<script src="../main.js" defer></script>
+</body>
+</html>

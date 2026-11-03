@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>SchemaAI · Case study · Mohammed Saleeq Sunil</title>
+  <meta name="description" content="Describe a business in plain English. Get a production database. A case study by Mohammed Saleeq Sunil.">
+  <meta name="theme-color" content="#000000">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="SchemaAI · Mohammed Saleeq Sunil">
+  <meta property="og:description" content="Describe a business in plain English. Get a production database.">
+  <meta property="og:image" content="../assets/work/sa-er-sm.jpg">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../styles.css">
+  <script>document.documentElement.classList.add('js')</script>
+</head>
+<body class="case">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="nav" id="nav">
+  <div class="wrap-wide nav-inner">
+    <a class="brand" href="../index.html" aria-label="Mohammed Saleeq Sunil, home"><span class="brand-mark" aria-hidden="true">MS</span><span>Mohammed Saleeq Sunil</span></a>
+    <nav aria-label="Primary"><div class="nav-links" id="nav-links"><a href="../index.html#about">About</a><a href="../index.html#experience">Experience</a><a href="../index.html#work">Work</a><a href="../index.html#recognition">Recognition</a><a href="../index.html#skills">Skills</a><a href="../index.html#contact">Contact</a></div></nav>
+    <div class="nav-actions">
+      <a class="btn btn-primary btn-sm" href="../index.html#contact">Hire me</a>
+      <button class="menu-btn" id="menu-btn" aria-controls="nav-links" aria-expanded="false" aria-label="Open menu"><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<section class="case-hero dark" aria-labelledby="case-title">
+  <div class="wrap-wide case-hero-copy">
+    <a class="crumb" href="../index.html#work">All work</a>
+    <p class="eyebrow">AI product · Claude API</p>
+    <h1 class="headline" id="case-title">SchemaAI</h1>
+    <p class="lede">Describe a business in plain English. Get a production database.</p>
+    <div class="cta-row"><a class="btn btn-primary" href="https://github.com/slytherin-py/Schemaai" target="_blank" rel="noopener">View code</a></div>
+  </div>
+  <div class="wrap-wide case-hero-media reveal"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>SchemaAI</span></div><picture><source srcset="../assets/work/sa-er.webp" type="image/webp"><img class="" src="../assets/work/sa-er-sm.jpg" alt="SchemaAI showing a generated ER diagram for a supply chain" data-zoom="../assets/work/sa-er.webp"></picture></div></div>
+</section>
+
+<section class="facts" aria-label="Project facts"><div class="wrap-wide"><dl><div><dt>Role</dt><dd>Solo builder: product, backend, frontend</dd></div><div><dt>When</dt><dd>2026</dd></div><div><dt>Stack</dt><dd>React 18, Vite, FastAPI, Pydantic v2, Claude API</dd></div><div><dt>Output</dt><dd>PostgreSQL schema</dd></div></dl></div></section>
+
+<section class="section-tight" aria-labelledby="res-h"><div class="wrap-wide">
+  <h2 class="sr-only" id="res-h">Results</h2>
+  <div class="metrics"><div class="m reveal" style="--d:0.00s"><b>1</b><span>Sentence of input</span></div><div class="m reveal" style="--d:0.06s"><b>4</b><span>Views: ER, SQL, data, notes</span></div><div class="m reveal" style="--d:0.12s"><b>4 to 10s</b><span>Typical generation time</span></div><div class="m reveal" style="--d:0.18s"><b>0</b><span>Diagram libraries used</span></div></div><p class="note center-note">Generation time is from the project README. The ER renderer is hand-written SVG.</p>
+</div></section>
+
+<section class="section-tight gray" aria-labelledby="prob-h"><div class="wrap-wide split">
+  <div class="reveal"><p class="eyebrow">The problem</p><h2 class="problem-text" id="prob-h" style="margin-top:10px">Turning a business idea into a clean relational schema takes real design skill and a lot of hand-written SQL. It&#x27;s where many analysts and founders get stuck.</h2></div>
+  <ul class="checks reveal" style="--d:.08s"><li>One sentence in, a normalized schema out</li><li>SQL that runs, not pseudo-code</li><li>Explain the design so people learn from it</li><li>Change it without starting over</li></ul>
+</div></section>
+
+<section class="section-tight" aria-labelledby="how-h"><div class="wrap-wide">
+  <h2 class="title reveal" id="how-h">How I built it.</h2>
+  <ol class="steps"><li class="step reveal" style="--d:0.00s"><span class="step-n">01</span><h3>Validate input</h3><p>Pydantic v2 validators clean every request before it reaches the model.</p></li><li class="step reveal" style="--d:0.06s"><span class="step-n">02</span><h3>Ask for structure</h3><p>I prompt Claude for strict JSON covering tables, keys, relationships, SQL, sample rows and the reasoning behind them.</p></li><li class="step reveal" style="--d:0.12s"><span class="step-n">03</span><h3>Check the output</h3><p>Models don&#x27;t always follow instructions, so the backend strips stray code fences and checks the structure first.</p></li><li class="step reveal" style="--d:0.00s"><span class="step-n">04</span><h3>Draw the diagram</h3><p>I wrote the ER renderer in plain SVG. No diagram library.</p></li><li class="step reveal" style="--d:0.06s"><span class="step-n">05</span><h3>Refine by chat</h3><p>Ask for a returns table or soft deletes. I keep the last 8 turns of history so context stays lean.</p></li><li class="step reveal" style="--d:0.12s"><span class="step-n">06</span><h3>Track changes</h3><p>Every change made through chat lands in a change log next to the design notes.</p></li></ol>
+</div></section>
+<section class="section-tight dark" aria-labelledby="arch-h"><div class="wrap-wide">
+  <h2 class="title reveal" id="arch-h">Under the hood.</h2>
+  <div class="arch reveal"><div class="arch-node"><b>React + Vite</b><span>input, tabs, chat</span></div><span class="arch-arrow" aria-hidden="true"></span><div class="arch-node"><b>FastAPI</b><span>/generate, /chat</span></div><span class="arch-arrow" aria-hidden="true"></span><div class="arch-node"><b>Pydantic v2</b><span>typed models</span></div><span class="arch-arrow" aria-hidden="true"></span><div class="arch-node"><b>Claude API</b><span>structured JSON</span></div><span class="arch-arrow" aria-hidden="true"></span><div class="arch-node"><b>SVG renderer</b><span>ER diagram</span></div></div></div></section><section class="section-tight gray" aria-labelledby="gal-h"><div class="wrap-wide">
+  <h2 class="title reveal" id="gal-h">Inside the product.</h2>
+  <p class="hint reveal">Click any image to enlarge.</p>
+  <div class="gallery"><figure class="shot shot-dark reveal" style="--d:0.00s"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>SchemaAI</span></div><picture><source srcset="../assets/work/sa-input.webp" type="image/webp"><img class="" src="../assets/work/sa-input-sm.jpg" alt="SchemaAI start screen" loading="lazy" decoding="async" data-zoom="../assets/work/sa-input.webp"></picture></div><figcaption>Start screen with one-click example prompts.</figcaption></figure><figure class="shot shot-dark reveal" style="--d:0.08s"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>SchemaAI</span></div><picture><source srcset="../assets/work/sa-sql.webp" type="image/webp"><img class="" src="../assets/work/sa-sql-sm.jpg" alt="Generated SQL view" loading="lazy" decoding="async" data-zoom="../assets/work/sa-sql.webp"></picture></div><figcaption>PostgreSQL CREATE statements with constraints and indexes, ready to copy.</figcaption></figure><figure class="shot shot-dark reveal" style="--d:0.00s"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>SchemaAI</span></div><picture><source srcset="../assets/work/sa-sample.webp" type="image/webp"><img class="" src="../assets/work/sa-sample-sm.jpg" alt="Sample data view" loading="lazy" decoding="async" data-zoom="../assets/work/sa-sample.webp"></picture></div><figcaption>Realistic sample rows for every table.</figcaption></figure><figure class="shot shot-dark reveal" style="--d:0.08s"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>SchemaAI</span></div><picture><source srcset="../assets/work/sa-design.webp" type="image/webp"><img class="" src="../assets/work/sa-design-sm.jpg" alt="Design notes view" loading="lazy" decoding="async" data-zoom="../assets/work/sa-design.webp"></picture></div><figcaption>Design notes explain normalization, types and indexing.</figcaption></figure></div></div></section><section class="section-tight"><div class="wrap-wide reflect"><div class="reflect-card reveal"><h3>What I learned</h3><ul><li>Asking a model for strict JSON isn&#x27;t enough. Checking the structure on the server is what makes it dependable.</li><li>Drawing the diagram myself kept the app light and gave me full control of the layout.</li></ul></div><div class="reflect-card reveal"><h3>What's next</h3><ul><li>I want to stream responses so big schemas appear as they&#x27;re built</li></ul></div></div></section>
+<div class="wrap-wide"><p class="note case-note">Screens show the real interface with a sample schema loaded for illustration.</p></div>
+
+<section class="section-tight" aria-label="Next case study"><div class="wrap-wide">
+  <a class="next-case reveal" href="productpulse.html">
+    <div><p class="eyebrow">Next case study</p><h2 class="title">ProductPulse</h2><p>Funnel, retention, unit economics and AI growth levers in one place.</p><span class="more">Read it</span></div>
+    <div class="next-media work-media"><picture><source srcset="../assets/work/pp-retention.webp" type="image/webp"><img class="" src="../assets/work/pp-retention-sm.jpg" alt="ProductPulse screenshot" loading="lazy" decoding="async"></picture></div>
+  </a>
+</div></section>
+
+<section class="section-tight dark cta-band" aria-labelledby="cta-h"><div class="wrap">
+  <h2 class="headline reveal" id="cta-h">Let's build what's <span class="gradient-text">next.</span></h2>
+  <div class="cta-row reveal" style="--d:.08s">
+    <a class="btn btn-primary" href="../index.html#contact">Hire me</a>
+    <a class="btn btn-ghost" href="mailto:mohammedsaleeqs@gmail.com?subject=Opportunity%20for%20Mohammed">Email me</a>
+    <a class="more" href="../assets/Mohammed_Saleeq_Sunil_Resume.pdf" download>Download resume</a>
+  </div>
+</div></section>
+</main>
+<footer class="footer"><div class="wrap-wide footer-inner">
+  <p>© <span id="year">2026</span> Mohammed Saleeq Sunil</p>
+  <nav aria-label="Footer"><a href="mailto:mohammedsaleeqs@gmail.com">Email</a><a href="https://www.linkedin.com/in/mohammed-saleeq-sunil" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/slytherin-py" target="_blank" rel="noopener">GitHub</a><a href="../assets/Mohammed_Saleeq_Sunil_Resume.pdf" download>Resume</a></nav>
+</div></footer>
+<script src="../main.js" defer></script>
+</body>
+</html>
