@@ -220,9 +220,9 @@ CASES = [
         "card_metric": "Best Paper",
         "thumb": "svg:flood",
         "hero": {"svg": "flood"},
-        "facts": [("Role", "Student team lead, first author"), ("When", "2018 to 2022"), ("Published", "AIP Conf. Proc. 2463, 020063"), ("Recognition", "Best Paper, RIST 2021 · State-level award")],
+        "facts": [("Role", "Student team lead, first author"), ("When", "2018 to 2022"), ("Published", "AIP Conf. Proc. 2463, 020063"), ("Recognition", "Best Paper Award, RIST 2021 (state level)")],
         "links": [("Read the paper", "https://doi.org/10.1063/5.0080439", True)],
-        "metrics": [("Best Paper", "RIST 2021"), ("1st", "Author of 5"), ("2022", "Published in AIP"), ("1", "State-level award")],
+        "metrics": [("Best Paper", "RIST 2021, state level"), ("1st", "Author of 5"), ("25 hrs", "Flood relief volunteering"), ("2022", "Published in AIP")],
         "metrics_note": "",
         "problem": {
             "text": "During the 2018 Kerala floods, vehicles stalled when water entered the exhaust. Back-pressure pushes water toward the engine. For an ambulance, a stall can cost lives.",
