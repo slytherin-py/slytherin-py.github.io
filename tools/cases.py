@@ -119,7 +119,7 @@ CASES = [
     },
     # ------------------------------------------------------------------
     {
-        "slug": "hub-network",
+        "slug": "hub-network", "logo": ("isenberg-white.png", "UMass Amherst Isenberg School of Management"),
         "kicker": "MS Capstone · Optimization",
         "title": "Drone Hub Network",
         "tagline": "Where to build 7 hubs so the most people get a 15-minute delivery.",
@@ -127,7 +127,7 @@ CASES = [
         "card_metric": "31.46% covered",
         "thumb": "svg:hub",
         "hero": {"svg": "hub"},
-        "facts": [("Role", "Capstone author"), ("When", "Completed May 2026"), ("Method", "p-median and maximal covering (MCLP)"), ("Context", "Amazon Prime Air drone network")],
+        "facts": [("Role", "Capstone author"), ("When", "Isenberg School of Management, May 2026"), ("Method", "p-median and maximal covering (MCLP)"), ("Context", "Amazon Prime Air drone network")],
         "links": [],
         "metrics": [("7", "Regional hubs sited"), ("31.46%", "Population within 15 minutes"), ("$54.26M", "Capital budget"), ("15 min", "Response threshold")],
         "metrics_note": "",
@@ -179,7 +179,7 @@ CASES = [
     },
     # ------------------------------------------------------------------
     {
-        "slug": "portfolio-delivery", "featured": True,
+        "slug": "portfolio-delivery", "logo": ("fingent-white.png", "Fingent"), "featured": True,
         "kicker": "Delivery leadership · Fingent",
         "title": "SaaS Portfolio Delivery",
         "tagline": "Running analytics and governance for 8 products across 3 continents.",
@@ -212,7 +212,7 @@ CASES = [
     },
     # ------------------------------------------------------------------
     {
-        "slug": "flood-exhaust",
+        "slug": "flood-exhaust", "logo": ("aip-white.svg", "AIP Publishing"),
         "kicker": "Research · Published",
         "title": "Flood-Resilient Ambulance Exhaust",
         "tagline": "Keeping emergency vehicles running when floodwater rises.",

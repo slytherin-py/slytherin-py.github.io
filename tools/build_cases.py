@@ -272,6 +272,7 @@ def case_page(c, nxt):
 <section class="case-hero dark" aria-labelledby="case-title">
   <div class="wrap-wide case-hero-copy">
     <a class="crumb" href="{P}index.html#work">All work</a>
+    {f'<img class="case-logo" src="{P}assets/logos/{c["logo"][0]}" alt="{e(c["logo"][1])}" height="{30 if c["logo"][0].endswith(".svg") else 36}"{' width="116"' if c["logo"][0].endswith(".svg") else ""}>' if c.get("logo") else ""}
     <p class="eyebrow">{e(c["kicker"])}</p>
     <h1 class="headline" id="case-title">{e(c["title"])}</h1>
     <p class="lede">{e(c["tagline"])}</p>
