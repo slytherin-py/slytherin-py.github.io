@@ -700,3 +700,30 @@ section { position: relative; }
 .org-logo { display: block; width: auto; margin-bottom: 14px; }
 .award-logo { display: block; width: auto; max-width: 70%; align-self: flex-start; }
 .case-logo { display: block; width: auto; margin-bottom: 22px; opacity: .9; }
+
+/* ---------- Awards + learning ---------- */
+.award-dark { background: var(--black); color: #f5f5f7; }
+.award-dark .award-icon { background: #1c1c1e; color: #f5c46b; }
+.award-dark .tile-kicker { color: #f5c46b; }
+.award-dark p { color: var(--muted-dark); }
+.award .more { margin-top: 2px; }
+
+.learning { margin-top: 20px; padding: clamp(28px, 4vw, 44px); border-radius: var(--radius-xl); background: var(--white); }
+.learning h3 { font-size: 24px; letter-spacing: -0.025em; margin-bottom: 8px; }
+.course-list li {
+  display: grid; grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.4fr) 56px 64px; gap: 6px 18px; align-items: baseline;
+  padding: 14px 0; border-bottom: 1px solid var(--line);
+}
+.course-list li:last-child { border-bottom: 0; }
+.c-name { font-weight: 600; letter-spacing: -0.015em; }
+.c-org { color: var(--muted); font-size: 15px; }
+.c-date { font-family: var(--mono); font-size: 13px; color: var(--muted); letter-spacing: 0; }
+.course-list a { font-size: 15px; justify-self: end; }
+@media (max-width: 680px) {
+  .course-list li { grid-template-columns: 1fr auto; }
+  .c-org { grid-column: 1; }
+  .c-date { grid-column: 2; grid-row: 1; justify-self: end; }
+  .course-list a { grid-column: 2; grid-row: 2; }
+}
+
+@media (min-width: 961px) { .steps:has(> :nth-child(4):last-child) { grid-template-columns: repeat(2, 1fr); } }
