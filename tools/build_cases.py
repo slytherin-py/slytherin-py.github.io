@@ -9,6 +9,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from cases import CASES  # noqa: E402
 
 e = html.escape
+SITE = "https://slytherin-py.github.io/"
 
 # ---------------------------------------------------------------- graphics
 HUB_SVG = """<svg class="hub-map" viewBox="0 0 640 420" role="img" aria-labelledby="hub-t">
@@ -250,10 +251,14 @@ def case_page(c, nxt):
   <title>{e(c["title"])} · Case study · Mohammed Saleeq Sunil</title>
   <meta name="description" content="{e(c["tagline"])} A case study by Mohammed Saleeq Sunil.">
   <meta name="theme-color" content="#000000">
+  <link rel="canonical" href="{SITE}work/{c["slug"]}.html">
   <meta property="og:type" content="article">
+  <meta property="og:url" content="{SITE}work/{c["slug"]}.html">
+  <meta property="og:site_name" content="Mohammed Saleeq Sunil">
   <meta property="og:title" content="{e(c["title"])} · Mohammed Saleeq Sunil">
   <meta property="og:description" content="{e(c["tagline"])}">
-  <meta property="og:image" content="{P}assets/{"work/" + hero["img"] + "-sm.jpg" if "img" in hero else "og.jpg"}">
+  <meta property="og:image" content="{SITE}assets/{"work/" + hero["img"] + "-sm.jpg" if "img" in hero else "og.jpg"}">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="{P}assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
@@ -358,6 +363,12 @@ def main():
     else:
         open(idx, "w", encoding="utf-8").write(s2)
         print("updated index.html work grid")
+    urls = [SITE] + [f"{SITE}work/{c['slug']}.html" for c in CASES]
+    with open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf-8") as f:
+        f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
+        f.writelines(f"  <url><loc>{u}</loc></url>\n" for u in urls)
+        f.write("</urlset>\n")
+    print("wrote sitemap.xml")
 
 
 if __name__ == "__main__":
