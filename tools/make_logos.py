@@ -66,6 +66,18 @@ cs = trim(Image.open(os.path.join(SRC, "centresource.png")).convert("RGBA"))
 save(fit(cs, 120), "centresource.png")
 save(fit(recolor(cs, (255, 255, 255)), 120), "centresource-white.png")
 
+# Holiday World (myholidayworld.com, holiday_world_logo.webp): "WORLD" is white, so make an ink version for light cards
+hc = trim(Image.open(os.path.join(SRC, "mhw_holiday_world_logo.webp")).convert("RGBA"))
+save(fit(hc, 120), "holiday-world-white.png")
+dark = hc.copy()
+px = dark.load()
+for y in range(dark.height):
+    for x in range(dark.width):
+        r, g, b, a = px[x, y]
+        if a and min(r, g, b) > 200:  # white letterforms -> ink; teal accents untouched
+            px[x, y] = (29, 29, 31, a)
+save(fit(dark, 120), "holiday-world.png")
+
 # Jyothi Engineering College seal
 save(fit(trim(Image.open(os.path.join(SRC, "jecc.png")).convert("RGBA")), 160), "jecc.png")
 
