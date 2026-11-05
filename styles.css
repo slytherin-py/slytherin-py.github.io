@@ -965,3 +965,120 @@ html { scrollbar-color: #3a3a3e #000; accent-color: #0071e3; caret-color: #2997f
 .role-flow small { display: block; margin-top: 2px; font-size: 13px; color: var(--muted); }
 .rf-tag { font-style: normal; font-size: 11px; font-weight: 600; padding: 4px 9px; border-radius: 99px; color: var(--link); background: rgba(0, 113, 227, .1); }
 @media (prefers-reduced-motion: reduce) { .role-flow li, .role-flow ol::after { transition: none; opacity: 1; transform: none; } }
+
+/* About diagram: the circles drift on slow, out-of-phase loops so the overlaps keep shifting */
+.venn circle { transform-box: fill-box; transform-origin: center; }
+.v-a { animation: v-drift-a 11s ease-in-out infinite alternate; }
+.v-b { animation: v-drift-b 13s ease-in-out infinite alternate; }
+.v-c { animation: v-drift-c 12s ease-in-out infinite alternate; }
+.v-ring { animation: v-ring 3.6s var(--ease-out) infinite; }
+@keyframes v-drift-a { 0% { transform: translate(-4px, 3px) scale(1); } 50% { transform: translate(5px, -4px) scale(1.03); } 100% { transform: translate(-2px, -6px) scale(.985); } }
+@keyframes v-drift-b { 0% { transform: translate(4px, -3px) scale(1.02); } 50% { transform: translate(-5px, 4px) scale(.98); } 100% { transform: translate(3px, 6px) scale(1.03); } }
+@keyframes v-drift-c { 0% { transform: translate(0, 5px) scale(.985); } 50% { transform: translate(-4px, -4px) scale(1.03); } 100% { transform: translate(5px, -2px) scale(1); } }
+@keyframes v-ring { 0% { transform: scale(1); opacity: .9; } 100% { transform: scale(1.9); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .v-a, .v-b, .v-c, .v-ring { animation: none; } .v-ring { opacity: 0; } }
+.section-sub { margin-top: 16px; max-width: 58ch; font-size: 19px; line-height: 1.45; color: var(--muted); }
+
+/* ==========================================================
+   Nav: a floating glass bar. Clear and blurred over whatever scrolls
+   beneath it, with a light that travels round its rim and a soft pill
+   that glides to the hovered or current link.
+   ========================================================== */
+@property --rim { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.nav { background: transparent; border-bottom: 0; -webkit-backdrop-filter: none; backdrop-filter: none; pointer-events: none; }
+.nav { margin-bottom: calc(-1 * var(--nav-h) - 8px); }
+.nav-inner {
+  position: relative; pointer-events: auto; margin-top: 8px; height: calc(var(--nav-h) - 4px);
+  width: min(var(--wrap-wide) + 24px, 100% - 16px); padding: 0 8px 0 12px; border-radius: 999px;
+  background: linear-gradient(180deg, rgba(38, 38, 44, .58), rgba(16, 16, 20, .68));
+  -webkit-backdrop-filter: blur(22px) saturate(180%); backdrop-filter: blur(22px) saturate(180%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14), inset 0 -1px 0 rgba(255, 255, 255, .04), 0 10px 30px -12px rgba(0, 0, 0, .45);
+  transition: width .5s var(--ease-out), margin-top .5s var(--ease-out), background .4s;
+}
+/* the rim: a hairline border with a slow travelling highlight */
+.nav-inner::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
+  background: conic-gradient(from var(--rim), rgba(255,255,255,.1) 0deg, rgba(255,255,255,.1) 200deg, rgba(41,151,255,.9) 250deg, rgba(168,139,255,.8) 290deg, rgba(255,138,92,.7) 320deg, rgba(255,255,255,.1) 360deg);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude;
+  animation: nav-rim 9s linear infinite;
+}
+/* a soft glare that follows the pointer across the glass */
+.nav-inner::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .4s;
+  background: radial-gradient(160px 60px at var(--gx, 50%) 50%, rgba(255, 255, 255, .12), transparent 70%);
+}
+.nav-inner:hover::after { opacity: 1; }
+@keyframes nav-rim { to { --rim: 360deg; } }
+.nav.scrolled .nav-inner { width: min(980px, 100% - 16px); background: linear-gradient(180deg, rgba(34, 34, 40, .66), rgba(14, 14, 18, .74)); }
+.nav.nav-hidden { transform: translateY(calc(-100% - 12px)); }
+
+@media (min-width: 861px) {
+  .nav-links { position: relative; gap: 4px; }
+  .nav-links a { position: relative; z-index: 1; padding: 7px 12px; border-radius: 999px; }
+}
+.nav-pill {
+  position: absolute; z-index: 0; left: 0; top: 50%; height: 32px; width: var(--pw, 0px); border-radius: 999px;
+  transform: translate(var(--px, 0px), -50%); opacity: var(--po, 0);
+  background: rgba(255, 255, 255, .12); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12);
+  transition: transform .45s var(--ease-out), width .45s var(--ease-out), opacity .3s;
+}
+.brand-mark { box-shadow: 0 0 0 0 rgba(0, 113, 227, .5); animation: brand-pulse 4s var(--ease-out) infinite; }
+@keyframes brand-pulse { 0% { box-shadow: 0 0 0 0 rgba(41, 151, 255, .5); } 60%, 100% { box-shadow: 0 0 0 9px rgba(41, 151, 255, 0); } }
+
+@media (max-width: 860px) {
+  .nav-pill { display: none; }
+  .nav-links { top: calc(var(--nav-h) + 6px); left: 8px; right: 8px; border-radius: 22px; gap: 0; background: rgba(18, 18, 22, .82); box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 20px 40px -16px rgba(0,0,0,.5); }
+  .nav-links a { border-radius: 0; padding: 12px 4px; }
+  .nav-links a:last-child { border-bottom: 0; }
+  .nav.scrolled .nav-inner { width: min(var(--wrap-wide) + 24px, 100% - 16px); }
+}
+@media (prefers-reduced-motion: reduce) { .nav-inner::before, .brand-mark { animation: none; } .nav-pill, .nav-inner { transition: none; } }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .nav-inner { background: rgba(22, 22, 26, .94); } }
+.nowrap { white-space: nowrap; }
+
+/* Experience: colour drifts behind each card so the chart reads as frosted glass, and the
+   bars stay alive after they land (a light sweeps along each, the fill breathes slightly) */
+.role-rich { position: relative; isolation: isolate; overflow: hidden; }
+.role-rich::before {
+  content: ""; position: absolute; z-index: -1; right: -8%; top: -30%; width: 62%; height: 160%; pointer-events: none;
+  background:
+    radial-gradient(38% 30% at 30% 35%, rgba(41, 151, 255, .38), transparent 70%),
+    radial-gradient(34% 28% at 70% 60%, rgba(168, 139, 255, .34), transparent 70%),
+    radial-gradient(30% 24% at 45% 80%, rgba(255, 138, 92, .26), transparent 70%);
+  filter: blur(10px); animation: card-blobs 16s ease-in-out infinite alternate;
+}
+.roles > .role-rich:nth-child(2n)::before { animation-duration: 19s; animation-direction: alternate-reverse; }
+@keyframes card-blobs {
+  0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  50% { transform: translate(-6%, 5%) rotate(8deg) scale(1.06); }
+  100% { transform: translate(4%, -4%) rotate(-6deg) scale(.97); }
+}
+.role-chart {
+  background: rgba(255, 255, 255, .5);
+  -webkit-backdrop-filter: blur(24px) saturate(160%); backdrop-filter: blur(24px) saturate(160%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .9), inset 0 0 0 1px rgba(255, 255, 255, .55), 0 18px 40px -24px rgba(29, 29, 31, .35);
+}
+.rc-track { background: rgba(29, 29, 31, .08); }
+.rc-track i { overflow: hidden; }
+.rc-track i::after {
+  content: ""; position: absolute; inset: 0; transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .65), transparent);
+}
+.in .rc-track i::after { animation: bar-sweep 3.2s var(--ease-in-out) calc(var(--dd, 0s) + 1.6s) infinite; }
+.in .rc-track i { animation: bar-breathe 4s ease-in-out calc(var(--dd, 0s) + 1.4s) infinite; }
+@keyframes bar-sweep { 0% { transform: translateX(-100%); } 60%, 100% { transform: translateX(100%); } }
+@keyframes bar-breathe { 0%, 100% { scale: 1 1; } 50% { scale: 1.035 1; } }
+/* Holiday World flow: a pulse runs down the line between the steps */
+.in .role-flow ol::after {
+  background: linear-gradient(180deg, var(--blue) 0 40%, #9fd0ff 50%, var(--blue) 60% 100%) 0 0 / 100% 250%;
+  animation: flow-pulse 2.8s linear 1.4s infinite;
+}
+@keyframes flow-pulse { from { background-position: 0 100%; } to { background-position: 0 0%; } }
+.in .rf-icon { animation: rf-glow 2.8s ease-in-out infinite; }
+.role-flow li:nth-child(2) .rf-icon { animation-delay: .9s; }
+.role-flow li:nth-child(3) .rf-icon { animation-delay: 1.8s; }
+@keyframes rf-glow { 0%, 100% { box-shadow: 0 4px 12px rgba(0, 113, 227, .25); } 50% { box-shadow: 0 4px 22px rgba(0, 113, 227, .55); } }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .role-chart { background: rgba(255, 255, 255, .88); } }
+@media (prefers-reduced-motion: reduce) {
+  .role-rich::before, .in .rc-track i, .in .rc-track i::after, .in .role-flow ol::after, .in .rf-icon { animation: none; }
+}

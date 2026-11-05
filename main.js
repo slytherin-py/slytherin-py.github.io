@@ -170,6 +170,31 @@
     links.forEach((a) => { const s = $(a.getAttribute('href')); if (s) sectionIO.observe(s); });
   }
 
+  // ---- Nav glass: a pill glides to the hovered link, else the current one; glare follows the pointer ----
+  const navLinks = $('#nav-links');
+  if (nav && navLinks) {
+    const pill = document.createElement('span');
+    pill.className = 'nav-pill'; pill.setAttribute('aria-hidden', 'true');
+    navLinks.prepend(pill);
+    const place = (a) => {
+      if (!a) { pill.style.setProperty('--po', 0); return; }
+      pill.style.setProperty('--px', a.offsetLeft + 'px');
+      pill.style.setProperty('--pw', a.offsetWidth + 'px');
+      pill.style.setProperty('--po', 1);
+    };
+    const current = () => place($('a[aria-current="true"]', navLinks));
+    $$('a', navLinks).forEach((a) => a.addEventListener('pointerenter', () => place(a)));
+    navLinks.addEventListener('pointerleave', current);
+    new MutationObserver(current).observe(navLinks, { subtree: true, attributeFilter: ['aria-current'] });
+    const inner = $('.nav-inner', nav);
+    inner.addEventListener('pointermove', (ev) => {
+      const r = inner.getBoundingClientRect();
+      inner.style.setProperty('--gx', (ev.clientX - r.left) + 'px');
+    }, { passive: true });
+    const scrolled = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+    window.addEventListener('scroll', scrolled, { passive: true }); scrolled();
+  }
+
   // ---- Contact form → prefilled email ----
   const form = $('#contact-form');
   if (form) {
