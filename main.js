@@ -34,13 +34,45 @@
     requestAnimationFrame(tick);
   };
 
+  // ---- Hero headline: split into words so they arrive one after another ----
+  const heroTitle = $('.hero h1');
+  if (heroTitle && !reduceMotion) {
+    let i = 0;
+    const wrap = (node) => {
+      if (node.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        node.textContent.split(/(\s+)/).forEach((part) => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+          const w = document.createElement('span');
+          w.className = 'w'; w.style.setProperty('--i', i++); w.textContent = part;
+          frag.appendChild(w);
+        });
+        node.replaceWith(frag);
+      } else if (node.classList && node.classList.contains('gradient-text')) {
+        // background-clip text can't reach into transformed children, so the gradient phrase moves as one
+        node.classList.add('w'); node.style.setProperty('--i', i++);
+      }
+    };
+    Array.from(heroTitle.childNodes).forEach(wrap);
+    heroTitle.classList.add('words');
+  }
+
   // ---- Reveal on scroll ----
+  // Elements that arrive together stagger (60ms apart, capped); once settled, the reveal
+  // class comes off so hover and press styles apply and no blur layer lingers.
+  const settle = (el) => {
+    const d = parseFloat(getComputedStyle(el).getPropertyValue('--d')) || 0;
+    setTimeout(() => el.classList.remove('reveal'), 1700 + d * 1000);
+  };
   const io = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('in');
-      $$('[data-count]', entry.target).forEach(countUp);
-      io.unobserve(entry.target);
+    const arriving = entries.filter((en) => en.isIntersecting).map((en) => en.target);
+    arriving.forEach((el, n) => {
+      if (arriving.length > 1 && !el.closest('.hero')) el.style.setProperty('--d', Math.min(n, 5) * 0.06 + 's');
+      el.classList.add('in');
+      $$('[data-count]', el).forEach(countUp);
+      if (el.classList.contains('reveal')) settle(el);
+      io.unobserve(el);
     });
   }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
   $$('.reveal, [data-observe]').forEach((el) => io.observe(el));
@@ -102,8 +134,14 @@
   const hireBar = $('#hire-bar');
   const contact = $('#contact');
   let ticking = false;
+  let lastY = window.scrollY;
   const onScroll = () => {
     const y = window.scrollY;
+    if (nav) {
+      if (y > lastY + 6 && y > 320 && !nav.classList.contains('open')) nav.classList.add('nav-hidden');
+      else if (y < lastY - 6 || y < 320) nav.classList.remove('nav-hidden');
+    }
+    lastY = y;
     if (heroVisual && !reduceMotion && y < window.innerHeight * 1.5) {
       const p = Math.min(1, y / window.innerHeight);
       heroVisual.style.transform = `translateY(${p * -40}px) scale(${1 + p * 0.06})`;
@@ -151,6 +189,34 @@
       window.location.href = `mailto:mohammedsaleeqs@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     });
   }
+
+  // ---- Reading progress bar (CSS scroll timeline does the animating) ----
+  const bar = document.createElement('div');
+  bar.className = 'scroll-progress'; bar.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(bar);
+
+  // ---- Page transitions: the clicked project's image morphs into its case-study header ----
+  const cardFor = (url) => $$('.work-card').find((a) => a.href === url);
+  const inView = (el) => { const r = el.getBoundingClientRect(); return r.bottom > 0 && r.top < window.innerHeight; };
+  window.addEventListener('pageswap', (e) => {
+    if (!e.viewTransition) return;
+    const to = e.activation && e.activation.entry && e.activation.entry.url;
+    const card = to && cardFor(to);
+    const hero = $('.case-hero-media');
+    if (card) $('.work-media', card).style.viewTransitionName = 'case-media';
+    // case to case is a plain crossfade; case back to home carries the image only if it's on screen
+    if (hero && (card || /\/work\//.test(to || '') || !inView(hero))) hero.style.viewTransitionName = 'none';
+  });
+  window.addEventListener('pagereveal', (e) => {
+    if (!e.viewTransition) return;
+    document.documentElement.classList.add('vt-in');
+    const from = window.navigation && navigation.activation && navigation.activation.from && navigation.activation.from.url;
+    const card = from && cardFor(from);
+    if (!card) return;
+    const media = $('.work-media', card);
+    media.style.viewTransitionName = 'case-media';
+    e.viewTransition.finished.finally(() => { media.style.viewTransitionName = ''; });
+  });
 
   const year = $('#year');
   if (year) year.textContent = new Date().getFullYear();

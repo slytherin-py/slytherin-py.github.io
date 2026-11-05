@@ -13,6 +13,7 @@
   --line-dark: #333336;
   --blue: #0071e3;
   --blue-hover: #0077ed;
+  --link: #0066cc;          /* text links: 5:1+ on white and #f5f5f7 (button fill stays --blue) */
   --link-dark: #2997ff;
   --accent-a: #2997ff;
   --accent-b: #a88bff;
@@ -20,6 +21,9 @@
   --radius-xl: 28px;
   --radius-lg: 18px;
   --ease: cubic-bezier(.28, .11, .32, 1);
+  --ease-out: cubic-bezier(.16, 1, .3, 1);        /* confident arrivals */
+  --ease-snap: cubic-bezier(.23, 1, .32, 1);      /* hovers, presses */
+  --ease-in-out: cubic-bezier(.77, 0, .175, 1);   /* on-screen movement */
   --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --mono: "SF Mono", ui-monospace, "JetBrains Mono", Menlo, Consolas, monospace;
   --wrap: 1040px;
@@ -43,7 +47,7 @@ body {
   overflow-x: hidden;
 }
 img, svg { display: block; max-width: 100%; }
-a { color: var(--blue); text-decoration: none; }
+a { color: var(--link); text-decoration: none; }
 a:hover { text-decoration: underline; }
 h1, h2, h3, h4, p { margin: 0; }
 ul { margin: 0; padding: 0; list-style: none; }
@@ -103,7 +107,7 @@ ol { margin: 0; padding: 0; list-style: none; }
 .btn:active { transform: scale(.97); }
 .btn-primary { background: var(--blue); color: var(--white); }
 .btn-primary:hover { background: var(--blue-hover); }
-.btn-ghost { border-color: currentColor; color: var(--blue); background: transparent; }
+.btn-ghost { border-color: currentColor; color: var(--link); background: transparent; }
 .btn-ghost:hover { background: var(--blue); border-color: var(--blue); color: var(--white); }
 .dark .btn-ghost { color: var(--link-dark); }
 .dark .btn-ghost:hover { background: var(--link-dark); border-color: var(--link-dark); color: var(--black); }
@@ -209,9 +213,8 @@ section { position: relative; }
   position: absolute; inset: auto 0 22% 0; height: 46%; z-index: 0; pointer-events: none;
   background: radial-gradient(40% 50% at 50% 60%, rgba(41,151,255,.10), transparent 70%);
 }
-.js .hero .reveal { animation: heroIn 1.1s var(--ease) both; animation-delay: calc(var(--d, 0s) + .1s); transition: none; }
-.js .hero-visual { animation: heroImg 1.6s var(--ease) .35s both; }
-@keyframes heroIn { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+.js .hero .reveal { animation: heroIn 1.1s var(--ease-out) both; animation-delay: calc(var(--d, 0s) + .1s); transition: none; }
+@keyframes heroIn { from { opacity: 0; transform: translateY(28px); filter: blur(8px); } to { opacity: 1; transform: none; } }
 @keyframes heroImg { from { opacity: 0; } to { opacity: 1; } }
 .hero-fade { position: absolute; left: 0; right: 0; bottom: 0; height: 28%; background: linear-gradient(transparent, var(--black)); z-index: 2; pointer-events: none; }
 
@@ -311,7 +314,7 @@ section { position: relative; }
   position: relative; overflow: hidden; border-radius: var(--radius-xl);
   background: var(--white); padding: clamp(28px, 3.4vw, 44px);
   display: flex; flex-direction: column;
-  transition: transform .5s var(--ease), box-shadow .5s var(--ease);
+  transition: transform .4s var(--ease-snap), box-shadow .4s var(--ease-snap);
 }
 .tile:hover { transform: translateY(-4px); box-shadow: 0 24px 48px -24px rgba(0,0,0,.25); }
 .tile.dark { background: var(--black); }
@@ -477,13 +480,16 @@ section { position: relative; }
 @media (max-width: 860px) { .hire-bar { display: flex; } }
 
 /* ---------- Reveal ---------- */
-.js .reveal { opacity: 0; transform: translateY(32px); transition: opacity 1s var(--ease), transform 1s var(--ease); transition-delay: var(--d, 0s); }
-.js .reveal.in { opacity: 1; transform: none; }
+.js .reveal { opacity: 0; transform: translateY(24px); filter: blur(6px); transition: opacity .9s var(--ease-out), transform 1.1s var(--ease-out), filter .8s var(--ease-out); transition-delay: var(--d, 0s); }
+.js .reveal.in { opacity: 1; transform: none; filter: none; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after { animation: none !important; transition: none !important; }
-  .js .reveal { opacity: 1; transform: none; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; animation-delay: 0s !important; }
+  .js .reveal { transform: none; filter: none; transition: opacity .4s ease; }
+  .js .work-card.reveal .work-media img, .js .shot.reveal img, .js .grad-photo.reveal img { clip-path: none; transform: none; }
+  .nav.nav-hidden { transform: none; }
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
   .js .impact:not(.in) .bar-fill, .js .tile:not(.in) .funnel-bar i { transform: none; }
   .js .journey-track:not(.in)::before { --p: 1; }
   .js .er .draw { opacity: 1; transform: none; }
@@ -493,7 +499,7 @@ section { position: relative; }
 @media print {
   .nav, .hire-bar, .hero-glow, .form { display: none !important; }
   .dark, .stats, .hero { background: #fff !important; color: #000 !important; }
-  .js .reveal { opacity: 1; transform: none; }
+  .js .reveal { opacity: 1; transform: none; filter: none; }
 }
 
 /* ==========================================================
@@ -503,12 +509,12 @@ section { position: relative; }
 .work-card {
   display: flex; flex-direction: column; overflow: hidden; border-radius: var(--radius-xl);
   background: var(--white); color: var(--ink);
-  transition: transform .5s var(--ease), box-shadow .5s var(--ease);
+  transition: transform .4s var(--ease-snap), box-shadow .4s var(--ease-snap);
 }
 .work-card:hover { text-decoration: none; transform: translateY(-6px); box-shadow: 0 30px 60px -30px rgba(0,0,0,.3); }
 .work-card-lg { grid-column: span 2; }
 .work-media { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #0b0b0d; }
-.work-media img { width: 100%; height: 100%; object-fit: cover; object-position: top left; transition: transform .8s var(--ease); }
+.work-media img { width: 100%; height: 100%; object-fit: cover; object-position: top left; transition: transform .7s var(--ease-out), clip-path 1.1s var(--ease-out); }
 .work-card:hover .work-media img { transform: scale(1.04); }
 .work-media.light img { object-fit: contain; object-position: center; background: var(--white); padding: 12px; }
 .card-viz { width: 100%; height: 100%; display: grid; place-items: center; background: #0b0b0d; }
@@ -759,3 +765,60 @@ section { position: relative; }
 
 .award-of { font-size: .5em; letter-spacing: -0.02em; margin-left: 2px; }
 .award h3 sup { font-size: .5em; vertical-align: super; line-height: 0; }
+
+/* ==========================================================
+   Motion (easing tokens above; one system, transform + opacity first)
+   ========================================================== */
+
+/* Hero: the headline arrives word by word, the portrait settles out of focus */
+.js .hero h1.words { animation: none; opacity: 1; transform: none; filter: none; }
+.words .w { display: inline-block; animation: wordIn 1s var(--ease-out) both; animation-delay: calc(.15s + var(--i) * .09s); }
+@keyframes wordIn { from { opacity: 0; transform: translateY(.45em); filter: blur(10px); } }
+.js .hero-visual img { animation: portraitIn 1.8s var(--ease-out) .35s both; }
+@keyframes portraitIn {
+  from { opacity: 0; transform: scale(1.06); filter: brightness(.92) contrast(1.08) saturate(.9) blur(12px); }
+  to { opacity: 1; transform: none; filter: brightness(.92) contrast(1.08) saturate(.9) blur(0); }
+}
+
+/* Images open from a soft inset as their card arrives */
+.js .work-card.reveal:not(.in) .work-media img { clip-path: inset(6% 6% 6% 6% round 14px); transform: scale(1.08); }
+.js .shot.reveal img, .js .grad-photo.reveal img { transition: clip-path 1.1s var(--ease-out), transform 1.2s var(--ease-out); }
+.js .shot.reveal:not(.in) img, .js .grad-photo.reveal:not(.in) img { clip-path: inset(10% 0 0 0 round 16px); transform: scale(1.04); }
+
+/* Press feedback on everything clickable */
+.work-card:active, .next-case:active { transform: translateY(-2px) scale(.985); transition-duration: .12s; }
+.tile:active { transform: scale(.985); transition-duration: .12s; }
+.more:active, .nav-links a:active, .brand:active { opacity: .7; }
+@media (hover: none) {
+  .work-card:hover, .tile:hover, .next-case:hover { transform: none; box-shadow: none; }
+  .work-card:hover .work-media img { transform: none; }
+}
+
+/* Nav steps aside while reading down, returns on the way up */
+.nav { transition: transform .35s var(--ease-out); }
+.nav.nav-hidden { transform: translateY(-100%); transition-duration: .25s; }
+
+/* Reading progress, driven by scroll where the browser supports it */
+.scroll-progress { display: none; }
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    display: block; position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 60; pointer-events: none;
+    background: linear-gradient(90deg, var(--accent-a), var(--accent-b) 60%, var(--accent-c));
+    transform-origin: 0 50%; animation: progress linear both; animation-timeline: scroll(root);
+  }
+  @keyframes progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+}
+
+/* Page to page: a soft crossfade, and the project image carries over into its case study */
+@view-transition { navigation: auto; }
+::view-transition-old(root) { animation: vtOut .28s var(--ease-snap) both; }
+::view-transition-new(root) { animation: vtIn .5s var(--ease-out) both; }
+@keyframes vtOut { to { opacity: 0; transform: translateY(-12px); filter: blur(4px); } }
+@keyframes vtIn { from { opacity: 0; transform: translateY(16px); filter: blur(4px); } }
+::view-transition-group(case-media) { animation-duration: .6s; animation-timing-function: var(--ease-in-out); }
+::view-transition-old(case-media), ::view-transition-new(case-media) { height: 100%; object-fit: cover; animation-duration: .6s; }
+.case-hero-media { view-transition-name: case-media; }
+.js .case-hero-media.reveal { opacity: 1; transform: none; filter: none; animation: heroIn 1.1s var(--ease-out) .15s both; }
+.vt-in .case-hero-media.reveal { animation: none; }
+@media (max-width: 400px) { .hero-meta span { white-space: normal; } }
+.dark .eyebrow, .panel .form-hint { color: var(--muted-dark); }
