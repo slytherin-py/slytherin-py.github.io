@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>YouTube Oracle · Case study · Mohammed Saleeq Sunil</title>
   <meta name="description" content="Predicts whether a video will go viral, and shows exactly why. A case study by Mohammed Saleeq Sunil.">
-  <meta name="theme-color" content="#000000">
+  <meta name="theme-color" content="#0f1a35">
   <link rel="canonical" href="https://slytherin-py.github.io/work/youtube-oracle.html">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://slytherin-py.github.io/work/youtube-oracle.html">
@@ -16,7 +16,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="../styles.css">
   <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -72,14 +72,14 @@
   <div class="reveal" style="--d:.08s"><div class="cm-wrap"><svg class="viz" viewBox="0 0 400 330" role="img" aria-labelledby="cm-t">
   <title id="cm-t">Confusion matrix on 1,271 held-out videos: 425 true negatives, 61 false positives, 85 false negatives, 700 true positives</title>
   <g font-family="-apple-system, Inter, sans-serif" text-anchor="middle">
-    <text x="250" y="20" font-size="12" fill="#86868b">Predicted</text>
+    <text x="250" y="20" font-size="12" fill="#a7aec4">Predicted</text>
     <text x="180" y="44" font-size="12" fill="#a1a1a6">Not viral</text><text x="320" y="44" font-size="12" fill="#a1a1a6">Viral</text>
-    <text x="20" y="175" font-size="12" fill="#86868b" transform="rotate(-90 20 175)">Actual</text>
+    <text x="20" y="175" font-size="12" fill="#a7aec4" transform="rotate(-90 20 175)">Actual</text>
     <text x="96" y="122" font-size="12" fill="#a1a1a6" text-anchor="end">Not viral</text><text x="96" y="246" font-size="12" fill="#a1a1a6" text-anchor="end">Viral</text>
-    <rect x="112" y="56" width="136" height="120" rx="14" fill="#2997ff" fill-opacity=".55"/><rect x="252" y="56" width="136" height="120" rx="14" fill="#2997ff" fill-opacity=".1"/>
-    <rect x="112" y="180" width="136" height="120" rx="14" fill="#2997ff" fill-opacity=".13"/><rect x="252" y="180" width="136" height="120" rx="14" fill="#2997ff" fill-opacity=".85"/>
-    <g font-size="34" font-weight="700" fill="#f5f5f7"><text x="180" y="126">425</text><text x="320" y="126">61</text><text x="180" y="250">85</text><text x="320" y="250">700</text></g>
-    <g font-size="11" fill="#d2d2d7"><text x="180" y="148">true negative</text><text x="320" y="148">false positive</text><text x="180" y="272">false negative</text><text x="320" y="272">true positive</text></g>
+    <rect x="112" y="56" width="136" height="120" rx="14" fill="#ff9354" fill-opacity=".55"/><rect x="252" y="56" width="136" height="120" rx="14" fill="#ff9354" fill-opacity=".1"/>
+    <rect x="112" y="180" width="136" height="120" rx="14" fill="#ff9354" fill-opacity=".13"/><rect x="252" y="180" width="136" height="120" rx="14" fill="#ff9354" fill-opacity=".85"/>
+    <g font-size="34" font-weight="700" fill="#f6efe3"><text x="180" y="126">425</text><text x="320" y="126">61</text><text x="180" y="250">85</text><text x="320" y="250">700</text></g>
+    <g font-size="11" fill="#d8dbe6"><text x="180" y="148">true negative</text><text x="320" y="148">false positive</text><text x="180" y="272">false negative</text><text x="320" y="272">true positive</text></g>
   </g></svg></div></div></div></section><section class="section-tight"><div class="wrap-wide reflect"><div class="reflect-card reveal"><h3>What I learned</h3><ul><li>A random split would&#x27;ve let future videos leak into training. Splitting by time gave me a score I can trust.</li><li>Early engagement dominates the model, so I catch live videos at 6 hours to match what it learned from.</li></ul></div><div class="reflect-card reveal"><h3>What's next</h3><ul><li>I&#x27;m adding LLM title analysis and thumbnail features from a vision model</li><li>Then I&#x27;ll retrain on the data my own pipeline has collected</li><li>After that, a public scorecard of every prediction against what really happened</li></ul></div></div></section>
 <div class="wrap-wide"><p class="note case-note">v0 model trained on the Kaggle US trending dataset (2017 to 2018).</p></div>
 

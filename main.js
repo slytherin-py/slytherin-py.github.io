@@ -97,16 +97,16 @@
         c.setAttribute('cx', jx.toFixed(1));
         c.setAttribute('cy', jy.toFixed(1));
         c.setAttribute('r', (1.1 + rand() * 1.2).toFixed(2));
-        c.setAttribute('fill', covered ? '#9cc9ff' : '#3a3a3e');
+        c.setAttribute('fill', covered ? '#ffc9a6' : '#2f3b5e');
         frag.appendChild(c);
       }
     }
     pop.appendChild(frag);
     hubs.forEach(([x, y], i) => {
       hubG.insertAdjacentHTML('beforeend',
-        `<circle cx="${x}" cy="${y}" r="${R}" fill="url(#hubFill)" stroke="#2997ff" stroke-opacity=".45" stroke-width="1"/>` +
-        `<circle class="hub-ring" style="animation-delay:${(i * 0.45).toFixed(2)}s" cx="${x}" cy="${y}" r="${R * 0.7}" fill="none" stroke="#2997ff" stroke-width="1.5"/>` +
-        `<circle cx="${x}" cy="${y}" r="6" fill="#fff" stroke="#2997ff" stroke-width="2.5"/>`);
+        `<circle cx="${x}" cy="${y}" r="${R}" fill="url(#hubFill)" stroke="#ff9354" stroke-opacity=".45" stroke-width="1"/>` +
+        `<circle class="hub-ring" style="animation-delay:${(i * 0.45).toFixed(2)}s" cx="${x}" cy="${y}" r="${R * 0.7}" fill="none" stroke="#ff9354" stroke-width="1.5"/>` +
+        `<circle cx="${x}" cy="${y}" r="6" fill="#fff" stroke="#ff9354" stroke-width="2.5"/>`);
     });
   });
 
