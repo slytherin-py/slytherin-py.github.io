@@ -1154,3 +1154,27 @@ img.brand-mark { width: 30px; height: 30px; background: none; border-radius: 0; 
 /* the graphic sits above the number, so long figures like 3.97/4 never collide with it */
 .stat-viz { position: static; display: block; width: 120px; height: 64px; margin-bottom: 18px; }
 @media (max-width: 520px) { .stat-viz { width: 120px; } }
+/* the graphic becomes the tile's backdrop: large, low-key, fading out under the text */
+.stat { overflow: hidden; isolation: isolate; }
+.stat > :not(.stat-viz) { position: relative; z-index: 1; }
+.stat-viz {
+  position: absolute; z-index: 0; margin: 0; right: 6%; bottom: 10%; width: 62%; height: 64%;
+  opacity: .5;
+  -webkit-mask-image: linear-gradient(100deg, transparent 0%, #000 55%); mask-image: linear-gradient(100deg, transparent 0%, #000 55%);
+}
+.stat:hover .stat-viz { opacity: .8; transition: opacity .4s; }
+@media (max-width: 520px) { .stat-viz { width: 58%; height: 70%; } }
+/* backdrop scale: strokes scale with the graphic, so they are set thinner here */
+.stat-viz * { vector-effect: none; }
+.stat-viz .sv-grid { stroke-width: .5; }
+.stat-viz .sv-a { stroke-width: .8; stroke-dasharray: 2 2; }
+.stat-viz .sv-line { stroke-width: 1.2; }
+.stat-viz .sv-diag { stroke-width: .6; stroke-dasharray: 1.5 2; }
+.stat-viz .sv-track, .stat-viz .sv-arc { stroke-width: 3; }
+.stat-viz .sv-orbit { stroke-width: .5; stroke-dasharray: 1 3; }
+.stat-viz .sv-row { stroke-width: 2.5; }
+.stat-viz .sv-tile { stroke-width: .6; }
+.stat-viz .sv-mini { stroke-width: .9; }
+.stat-viz .sv-dot { r: 2; }
+.stat-viz .sv-t { font-size: 6px; }
+.stat-viz { opacity: .42; bottom: 8%; }
