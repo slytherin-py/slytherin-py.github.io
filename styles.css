@@ -1106,3 +1106,51 @@ html { scrollbar-color: #3a3a3e #000; accent-color: #0071e3; caret-color: #2997f
 /* the nav mark is the four-colour MS monogram, drawn on the glass with no tile behind it */
 img.brand-mark { width: 30px; height: 30px; background: none; border-radius: 0; animation: none; box-shadow: none; transition: transform .3s var(--ease-out); }
 .brand:hover img.brand-mark { transform: rotate(-6deg) scale(1.06); }
+
+/* Stats: a small live graphic per result, tucked top-right of each tile */
+.stat { position: relative; }
+.stat-viz { position: absolute; top: clamp(28px, 4vw, 48px); right: clamp(22px, 3vw, 40px); width: clamp(96px, 9vw, 132px); height: auto; overflow: visible; }
+.stat-viz * { vector-effect: non-scaling-stroke; }
+.sv-grid { stroke: #2a2a30; stroke-width: 1; fill: none; }
+.sv-a { stroke: #4a4a52; stroke-width: 2; fill: none; stroke-dasharray: 4 4; }
+.sv-line { stroke: #2997ff; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.6s var(--ease-out) .3s; }
+.in .sv-line { stroke-dashoffset: 0; }
+.sv-t { font: 600 9px var(--font); fill: #6e6e73; text-anchor: end; }
+.sv-tb { fill: #2997ff; }
+.sv-dot { fill: #fff; filter: drop-shadow(0 0 4px #2997ff); opacity: 0; }
+.in .sv-dot { opacity: 1; transition: opacity .4s 1.6s; }
+.sv-ab { offset-path: path("M4 56L40 42L80 25L116 8"); animation: sv-travel 3.2s var(--ease-in-out) 1.8s infinite; }
+.sv-roc { offset-path: path("M4 60C6 16 30 6 116 4"); animation: sv-travel 3.6s var(--ease-in-out) 1.8s infinite; }
+@keyframes sv-travel { 0% { offset-distance: 0%; } 70%, 100% { offset-distance: 100%; } }
+.sv-diag { stroke: #4a4a52; stroke-width: 1.5; stroke-dasharray: 3 4; fill: none; }
+.sv-area { fill: rgba(41, 151, 255, .14); opacity: 0; transition: opacity 1s 1s; }
+.in .sv-area { opacity: 1; }
+/* error bars fall left to right; the last two are the improved state */
+.sv-bar { fill: #3a3a42; transform-box: fill-box; transform-origin: bottom; transform: scaleY(0); transition: transform .9s var(--ease-out) calc(.2s + var(--i) * .08s); }
+.sv-bar-hi { fill: #2997ff; }
+.in .sv-bar { transform: scaleY(1); animation: sv-bob 3s ease-in-out calc(1.4s + var(--i) * .25s) infinite; }
+@keyframes sv-bob { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(.9); } }
+/* rings: a track, the share that remains, and a light orbiting it */
+.sv-track { fill: none; stroke: #2a2a30; stroke-width: 6; }
+.sv-arc { fill: none; stroke: #2997ff; stroke-width: 6; stroke-linecap: round; transform: rotate(-90deg); stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.6s var(--ease-out) .3s; }
+.in .sv-arc { stroke-dashoffset: var(--to); }
+.sv-orbit { fill: none; stroke: rgba(41, 151, 255, .25); stroke-width: 1; stroke-dasharray: 2 5; animation: sv-turn 14s linear infinite; }
+.sv-spin { animation: sv-turn 4s linear infinite; transform-origin: 0 0; }
+@keyframes sv-turn { to { transform: rotate(360deg); } }
+.sv-row { stroke: #3a3a42; stroke-width: 4; stroke-linecap: round; fill: none; }
+/* dashboards light up one after another */
+.sv-tile { fill: #17171b; stroke: #2a2a30; stroke-width: 1; animation: sv-tile 4s ease-in-out calc(var(--i) * .5s) infinite; }
+.sv-mini { fill: none; stroke: #2997ff; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; opacity: .55; }
+@keyframes sv-tile { 0%, 30%, 100% { fill: #17171b; stroke: #2a2a30; } 12% { fill: rgba(41, 151, 255, .22); stroke: #2997ff; } }
+/* GPA: four points, almost all filled */
+.sv-seg { fill: #2997ff; transform-box: fill-box; transform-origin: left; transform: scaleX(0); transition: transform 1s var(--ease-out) calc(.2s + var(--i) * .12s); }
+.in .sv-seg { transform: scaleX(1); }
+@media (max-width: 520px) { .stat-viz { width: 104px; } }
+@media (prefers-reduced-motion: reduce) {
+  .stat-viz * { animation: none !important; transition: none !important; }
+  .sv-line, .sv-arc { stroke-dashoffset: 0; } .sv-arc { stroke-dashoffset: var(--to); }
+  .sv-bar, .sv-seg { transform: none; } .sv-area { opacity: 1; } .sv-dot { display: none; }
+}
+/* the graphic sits above the number, so long figures like 3.97/4 never collide with it */
+.stat-viz { position: static; display: block; width: 120px; height: 64px; margin-bottom: 18px; }
+@media (max-width: 520px) { .stat-viz { width: 120px; } }
