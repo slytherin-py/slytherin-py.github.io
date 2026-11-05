@@ -1196,3 +1196,8 @@ img.brand-mark { width: 30px; height: 30px; background: none; border-radius: 0; 
 .sk-glyph svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .skill-col li:hover .sk-ic { transform: translateY(-2px) scale(1.06); }
 @media (prefers-reduced-motion: reduce) { .sk-ic { transition: none; } }
+.course-chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.course-chips li { font-size: 14px; line-height: 1.2; padding: 7px 12px; border-radius: 99px; background: var(--white); color: #1d1d1f; box-shadow: inset 0 0 0 1px var(--line); }
+.edu-card .capstone-facts { margin-top: 6px; font-size: 14px; color: var(--muted); }
+.award p strong { color: var(--ink); font-weight: 600; }
+.edu-card p strong { color: var(--ink); font-weight: 600; }
