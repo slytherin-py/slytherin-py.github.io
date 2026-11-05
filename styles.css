@@ -1184,3 +1184,6 @@ img.brand-mark { width: 30px; height: 30px; background: none; border-radius: 0; 
 .brand:hover .brand-sig { opacity: .82; }
 @media (max-width: 420px) { .brand-sig { height: 27px; } }
 @media (prefers-reduced-motion: reduce) { .brand-sig { animation: none; clip-path: none; } }
+.brand-sig { height: 36px; }
+@media (max-width: 420px) { .brand-sig { height: 32px; } }
+.brand-sig { margin-left: 8px; }

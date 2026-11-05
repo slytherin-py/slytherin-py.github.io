@@ -32,6 +32,14 @@ def signature():
     return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{vb}"><path fill="#fff" d="{d}"/></svg>\n'
 
 
+def mark():
+    # white MS on its own, for the nav
+    d, (x0, y0, x1, y1) = outline("MS", 0.12)
+    p = (y1 - y0) * 0.06
+    vb = f"{x0 - p:.0f} {y0 - p:.0f} {x1 - x0 + 2 * p:.0f} {y1 - y0 + 2 * p:.0f}"
+    return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{vb}"><path fill="#fff" d="{d}"/></svg>\n'
+
+
 def favicon():
     # white MS on a near-black tile; a hairline stroke thickens the script so it survives 16px
     d, (x0, y0, x1, y1) = outline("MS", 0.12)
@@ -45,5 +53,6 @@ def favicon():
 
 if __name__ == "__main__":
     (ROOT / "assets/signature.svg").write_text(signature(), encoding="utf-8")
+    (ROOT / "assets/mark.svg").write_text(mark(), encoding="utf-8")
     (ROOT / "assets/favicon.svg").write_text(favicon(), encoding="utf-8")
-    print("wrote assets/signature.svg, assets/favicon.svg")
+    print("wrote assets/signature.svg, assets/mark.svg, assets/favicon.svg")

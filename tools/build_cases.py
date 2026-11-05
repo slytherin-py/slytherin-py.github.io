@@ -160,7 +160,7 @@ def nav(prefix):
                     [("about", "About"), ("experience", "Experience"), ("work", "Work"), ("recognition", "Recognition"), ("skills", "Skills"), ("contact", "Contact")])
     return f"""<header class="nav" id="nav">
   <div class="wrap-wide nav-inner">
-    <a class="brand" href="{prefix}index.html" aria-label="Mohammed Saleeq Sunil, home"><img class="brand-sig" src="{prefix}assets/signature.svg?v=sig1" alt="Mohammed Saleeq Sunil" width="190" height="32"></a>
+    <a class="brand" href="{prefix}index.html" aria-label="Mohammed Saleeq Sunil, home"><img class="brand-sig" src="{prefix}assets/mark.svg?v=mk1" alt="MS, Mohammed Saleeq Sunil" width="56" height="36"></a>
     <nav aria-label="Primary"><div class="nav-links" id="nav-links">{links}</div></nav>
     <div class="nav-actions">
       <a class="btn btn-primary btn-sm" href="{prefix}index.html#contact">Hire me</a>
