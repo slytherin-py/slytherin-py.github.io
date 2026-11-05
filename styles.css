@@ -940,3 +940,28 @@ html { scrollbar-color: #3a3a3e #000; accent-color: #0071e3; caret-color: #2997f
 .odo > span { align-items: flex-end; line-height: 1; }
 .odo-s { line-height: 1; }
 @media (max-width: 640px) { .dive-role span { display: block; } .dive-role .role-sep { display: none; } }
+
+/* Experience: tighter cards. The chart sits at its own height, numbers group to the left */
+.role-rich { align-items: center; gap: 24px 44px; }
+.role-main .more { padding-top: 18px; }
+.role-big { grid-template-columns: repeat(auto-fit, minmax(110px, max-content)); gap: 16px clamp(28px, 4vw, 56px); margin-top: 20px; }
+.role-chart { padding: 22px 24px 16px; }
+.role-compact .dates .pill { margin-left: 10px; vertical-align: 1px; font-family: var(--font); }
+.role-duties { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 10px; max-width: 54ch; }
+.role-duties li { position: relative; padding-left: 18px; font-size: 16px; line-height: 1.45; color: #424245; }
+.role-duties li::before { content: ""; position: absolute; left: 0; top: .6em; width: 6px; height: 6px; border-radius: 50%; background: var(--blue); }
+.role-duties b { color: var(--ink); font-weight: 600; }
+
+/* Holiday World: the scope as a connected flow */
+.role-flow ol { list-style: none; margin: 0; padding: 0; position: relative; display: grid; gap: 18px; }
+.role-flow ol::before { content: ""; position: absolute; left: 19px; top: 20px; bottom: 20px; width: 2px; background: #ececf0; }
+.role-flow ol::after { content: ""; position: absolute; left: 19px; top: 20px; bottom: 20px; width: 2px; background: var(--blue); transform-origin: top; transform: scaleY(0); transition: transform 1.2s var(--ease-out) .1s; }
+.in .role-flow ol::after { transform: scaleY(1); }
+.role-flow li { position: relative; display: grid; grid-template-columns: 40px 1fr auto; align-items: center; gap: 14px; opacity: 0; transform: translateY(8px); transition: opacity .6s var(--ease-out) var(--dd), transform .6s var(--ease-out) var(--dd); }
+.in .role-flow li { opacity: 1; transform: none; }
+.rf-icon { position: relative; z-index: 1; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: var(--blue); color: #fff; box-shadow: 0 4px 12px rgba(0, 113, 227, .25); }
+.rf-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.role-flow b { display: block; font-size: 16px; font-weight: 600; color: var(--ink); line-height: 1.25; }
+.role-flow small { display: block; margin-top: 2px; font-size: 13px; color: var(--muted); }
+.rf-tag { font-style: normal; font-size: 11px; font-weight: 600; padding: 4px 9px; border-radius: 99px; color: var(--link); background: rgba(0, 113, 227, .1); }
+@media (prefers-reduced-motion: reduce) { .role-flow li, .role-flow ol::after { transition: none; opacity: 1; transform: none; } }
