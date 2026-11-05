@@ -114,7 +114,7 @@ ol { margin: 0; padding: 0; list-style: none; }
 .btn-sm { min-height: 28px; padding: 5px 13px; font-size: 13px; letter-spacing: -0.01em; }
 
 .more {
-  display: inline-flex; align-items: center; gap: 2px; font-size: 19px; font-weight: 500; color: var(--blue);
+  display: inline-flex; align-items: center; gap: 2px; font-size: 19px; font-weight: 500; color: var(--link);
 }
 .dark .more { color: var(--link-dark); }
 .more::after { content: "›"; font-size: 1.15em; line-height: 1; transform: translateY(-1px); transition: transform .2s var(--ease); }
