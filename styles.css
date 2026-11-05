@@ -141,7 +141,7 @@ ol { margin: 0; padding: 0; list-style: none; }
 .brand-mark {
   display: grid; place-items: center; width: 28px; height: 28px; border-radius: 8px;
   background: linear-gradient(135deg, var(--accent-a), var(--accent-b) 60%, var(--accent-c));
-  color: var(--white); font-size: 11px; font-weight: 700; letter-spacing: .02em;
+  color: var(--black); font-size: 11px; font-weight: 700; letter-spacing: .02em;
 }
 .nav-links { display: flex; align-items: center; gap: 26px; font-size: 12.5px; letter-spacing: -0.01em; }
 .nav-links a { color: #d8dbe6; opacity: .9; transition: opacity .2s, color .2s; }
