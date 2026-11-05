@@ -15,35 +15,35 @@ SITE = "https://slytherin-py.github.io/"
 HUB_SVG = """<svg class="hub-map" viewBox="0 0 640 420" role="img" aria-labelledby="hub-t">
   <title id="hub-t">Schematic: seven hubs with 15-minute coverage areas over a population map</title>
   <defs>
-    <radialGradient id="hubFill"><stop offset="0" stop-color="#ff9354" stop-opacity=".32"/><stop offset="1" stop-color="#ff9354" stop-opacity=".05"/></radialGradient>
+    <radialGradient id="hubFill"><stop offset="0" stop-color="#2997ff" stop-opacity=".32"/><stop offset="1" stop-color="#2997ff" stop-opacity=".05"/></radialGradient>
     <clipPath id="region"><path d="M70 92 C130 30 260 40 340 52 C430 64 520 40 584 104 C626 148 600 222 612 284 C622 350 552 392 470 380 C390 368 320 398 236 384 C150 372 66 360 48 286 C34 226 22 142 70 92Z"/></clipPath>
   </defs>
   <path d="M70 92 C130 30 260 40 340 52 C430 64 520 40 584 104 C626 148 600 222 612 284 C622 350 552 392 470 380 C390 368 320 398 236 384 C150 372 66 360 48 286 C34 226 22 142 70 92Z" fill="#121215" stroke="#2c2c30" stroke-width="1.5"/>
   <g class="pop" clip-path="url(#region)"></g><g class="hubs"></g>
-  <g font-size="11" fill="#a7aec4" font-family="-apple-system, Inter, sans-serif">
-    <circle cx="28" cy="404" r="3" fill="#5d5a66"/><text x="38" y="408">Population</text>
-    <circle cx="118" cy="404" r="5" fill="#fff" stroke="#ff9354" stroke-width="2"/><text x="130" y="408">Hub</text>
-    <circle cx="176" cy="404" r="7" fill="url(#hubFill)" stroke="#ff9354" stroke-opacity=".6"/><text x="190" y="408">15-min coverage</text>
+  <g font-size="11" fill="#86868b" font-family="-apple-system, Inter, sans-serif">
+    <circle cx="28" cy="404" r="3" fill="#6e6e73"/><text x="38" y="408">Population</text>
+    <circle cx="118" cy="404" r="5" fill="#fff" stroke="#2997ff" stroke-width="2"/><text x="130" y="408">Hub</text>
+    <circle cx="176" cy="404" r="7" fill="url(#hubFill)" stroke="#2997ff" stroke-opacity=".6"/><text x="190" y="408">15-min coverage</text>
   </g>
 </svg>"""
 
 TRIALS_SVG = """<svg class="viz" viewBox="0 0 640 400" role="img" aria-labelledby="tr-t">
   <title id="tr-t">143,266 registry rows narrowed to 3,446 Phase III oncology trials; industry trials enroll 1.83 times the academic median</title>
-  <rect width="640" height="400" rx="20" fill="#0b1430"/>
+  <rect width="640" height="400" rx="20" fill="#0b0b0d"/>
   <g font-family="-apple-system, Inter, sans-serif">
-    <text x="40" y="58" fill="#a7aec4" font-size="14">ClinicalTrials.gov export</text>
-    <text x="600" y="58" fill="#f6efe3" font-size="14" font-weight="600" text-anchor="end">143,266 rows</text>
-    <rect x="40" y="70" width="560" height="14" rx="7" fill="#2f3b5e"/>
-    <text x="40" y="118" fill="#a7aec4" font-size="14">Phase III oncology</text>
-    <text x="600" y="118" fill="#f6efe3" font-size="14" font-weight="600" text-anchor="end">3,446 trials</text>
-    <rect x="40" y="130" width="560" height="14" rx="7" fill="#24305a"/><rect x="40" y="130" width="14" height="14" rx="7" fill="#f6efe3"/>
-    <text x="40" y="196" fill="#f6efe3" font-size="15" font-weight="600">Median enrollment, indexed to academic = 1.00</text>
-    <text x="40" y="240" fill="#a7aec4" font-size="14">Academic</text>
-    <rect x="140" y="226" width="250" height="22" rx="11" fill="#5d5a66"/><text x="400" y="243" fill="#f6efe3" font-size="15" font-weight="600">1.00x</text>
-    <text x="40" y="286" fill="#a7aec4" font-size="14">Industry</text>
-    <defs><linearGradient id="trg" x1="0" x2="1"><stop offset="0" stop-color="#ff9354"/><stop offset="1" stop-color="#ffc15c"/></linearGradient></defs>
+    <text x="40" y="58" fill="#86868b" font-size="14">ClinicalTrials.gov export</text>
+    <text x="600" y="58" fill="#f5f5f7" font-size="14" font-weight="600" text-anchor="end">143,266 rows</text>
+    <rect x="40" y="70" width="560" height="14" rx="7" fill="#3a3a3e"/>
+    <text x="40" y="118" fill="#86868b" font-size="14">Phase III oncology</text>
+    <text x="600" y="118" fill="#f5f5f7" font-size="14" font-weight="600" text-anchor="end">3,446 trials</text>
+    <rect x="40" y="130" width="560" height="14" rx="7" fill="#1f1f22"/><rect x="40" y="130" width="14" height="14" rx="7" fill="#f5f5f7"/>
+    <text x="40" y="196" fill="#f5f5f7" font-size="15" font-weight="600">Median enrollment, indexed to academic = 1.00</text>
+    <text x="40" y="240" fill="#86868b" font-size="14">Academic</text>
+    <rect x="140" y="226" width="250" height="22" rx="11" fill="#6e6e73"/><text x="400" y="243" fill="#f5f5f7" font-size="15" font-weight="600">1.00x</text>
+    <text x="40" y="286" fill="#86868b" font-size="14">Industry</text>
+    <defs><linearGradient id="trg" x1="0" x2="1"><stop offset="0" stop-color="#2997ff"/><stop offset="1" stop-color="#a88bff"/></linearGradient></defs>
     <rect x="140" y="272" width="458" height="22" rx="11" fill="url(#trg)"/>
-    <text x="598" y="350" fill="#f6efe3" font-size="56" font-weight="700" text-anchor="end" letter-spacing="-2">1.83x</text>
+    <text x="598" y="350" fill="#f5f5f7" font-size="56" font-weight="700" text-anchor="end" letter-spacing="-2">1.83x</text>
   </g>
 </svg>"""
 
@@ -57,85 +57,85 @@ def impact_svg():
         w = abs(v) / 50 * 360
         col = "url(#imp-dn)" if v < 0 else "url(#imp-up)"
         rows.append(f'<text x="40" y="{y}" fill="#a1a1a6" font-size="14">{label}</text>'
-                    f'<rect x="40" y="{y + 9}" width="360" height="12" rx="6" fill="#24305a"/>'
+                    f'<rect x="40" y="{y + 9}" width="360" height="12" rx="6" fill="#1f1f22"/>'
                     f'<rect x="40" y="{y + 9}" width="{w:.0f}" height="12" rx="6" fill="{col}"/>'
-                    f'<text x="600" y="{y + 20}" fill="#f6efe3" font-size="26" font-weight="700" text-anchor="end" letter-spacing="-1">{"+" if v > 0 else "−"}{abs(v)}%</text>')
+                    f'<text x="600" y="{y + 20}" fill="#f5f5f7" font-size="26" font-weight="700" text-anchor="end" letter-spacing="-1">{"+" if v > 0 else "−"}{abs(v)}%</text>')
     return f"""<svg class="viz" viewBox="0 0 640 400" role="img" aria-labelledby="imp-t">
   <title id="imp-t">Impact at Fingent: 40% less manual reporting, 40% fewer pipeline errors, 30% fewer discrepancies, 25% less scope creep, 22% faster delivery, 15% more efficient</title>
-  <defs><linearGradient id="imp-up" x1="0" x2="1"><stop offset="0" stop-color="#ff9354"/><stop offset="1" stop-color="#ffc15c"/></linearGradient>
-  <linearGradient id="imp-dn" x1="0" x2="1"><stop offset="0" stop-color="#ffc15c"/><stop offset="1" stop-color="#ff6f61"/></linearGradient></defs>
-  <rect width="640" height="400" rx="20" fill="#0b1430"/>
+  <defs><linearGradient id="imp-up" x1="0" x2="1"><stop offset="0" stop-color="#2997ff"/><stop offset="1" stop-color="#a88bff"/></linearGradient>
+  <linearGradient id="imp-dn" x1="0" x2="1"><stop offset="0" stop-color="#a88bff"/><stop offset="1" stop-color="#ff8a5c"/></linearGradient></defs>
+  <rect width="640" height="400" rx="20" fill="#0b0b0d"/>
   <g font-family="-apple-system, Inter, sans-serif">{''.join(rows)}</g>
-  <text x="40" y="384" fill="#5d5a66" font-size="11" font-family="-apple-system, Inter, sans-serif">Bar length on a 0 to 50% scale</text>
+  <text x="40" y="384" fill="#6e6e73" font-size="11" font-family="-apple-system, Inter, sans-serif">Bar length on a 0 to 50% scale</text>
 </svg>"""
 
 
 FLOOD_SVG = """<svg class="viz" viewBox="0 0 640 400" role="img" aria-labelledby="fl-t">
   <title id="fl-t">The problem: floodwater rises above an ambulance's exhaust outlet, back-pressure pushes water toward the engine and it stalls</title>
   <defs>
-    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff9354" stop-opacity=".55"/><stop offset="1" stop-color="#0b3a6b" stop-opacity=".9"/></linearGradient>
-    <marker id="fa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#ff6f61"/></marker>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2997ff" stop-opacity=".55"/><stop offset="1" stop-color="#0b3a6b" stop-opacity=".9"/></linearGradient>
+    <marker id="fa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#ff8a5c"/></marker>
   </defs>
-  <rect width="640" height="400" rx="20" fill="#0b1430"/>
+  <rect width="640" height="400" rx="20" fill="#0b0b0d"/>
   <g font-family="-apple-system, Inter, sans-serif">
-    <rect x="150" y="120" width="330" height="150" rx="16" fill="#f6efe3"/>
+    <rect x="150" y="120" width="330" height="150" rx="16" fill="#f5f5f7"/>
     <path d="M480 160 h70 a20 20 0 0 1 20 20 v90 h-90z" fill="#e8e8ed"/>
-    <rect x="500" y="172" width="50" height="40" rx="6" fill="#a7aec4"/>
+    <rect x="500" y="172" width="50" height="40" rx="6" fill="#86868b"/>
     <rect x="290" y="160" width="16" height="56" rx="3" fill="#ff3b30"/><rect x="270" y="180" width="56" height="16" rx="3" fill="#ff3b30"/>
     <rect x="150" y="146" width="330" height="8" fill="#ff3b30" opacity=".85"/>
-    <circle cx="220" cy="282" r="30" fill="#14213d" stroke="#4b577a" stroke-width="6"/>
-    <circle cx="500" cy="282" r="30" fill="#14213d" stroke="#4b577a" stroke-width="6"/>
-    <rect x="96" y="250" width="62" height="12" rx="6" fill="#a7aec4"/>
+    <circle cx="220" cy="282" r="30" fill="#1d1d1f" stroke="#48484a" stroke-width="6"/>
+    <circle cx="500" cy="282" r="30" fill="#1d1d1f" stroke="#48484a" stroke-width="6"/>
+    <rect x="96" y="250" width="62" height="12" rx="6" fill="#86868b"/>
     <path d="M0 236 C40 226 80 246 120 236 S200 226 240 236 S320 246 360 236 S440 226 480 236 S560 246 640 236 V380 a20 20 0 0 1 -20 20 H20 a20 20 0 0 1 -20 -20Z" fill="url(#water)"/>
-    <path d="M70 256 H150" stroke="#ff6f61" stroke-width="2.5" marker-end="url(#fa)"/>
-    <path d="M170 256 C250 256 300 230 360 214" stroke="#ff6f61" stroke-width="2.5" stroke-dasharray="6 5" fill="none" marker-end="url(#fa)"/>
-    <text x="20" y="226" fill="#ffc9a6" font-size="13" font-weight="600">Water level</text>
-    <text x="40" y="300" fill="#f6efe3" font-size="13" font-weight="600">Exhaust outlet</text>
-    <text x="40" y="318" fill="#d8dbe6" font-size="12">underwater</text>
-    <text x="372" y="102" fill="#ff6f61" font-size="13" font-weight="600">Back-pressure</text>
-    <text x="372" y="118" fill="#ffb899" font-size="12">pushes water toward the engine</text><path d="M392 124 V200" stroke="#ff6f61" stroke-width="1.2" stroke-dasharray="3 3"/>
-    <text x="320" y="60" fill="#f6efe3" font-size="22" font-weight="700" text-anchor="middle" letter-spacing="-.5">Why vehicles stall in floods</text>
-    <text x="320" y="84" fill="#a7aec4" font-size="13" text-anchor="middle">Problem illustration. The paper covers the modified design.</text>
+    <path d="M70 256 H150" stroke="#ff8a5c" stroke-width="2.5" marker-end="url(#fa)"/>
+    <path d="M170 256 C250 256 300 230 360 214" stroke="#ff8a5c" stroke-width="2.5" stroke-dasharray="6 5" fill="none" marker-end="url(#fa)"/>
+    <text x="20" y="226" fill="#9cc9ff" font-size="13" font-weight="600">Water level</text>
+    <text x="40" y="300" fill="#f5f5f7" font-size="13" font-weight="600">Exhaust outlet</text>
+    <text x="40" y="318" fill="#d2d2d7" font-size="12">underwater</text>
+    <text x="372" y="102" fill="#ff8a5c" font-size="13" font-weight="600">Back-pressure</text>
+    <text x="372" y="118" fill="#ffb899" font-size="12">pushes water toward the engine</text><path d="M392 124 V200" stroke="#ff8a5c" stroke-width="1.2" stroke-dasharray="3 3"/>
+    <text x="320" y="60" fill="#f5f5f7" font-size="22" font-weight="700" text-anchor="middle" letter-spacing="-.5">Why vehicles stall in floods</text>
+    <text x="320" y="84" fill="#86868b" font-size="13" text-anchor="middle">Problem illustration. The paper covers the modified design.</text>
   </g>
 </svg>"""
 
 CONFUSION = """<div class="cm-wrap"><svg class="viz" viewBox="0 0 400 330" role="img" aria-labelledby="cm-t">
   <title id="cm-t">Confusion matrix on 1,271 held-out videos: 425 true negatives, 61 false positives, 85 false negatives, 700 true positives</title>
   <g font-family="-apple-system, Inter, sans-serif" text-anchor="middle">
-    <text x="250" y="20" font-size="12" fill="#a7aec4">Predicted</text>
+    <text x="250" y="20" font-size="12" fill="#86868b">Predicted</text>
     <text x="180" y="44" font-size="12" fill="#a1a1a6">Not viral</text><text x="320" y="44" font-size="12" fill="#a1a1a6">Viral</text>
-    <text x="20" y="175" font-size="12" fill="#a7aec4" transform="rotate(-90 20 175)">Actual</text>
+    <text x="20" y="175" font-size="12" fill="#86868b" transform="rotate(-90 20 175)">Actual</text>
     <text x="96" y="122" font-size="12" fill="#a1a1a6" text-anchor="end">Not viral</text><text x="96" y="246" font-size="12" fill="#a1a1a6" text-anchor="end">Viral</text>
-    <rect x="112" y="56" width="136" height="120" rx="14" fill="#ff9354" fill-opacity=".55"/><rect x="252" y="56" width="136" height="120" rx="14" fill="#ff9354" fill-opacity=".1"/>
-    <rect x="112" y="180" width="136" height="120" rx="14" fill="#ff9354" fill-opacity=".13"/><rect x="252" y="180" width="136" height="120" rx="14" fill="#ff9354" fill-opacity=".85"/>
-    <g font-size="34" font-weight="700" fill="#f6efe3"><text x="180" y="126">425</text><text x="320" y="126">61</text><text x="180" y="250">85</text><text x="320" y="250">700</text></g>
-    <g font-size="11" fill="#d8dbe6"><text x="180" y="148">true negative</text><text x="320" y="148">false positive</text><text x="180" y="272">false negative</text><text x="320" y="272">true positive</text></g>
+    <rect x="112" y="56" width="136" height="120" rx="14" fill="#2997ff" fill-opacity=".55"/><rect x="252" y="56" width="136" height="120" rx="14" fill="#2997ff" fill-opacity=".1"/>
+    <rect x="112" y="180" width="136" height="120" rx="14" fill="#2997ff" fill-opacity=".13"/><rect x="252" y="180" width="136" height="120" rx="14" fill="#2997ff" fill-opacity=".85"/>
+    <g font-size="34" font-weight="700" fill="#f5f5f7"><text x="180" y="126">425</text><text x="320" y="126">61</text><text x="180" y="250">85</text><text x="320" y="250">700</text></g>
+    <g font-size="11" fill="#d2d2d7"><text x="180" y="148">true negative</text><text x="320" y="148">false positive</text><text x="180" y="272">false negative</text><text x="320" y="272">true positive</text></g>
   </g></svg></div>"""
 
 FLOWS = """<div class="flow-pair">
 <figure class="flow-card dark-card"><svg class="viz" viewBox="0 0 420 220" role="img" aria-labelledby="ab-t">
   <title id="ab-t">Experimentation loop: hypothesis, test, measure, prioritize</title>
-  <defs><marker id="arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#4b577a"/></marker></defs>
+  <defs><marker id="arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#48484a"/></marker></defs>
   <ellipse cx="210" cy="110" rx="150" ry="78" fill="none" stroke="#2c2c30" stroke-width="1.5"/>
-  <g fill="none" stroke="#4b577a" stroke-width="1.5" marker-end="url(#arw)"><path d="M150 36 Q200 26 262 34"/><path d="M340 62 Q362 100 340 156"/><path d="M268 186 Q210 196 150 186"/><path d="M80 158 Q58 110 80 62"/></g>
+  <g fill="none" stroke="#48484a" stroke-width="1.5" marker-end="url(#arw)"><path d="M150 36 Q200 26 262 34"/><path d="M340 62 Q362 100 340 156"/><path d="M268 186 Q210 196 150 186"/><path d="M80 158 Q58 110 80 62"/></g>
   <g font-family="-apple-system, Inter, sans-serif" font-size="13" font-weight="600" text-anchor="middle">
-    <rect x="40" y="22" width="110" height="36" rx="18" fill="#24305a" stroke="#2a3658"/><text x="95" y="45" fill="#f6efe3">Hypothesis</text>
-    <rect x="268" y="22" width="110" height="36" rx="18" fill="#24305a" stroke="#2a3658"/><text x="323" y="45" fill="#f6efe3">Test</text>
-    <rect x="268" y="162" width="110" height="36" rx="18" fill="#24305a" stroke="#2a3658"/><text x="323" y="185" fill="#f6efe3">Measure</text>
-    <rect x="40" y="162" width="110" height="36" rx="18" fill="#ff9354"/><text x="95" y="185" fill="#fff">Prioritize</text>
+    <rect x="40" y="22" width="110" height="36" rx="18" fill="#1f1f22" stroke="#333336"/><text x="95" y="45" fill="#f5f5f7">Hypothesis</text>
+    <rect x="268" y="22" width="110" height="36" rx="18" fill="#1f1f22" stroke="#333336"/><text x="323" y="45" fill="#f5f5f7">Test</text>
+    <rect x="268" y="162" width="110" height="36" rx="18" fill="#1f1f22" stroke="#333336"/><text x="323" y="185" fill="#f5f5f7">Measure</text>
+    <rect x="40" y="162" width="110" height="36" rx="18" fill="#2997ff"/><text x="95" y="185" fill="#fff">Prioritize</text>
   </g></svg><figcaption><b>+22% delivery velocity.</b> Backlog calls made on test results, not urgency.</figcaption></figure>
 <figure class="flow-card"><svg class="viz" viewBox="0 0 440 170" role="img" aria-labelledby="gv-t">
   <title id="gv-t">Change governance: change, assess, approve, release, monitor, with an escalation path back to assessment</title>
-  <defs><marker id="arw2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#a7aec4"/></marker></defs>
-  <g fill="none" stroke="#a7aec4" stroke-width="1.5" marker-end="url(#arw2)"><path d="M78 96 H96"/><path d="M164 96 H182"/><path d="M250 96 H268"/><path d="M336 96 H354"/></g>
-  <path d="M390 76 C390 20 130 20 130 74" fill="none" stroke="#ff6f61" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arw2)"/>
-  <text x="260" y="26" text-anchor="middle" font-family="-apple-system, Inter, sans-serif" font-size="11.5" fill="#ff6f61" font-weight="600">Escalation path</text>
+  <defs><marker id="arw2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#86868b"/></marker></defs>
+  <g fill="none" stroke="#86868b" stroke-width="1.5" marker-end="url(#arw2)"><path d="M78 96 H96"/><path d="M164 96 H182"/><path d="M250 96 H268"/><path d="M336 96 H354"/></g>
+  <path d="M390 76 C390 20 130 20 130 74" fill="none" stroke="#ff8a5c" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arw2)"/>
+  <text x="260" y="26" text-anchor="middle" font-family="-apple-system, Inter, sans-serif" font-size="11.5" fill="#ff8a5c" font-weight="600">Escalation path</text>
   <g font-family="-apple-system, Inter, sans-serif" font-size="12.5" font-weight="600" text-anchor="middle">
-    <rect x="10" y="78" width="68" height="36" rx="10" fill="#f6efe3" stroke="#d8dbe6"/><text x="44" y="100" fill="#14213d">Change</text>
-    <rect x="96" y="78" width="68" height="36" rx="10" fill="#f6efe3" stroke="#d8dbe6"/><text x="130" y="100" fill="#14213d">Assess</text>
-    <rect x="182" y="78" width="68" height="36" rx="10" fill="#f6efe3" stroke="#d8dbe6"/><text x="216" y="100" fill="#14213d">Approve</text>
-    <rect x="268" y="78" width="68" height="36" rx="10" fill="#f6efe3" stroke="#d8dbe6"/><text x="302" y="100" fill="#14213d">Release</text>
-    <rect x="354" y="78" width="72" height="36" rx="10" fill="#14213d"/><text x="390" y="100" fill="#fff">Monitor</text>
+    <rect x="10" y="78" width="68" height="36" rx="10" fill="#f5f5f7" stroke="#d2d2d7"/><text x="44" y="100" fill="#1d1d1f">Change</text>
+    <rect x="96" y="78" width="68" height="36" rx="10" fill="#f5f5f7" stroke="#d2d2d7"/><text x="130" y="100" fill="#1d1d1f">Assess</text>
+    <rect x="182" y="78" width="68" height="36" rx="10" fill="#f5f5f7" stroke="#d2d2d7"/><text x="216" y="100" fill="#1d1d1f">Approve</text>
+    <rect x="268" y="78" width="68" height="36" rx="10" fill="#f5f5f7" stroke="#d2d2d7"/><text x="302" y="100" fill="#1d1d1f">Release</text>
+    <rect x="354" y="78" width="72" height="36" rx="10" fill="#1d1d1f"/><text x="390" y="100" fill="#fff">Monitor</text>
   </g></svg><figcaption><b>−40% errors.</b> Clear escalation on a Fortune-class client's AI content pipeline.</figcaption></figure>
 </div>"""
 
@@ -250,7 +250,7 @@ def case_page(c, nxt):
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>{e(c["title"])} · Case study · Mohammed Saleeq Sunil</title>
   <meta name="description" content="{e(c["tagline"])} A case study by Mohammed Saleeq Sunil.">
-  <meta name="theme-color" content="#0f1a35">
+  <meta name="theme-color" content="#000">
   <link rel="canonical" href="{SITE}work/{c["slug"]}.html">
   <meta property="og:type" content="article">
   <meta property="og:url" content="{SITE}work/{c["slug"]}.html">

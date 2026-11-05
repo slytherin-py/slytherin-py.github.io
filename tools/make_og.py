@@ -2,7 +2,7 @@
 
     python tools/make_og.py
 
-Navy ground, cream type, the accent phrase in Instrument Serif italic (tools/fonts, OFL).
+Black ground, the accent phrase in Instrument Serif italic with the site gradient (tools/fonts, OFL).
 """
 import os
 from PIL import Image, ImageChops, ImageDraw, ImageFont
@@ -10,8 +10,8 @@ from PIL import Image, ImageChops, ImageDraw, ImageFont
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 W, H = 1200, 630
 FONTS = "C:/Windows/Fonts"
-NAVY, CREAM, MUTED = (15, 26, 53), (246, 239, 227), (167, 174, 196)
-ORANGE, PILL = (255, 147, 84), (194, 65, 12)
+BLACK, CREAM, MUTED = (0, 0, 0), (245, 245, 247), (161, 161, 166)
+GRAD, PILL = [(41, 151, 255), (168, 139, 255), (255, 138, 92)], (0, 113, 227)
 
 
 def font(name, size):
@@ -19,10 +19,9 @@ def font(name, size):
     return ImageFont.truetype(path, size)
 
 
-card = Image.new("RGB", (W, H), NAVY)
+card = Image.new("RGB", (W, H), BLACK)
 
-# Portrait on the right. Its black studio ground is lightened into the navy (as on the site),
-# and its left edge fades out.
+# Portrait on the right, faded into the black on its left edge.
 p = Image.open(os.path.join(ROOT, "assets", "portrait.jpg")).convert("RGB")
 ph = H + 40
 p = p.resize((round(p.width * ph / p.height), ph), Image.LANCZOS)
@@ -39,9 +38,20 @@ card.paste(blended, (x0, 0), mask)
 d = ImageDraw.Draw(card)
 d.text((72, 92), "Mohammed Saleeq Sunil", font=font("segoeuib.ttf", 30), fill=MUTED)
 d.text((68, 150), "Data in.", font=font("segoeuib.ttf", 84), fill=CREAM)
-d.text((70, 232), "Decisions out.", font=font("InstrumentSerif-Italic.ttf", 104), fill=ORANGE)
-d.text((72, 372), "BA Lead · Analytics & Operations", font=font("segoeui.ttf", 32), fill=(216, 219, 230))
-d.text((72, 416), "MS Business Analytics · Isenberg", font=font("segoeui.ttf", 32), fill=(216, 219, 230))
+# "Decisions out." filled with the site's blue -> violet -> coral gradient
+serif = font("InstrumentSerif-Italic.ttf", 104)
+box = d.textbbox((70, 232), "Decisions out.", font=serif)
+tmask = Image.new("L", (W, H), 0)
+ImageDraw.Draw(tmask).text((70, 232), "Decisions out.", font=serif, fill=255)
+grad = Image.new("RGB", (W, H))
+gw = box[2] - box[0]
+for x in range(W):
+    t = min(1, max(0, (x - box[0]) / gw))
+    a, b, u = (GRAD[0], GRAD[1], t / .55) if t < .55 else (GRAD[1], GRAD[2], (t - .55) / .45)
+    ImageDraw.Draw(grad).line([(x, 0), (x, H)], fill=tuple(round(a[i] + (b[i] - a[i]) * u) for i in range(3)))
+card.paste(grad, (0, 0), tmask)
+d.text((72, 372), "BA Lead · Analytics & Operations", font=font("segoeui.ttf", 32), fill=(210, 210, 215))
+d.text((72, 416), "MS Business Analytics · Isenberg", font=font("segoeui.ttf", 32), fill=(210, 210, 215))
 d.rounded_rectangle((72, 500, 470, 552), radius=26, fill=PILL)
 d.text((96, 508), "slytherin-py.github.io", font=font("segoeuib.ttf", 28), fill=(255, 255, 255))
 
