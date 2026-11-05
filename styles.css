@@ -1178,3 +1178,9 @@ img.brand-mark { width: 30px; height: 30px; background: none; border-radius: 0; 
 .stat-viz .sv-dot { r: 2; }
 .stat-viz .sv-t { font-size: 6px; }
 .stat-viz { opacity: .42; bottom: 8%; }
+/* the nav logo is a white signature; it writes itself in once, left to right, on load */
+.brand-sig { display: block; width: auto; height: 32px; clip-path: inset(0 100% 0 0); animation: sig-write 1.8s var(--ease-in-out) .3s forwards; }
+@keyframes sig-write { to { clip-path: inset(0 0 0 0); } }
+.brand:hover .brand-sig { opacity: .82; }
+@media (max-width: 420px) { .brand-sig { height: 27px; } }
+@media (prefers-reduced-motion: reduce) { .brand-sig { animation: none; clip-path: none; } }
