@@ -134,14 +134,8 @@
   const hireBar = $('#hire-bar');
   const contact = $('#contact');
   let ticking = false;
-  let lastY = window.scrollY;
   const onScroll = () => {
     const y = window.scrollY;
-    if (nav) {
-      if (y > lastY + 6 && y > 320 && !nav.classList.contains('open')) nav.classList.add('nav-hidden');
-      else if (y < lastY - 6 || y < 320) nav.classList.remove('nav-hidden');
-    }
-    lastY = y;
     if (heroVisual && !reduceMotion && y < window.innerHeight * 1.5) {
       const p = Math.min(1, y / window.innerHeight);
       heroVisual.style.transform = `translateY(${p * -40}px) scale(${1 + p * 0.06})`;
