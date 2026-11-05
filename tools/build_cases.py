@@ -259,7 +259,7 @@ def case_page(c, nxt):
   <meta property="og:description" content="{e(c["tagline"])}">
   <meta property="og:image" content="{SITE}assets/{"work/" + hero["img"] + "-sm.jpg" if "img" in hero else "og.jpg"}">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="{P}assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="{P}assets/favicon.svg?v=m2" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@85..100,400..700&family=Instrument+Serif:ital@0;1&display=swap">
   <link rel="stylesheet" href="{P}styles.css">
