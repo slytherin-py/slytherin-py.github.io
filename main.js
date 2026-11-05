@@ -190,82 +190,96 @@
     });
   }
 
-  // ---- Hero dive: scrolling zooms into the portrait's eye; the headline opens through it ----
+  // ---- Hero: the full-screen portrait glides into a card while the headline arrives ----
   const dive = $('.dive');
   const face = dive && $('.dive-face img', dive);
   if (dive && face && !reduceMotion) {
     dive.classList.add('is-dive');
     const stage = $('.dive-stage', dive);
-    const EYE = { x: 611.5, y: 524, w: 69 };        // the lit eye in portrait.jpg (1100 x 1525); assets/eye.svg is its traced contour
-    const IMG = { w: 1100, h: 1525, posX: .5, posY: .3 };
-    const clamp = (v) => Math.min(1, Math.max(0, v));
-    const ease = (t) => t * t * (3 - 2 * t);
-    let eye = { x: 0, y: 0, w: 0 };
     const scene = $('.dive-scene', dive);
-    let box = { cx: 0, cy: 0, w: 1, h: 1 };
+    const IMG = { w: 1100, h: 1525, focusX: 0.5, focusY: 0.34 };   // portrait.jpg; focus sits on the face
+    const clamp = (v) => Math.min(1, Math.max(0, v));
+    const ease = (t) => 1 - Math.pow(1 - t, 3);                      // ease-out: settles into place
+    const mix = (a, b, t) => a + (b - a) * t;
+    let g = null;
+    // cover-fit the photo into a rect, keeping the face near the given point
+    const coverIn = (x, y, w, h) => {
+      const k = Math.max(w / IMG.w, h / IMG.h);
+      const ix = Math.min(x, Math.max(x + w - IMG.w * k, x + w / 2 - IMG.w * k * IMG.focusX));
+      const iy = Math.min(y, Math.max(y + h - IMG.h * k, y + h * 0.42 - IMG.h * k * IMG.focusY));
+      return { k, ix, iy };
+    };
     const measure = () => {
       const W = stage.clientWidth, H = stage.clientHeight;
-      const k = Math.max(W / IMG.w, H / IMG.h);   // object-fit: cover
-      const ox = (W - IMG.w * k) * IMG.posX, oy = (H - IMG.h * k) * IMG.posY;
-      eye = { x: ox + EYE.x * k, y: oy + EYE.y * k, w: EYE.w * k, big: Math.hypot(W, H) };
-      // the headline block's own size and centre at scale 1 (padding excluded), relative to the stage
-      const prev = scene.style.transform; scene.style.transform = 'none';
-      const st = stage.getBoundingClientRect();
-      const rs = Array.from(scene.children).map((c) => c.getBoundingClientRect());
-      const L = Math.min(...rs.map((r) => r.left)), R = Math.max(...rs.map((r) => r.right));
-      const T = Math.min(...rs.map((r) => r.top)), B = Math.max(...rs.map((r) => r.bottom));
-      box = { cx: (L + R) / 2 - st.left, cy: (T + B) / 2 - st.top, w: R - L, h: B - T };
-      scene.style.transform = prev;
-      stage.style.setProperty('--ex', eye.x + 'px');
-      stage.style.setProperty('--ey', eye.y + 'px');
-    };
-    let queued = false;
-    const update = () => {
-      queued = false;
-      const r = dive.getBoundingClientRect();
-      const p = clamp(-r.top / (r.height - window.innerHeight));
-      const z = ease(clamp((p - 0.04) / 0.66));      // the dive itself
-      const open = ease(clamp((z - 0.1) / 0.28));     // the eye itself opening into a window
-      const s = 1 + z * z * 9;
-      // matches the real eye once open, then widens past it until the window fills the screen
-      const hw = Math.max(1, eye.w * s * open * (1 + Math.max(0, z - 0.38) * 16));
+      const stacked = W < 900;
+      dive.classList.toggle('stacked', stacked);
       const v = stage.style;
-      v.setProperty('--s', s.toFixed(3));
-      v.setProperty('--hw', hw.toFixed(1) + 'px');
-      v.setProperty('--fb', (1 - z * 0.75).toFixed(3));   // skin darkens as it magnifies, hiding the blur
-      v.setProperty('--fo', (1 - clamp((z - 0.82) / 0.16)).toFixed(3));
-      v.setProperty('--io', (1 - clamp(p / 0.1)).toFixed(3));
-      dive.classList.toggle('past-intro', p > 0.1);
-      rest = p < 0.08;
-      // the headline is a whole miniature inside the eye: it fits the opening and grows with it,
-      // travelling from the eye to the centre of the screen
-      const fit = Math.min(1, (hw * 0.62) / box.w, (hw * 0.29 * 0.62) / box.h);
-      v.setProperty('--ss', fit.toFixed(4));
-      v.setProperty('--tx', ((eye.x - box.cx) * (1 - fit)).toFixed(1) + 'px');
-      v.setProperty('--ty', ((eye.y - box.cy) * (1 - fit)).toFixed(1) + 'px');
-      v.setProperty('--so', clamp((open - 0.05) / 0.35).toFixed(3));
-      if (open > 0.1) dive.classList.add('opened');   // headline entrance plays once, as the eye opens
-      // the face layer stops catching clicks once the scene is through
-      $('.dive-face', dive).style.pointerEvents = z > 0.6 ? 'none' : '';
+      let card;
+      if (!stacked) {
+        const ch = Math.min(H * 0.74, 760), cw = ch * 0.8;
+        const edge = Math.max(22, (W - 1200) / 2 + 22);
+        card = { x: W - edge - cw, y: (H - ch) / 2 + 10, w: cw, h: ch };
+        v.setProperty('--sl', edge + 'px');
+        v.setProperty('--sw', Math.max(320, card.x - edge - 56) + 'px');
+        v.setProperty('--st', '50%'); v.setProperty('--sy', '-50%');
+      } else {
+        const ch = Math.min(H * 0.4, W * 1.1), cw = ch * 0.8;
+        card = { x: (W - cw) / 2, y: Math.max(64, H * 0.08), w: cw, h: ch };
+        v.setProperty('--sl', '22px');
+        v.setProperty('--sw', (W - 44) + 'px');
+        v.setProperty('--st', card.y + card.h + 22 + 'px'); v.setProperty('--sy', '0px');
+      }
+      g = { W, H, card, from: coverIn(0, 0, W, H), to: coverIn(card.x, card.y, card.w, card.h) };
     };
-    const queue = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
     // at rest the portrait leans toward the pointer, eased so it trails like a spring (mouse only)
     let rest = true;
     const drift = { x: 0, y: 0, tx: 0, ty: 0, raf: 0 };
+    let queued = false;
+    const update = () => {
+      queued = false;
+      if (!g) return;
+      const r = dive.getBoundingClientRect();
+      const p = clamp(-r.top / (r.height - window.innerHeight));
+      const e = ease(clamp((p - 0.04) / 0.62));
+      const { W, H, card, from, to } = g;
+      const v = stage.style;
+      // clip from the full stage to the card
+      v.setProperty('--ct', mix(0, card.y, e).toFixed(1) + 'px');
+      v.setProperty('--cl', mix(0, card.x, e).toFixed(1) + 'px');
+      v.setProperty('--cr', mix(0, W - card.x - card.w, e).toFixed(1) + 'px');
+      v.setProperty('--cb', mix(0, H - card.y - card.h, e).toFixed(1) + 'px');
+      v.setProperty('--cR', mix(0, 28, e).toFixed(1) + 'px');
+      // the photo moves and shrinks with the card, so the face stays in frame
+      v.setProperty('--ik', mix(from.k, to.k, e).toFixed(4));
+      v.setProperty('--ix', (mix(from.ix, to.ix, e) + drift.x * (1 - e)).toFixed(1) + 'px');
+      v.setProperty('--iy', (mix(from.iy, to.iy, e) + drift.y * (1 - e)).toFixed(1) + 'px');
+      v.setProperty('--fb', mix(0.9, 1, e).toFixed(3));
+      // the intro steps aside quickly; the headline follows the card in
+      const io = 1 - clamp(p / 0.12);
+      v.setProperty('--io', io.toFixed(3));
+      v.setProperty('--iy2', ((1 - io) * 24).toFixed(1) + 'px');
+      dive.classList.toggle('past-intro', p > 0.12);
+      const so = clamp((e - 0.78) / 0.2);   // after the card has nearly settled
+      v.setProperty('--so', so.toFixed(3));
+      v.setProperty('--sd', ((1 - so) * 24).toFixed(1) + 'px');
+      if (e > 0.6) dive.classList.add('opened');   // headline words play once, as the card settles
+      rest = p < 0.04;
+    };
+    const queue = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
     const driftStep = () => {
       drift.x += (drift.tx - drift.x) * 0.08; drift.y += (drift.ty - drift.y) * 0.08;
-      stage.style.setProperty('--mx', drift.x.toFixed(2) + 'px'); stage.style.setProperty('--my', drift.y.toFixed(2) + 'px');
+      update();
       drift.raf = Math.abs(drift.tx - drift.x) + Math.abs(drift.ty - drift.y) > 0.05 ? requestAnimationFrame(driftStep) : 0;
     };
     if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-      window.addEventListener('pointermove', (e) => {
+      window.addEventListener('pointermove', (ev) => {
         const k = rest ? 1 : 0;
-        drift.tx = (e.clientX / innerWidth - 0.5) * -18 * k; drift.ty = (e.clientY / innerHeight - 0.5) * -12 * k;
+        drift.tx = (ev.clientX / innerWidth - 0.5) * -16 * k; drift.ty = (ev.clientY / innerHeight - 0.5) * -10 * k;
         if (!drift.raf) drift.raf = requestAnimationFrame(driftStep);
       }, { passive: true });
     }
-    // keyboard: tabbing into the hidden headline scene scrolls the dive open first
-    $('.dive-scene', dive).addEventListener('focusin', () => {
+    // keyboard: tabbing into the headline scrolls the hero to where it is fully shown
+    scene.addEventListener('focusin', () => {
       if (dive.getBoundingClientRect().bottom > innerHeight + 2) window.scrollTo({ top: dive.offsetTop + dive.offsetHeight - innerHeight, behavior: 'instant' });
     });
     measure(); update();

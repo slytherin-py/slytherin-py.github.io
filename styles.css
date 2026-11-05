@@ -836,40 +836,49 @@ section { position: relative; }
 .hero-visual { mix-blend-mode: lighten; }
 
 /* ==========================================================
-   Hero dive: scroll zooms into the portrait's eye, and the headline
-   scene opens up through an eye-shaped hole (main.js drives the vars)
+   Hero: the full-screen portrait glides into a card on scroll while the
+   headline arrives beside it (main.js drives the vars). The photo is only
+   ever shown at or below its starting size, so it stays sharp.
    ========================================================== */
 .dive { padding: 0; overflow: visible; }
 .dive-stage { position: relative; }
 .dive-scene { padding-top: clamp(72px, 10vw, 140px); padding-bottom: clamp(72px, 10vw, 140px); }
 .dive-face, .dive-intro { display: none; }
 
-.js .dive.is-dive { height: 220vh; }
-.js .is-dive .dive-stage {
-  position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden;
-  display: grid; place-items: center;
-}
+.js .dive.is-dive { height: 200vh; }
+.js .is-dive .dive-stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+/* headline column: beside the card on wide screens, under it on phones */
 .js .is-dive .dive-scene {
-  transform: translate(var(--tx, 0px), var(--ty, 0px)) scale(var(--ss, 1)); opacity: var(--so, 0); will-change: transform, opacity;
+  position: absolute; z-index: 2; margin: 0; padding: 0; text-align: left;
+  left: var(--sl, 22px); top: var(--st, 50%); width: var(--sw, auto);
+  transform: translateY(calc(var(--sy, -50%) + var(--sd, 24px))); opacity: var(--so, 0);
 }
+.js .is-dive .dive-scene .display { margin-inline: 0; max-width: 9ch; }
+.js .is-dive .dive-scene .lede { margin-left: 0; margin-right: 0; }
+.js .is-dive .dive-scene .cta-row { justify-content: flex-start; }
+.js .is-dive .dive-scene .hero-meta { text-align: left; }
+.js .is-dive .dive-scene .hero-meta span { display: block; }
+.js .is-dive .dive-scene .hero-meta span + span::before { content: none; }
+.js .is-dive.stacked .dive-scene { text-align: center; }
+.js .is-dive.stacked .dive-scene .display { margin-inline: auto; max-width: 12ch; }
+.js .is-dive.stacked .dive-scene .cta-row { justify-content: center; }
+.js .is-dive.stacked .dive-scene .hero-meta { display: none; }
+
+/* the portrait: clipped from the full screen down to a rounded card */
 .js .is-dive .dive-face {
-  display: block; position: absolute; inset: 0; z-index: 3; background: #000;
-  opacity: var(--fo, 1);
-  /* everything but an eye-shaped hole: the eye mask XOR a full layer */
-  -webkit-mask: url(assets/eye.svg) calc(var(--ex) - var(--hw) / 2) calc(var(--ey) - var(--hw) * .145) / var(--hw) calc(var(--hw) * .29) no-repeat, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask: url(assets/eye.svg) calc(var(--ex) - var(--hw) / 2) calc(var(--ey) - var(--hw) * .145) / var(--hw) calc(var(--hw) * .29) no-repeat exclude, linear-gradient(#000 0 0);
+  display: block; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  clip-path: inset(var(--ct, 0px) var(--cr, 0px) var(--cb, 0px) var(--cl, 0px) round var(--cR, 0px));
 }
 .js .is-dive .dive-face img {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%;
-  transform-origin: var(--ex) var(--ey); transform: translate(var(--mx, 0px), var(--my, 0px)) scale(var(--s, 1)); will-change: transform;
-  filter: brightness(var(--fb, 1));
+  position: absolute; left: 0; top: 0; width: 1100px; height: 1525px; max-width: none;
+  transform-origin: 0 0; transform: translate(var(--ix, 0px), var(--iy, 0px)) scale(var(--ik, 1)); will-change: transform;
+  filter: brightness(var(--fb, .9));
 }
 .js .is-dive .dive-intro {
   display: block; position: absolute; left: 0; right: 0; bottom: 0; z-index: 4;
   padding: 0 clamp(22px, 5vw, 72px) clamp(28px, 6vh, 64px); color: #f5f5f7;
   background: linear-gradient(transparent, rgba(0,0,0,.75) 70%);
-  opacity: var(--io, 1);
+  opacity: var(--io, 1); transform: translateY(var(--iy2, 0px));
 }
 .is-dive.past-intro .dive-intro { visibility: hidden; }
 .dive-name { margin: 0; font-size: clamp(34px, 6vw, 84px); font-weight: 700; letter-spacing: -0.035em; line-height: 1; }
@@ -877,7 +886,7 @@ section { position: relative; }
 .dive-cue { margin: 0; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: #a1a1a6; display: inline-flex; flex-direction: column; align-items: center; gap: 10px; }
 .dive-cue::after { content: ""; width: 1px; height: 28px; background: linear-gradient(#a1a1a6, transparent); animation: cue 1.8s var(--ease-in-out) infinite; transform-origin: top; }
 @keyframes cue { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
-/* the headline entrance waits until the scene has opened */
+/* the headline entrance waits until the portrait has made room for it */
 .js .is-dive:not(.opened) .reveal, .js .is-dive:not(.opened) .words .w { animation-play-state: paused; }
 
 .dive-fact { margin: 14px auto 0; max-width: 46ch; font-size: 15px; color: #a1a1a6; }
