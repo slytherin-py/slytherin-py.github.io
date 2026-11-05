@@ -1187,3 +1187,12 @@ img.brand-mark { width: 30px; height: 30px; background: none; border-radius: 0; 
 .brand-sig { height: 36px; }
 @media (max-width: 420px) { .brand-sig { height: 32px; } }
 .brand-sig { margin-left: 8px; }
+
+/* Skills: every row leads with the tool's real logo (or a line glyph for a practice) */
+.skill-col li { display: flex; align-items: center; gap: 12px; padding: 8px 0; }
+.sk-ic { flex: none; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 9px; background: #f5f5f7; box-shadow: inset 0 0 0 1px rgba(255,255,255,.6); transition: transform .3s var(--ease-out); }
+.sk-ic img { width: 20px; height: 20px; object-fit: contain; }
+.sk-glyph { background: #1a1a1e; box-shadow: inset 0 0 0 1px #2a2a30; color: #2997ff; }
+.sk-glyph svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.skill-col li:hover .sk-ic { transform: translateY(-2px) scale(1.06); }
+@media (prefers-reduced-motion: reduce) { .sk-ic { transition: none; } }
