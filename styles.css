@@ -1082,3 +1082,24 @@ html { scrollbar-color: #3a3a3e #000; accent-color: #0071e3; caret-color: #2997f
 @media (prefers-reduced-motion: reduce) {
   .role-rich::before, .in .rc-track i, .in .rc-track i::after, .in .role-flow ol::after, .in .rf-icon { animation: none; }
 }
+
+/* Experience charts diverge from a centre line: what I reduced runs left in green,
+   what I increased runs right in blue. Both are wins, so neither is red. */
+:root { --up: #0071e3; --down: #12a37f; --up-ink: #0066cc; --down-ink: #0b7a5c; }
+.rc-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+.rc-head .rc-title { margin: 0; }
+.rc-key { margin: 0; display: flex; gap: 14px; font-size: 12px; color: var(--muted); }
+.rc-key span { display: inline-flex; align-items: center; gap: 6px; }
+.rc-key span::before { content: ""; width: 10px; height: 10px; border-radius: 3px; }
+.rc-key .k-down::before { background: var(--down); }
+.rc-key .k-up::before { background: var(--up); }
+.role-chart li .rc-track { overflow: visible; }
+.role-chart li .rc-track::after { content: ""; position: absolute; left: 50%; top: -5px; bottom: -5px; width: 1.5px; margin-left: -.75px; background: rgba(29, 29, 31, .28); border-radius: 1px; }
+.role-chart li .rc-track i { inset: 0 auto 0 auto; width: 50%; border-radius: 99px; }
+.role-chart li.rc-up .rc-track i { left: 50%; transform-origin: left; background: linear-gradient(90deg, #5aa9f5, var(--up)); }
+.role-chart li.rc-down .rc-track i { right: 50%; transform-origin: right; background: linear-gradient(270deg, #6fd3b4, var(--down)); }
+.role-chart li.rc-down .rc-track i::after { animation-direction: reverse; }
+.rc-up .rc-val { color: var(--up-ink); }
+.rc-down .rc-val { color: var(--down-ink); }
+.rc-axis span:nth-child(2) { justify-self: center; }
+.role-chart li, .rc-axis { grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr) 58px; }
