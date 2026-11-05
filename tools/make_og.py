@@ -50,8 +50,8 @@ for x in range(W):
     a, b, u = (GRAD[0], GRAD[1], t / .55) if t < .55 else (GRAD[1], GRAD[2], (t - .55) / .45)
     ImageDraw.Draw(grad).line([(x, 0), (x, H)], fill=tuple(round(a[i] + (b[i] - a[i]) * u) for i in range(3)))
 card.paste(grad, (0, 0), tmask)
-d.text((72, 372), "BA Lead · Analytics & Operations", font=font("segoeui.ttf", 32), fill=(210, 210, 215))
-d.text((72, 416), "MS Business Analytics · Isenberg", font=font("segoeui.ttf", 32), fill=(210, 210, 215))
+d.text((72, 372), "Product & Project Leader", font=font("segoeui.ttf", 32), fill=(210, 210, 215))
+d.text((72, 416), "Business & Data Analytics", font=font("segoeui.ttf", 32), fill=(210, 210, 215))
 d.rounded_rectangle((72, 500, 470, 552), radius=26, fill=PILL)
 d.text((96, 508), "slytherin-py.github.io", font=font("segoeuib.ttf", 28), fill=(255, 255, 255))
 

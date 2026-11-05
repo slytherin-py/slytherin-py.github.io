@@ -939,3 +939,4 @@ html { scrollbar-color: #3a3a3e #000; accent-color: #0071e3; caret-color: #2997f
 .role-main > .org-logo { align-self: flex-start; width: auto; }
 .odo > span { align-items: flex-end; line-height: 1; }
 .odo-s { line-height: 1; }
+@media (max-width: 640px) { .dive-role span { display: block; } .dive-role .role-sep { display: none; } }
