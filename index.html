@@ -23,8 +23,8 @@
   <link rel="preload" as="image" href="assets/portrait.webp" type="image/webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@85..100,400..700&family=Instrument+Serif:ital@0;1&display=swap">
+  <link rel="stylesheet" href="styles.css?v=85df755c">
   <script>document.documentElement.classList.add('js')</script>
   <script type="application/ld+json">
   {
@@ -83,34 +83,37 @@
 <main id="main">
 
 <!-- ============ HERO ============ -->
-<section class="hero dark" id="top" aria-labelledby="hero-title">
-  <div class="wrap hero-copy">
-    <p class="eyebrow reveal">Mohammed Saleeq Sunil</p>
-    <h1 class="display reveal" id="hero-title" style="--d:.08s">Data in. <span class="gradient-text">Decisions out.</span></h1>
-    <p class="lede reveal" style="--d:.16s">I connect <strong>analytics</strong>, <strong>Agile delivery</strong> and <strong>AI</strong> to turn complex portfolios into results you can measure.</p>
-    <div class="cta-row reveal" style="--d:.24s">
-      <a class="btn btn-primary" href="#contact">Hire me</a>
-      <a class="more" href="#work">View my work</a>
-      <a class="more" href="assets/Mohammed_Saleeq_Sunil_Resume.pdf" download>Download resume</a>
+<section class="hero dive dark" id="top" aria-labelledby="hero-title">
+  <div class="dive-stage">
+    <div class="wrap hero-copy dive-scene">
+      <h1 class="display reveal" id="hero-title" style="--d:.08s">Data in. <span class="gradient-text">Decisions out.</span></h1>
+      <p class="lede reveal" style="--d:.16s">I connect <strong>analytics</strong>, <strong>Agile delivery</strong> and <strong>AI</strong> to turn complex portfolios into results you can measure.</p>
+      <div class="cta-row reveal" style="--d:.24s">
+        <a class="btn btn-primary" href="#contact">Hire me</a>
+        <a class="more" href="#work">View my work</a>
+        <a class="more" href="assets/Mohammed_Saleeq_Sunil_Resume.pdf" download>Download resume</a>
+      </div>
+      <p class="hero-meta reveal" style="--d:.3s"><span>MS Business Analytics, Isenberg School of Management</span><span>Certified ScrumMaster &amp; Scrum Product Owner</span><span>Open to relocation</span></p>
     </div>
-    <p class="hero-meta reveal" style="--d:.3s"><span>MS Business Analytics, Isenberg School of Management</span><span>Certified ScrumMaster &amp; Scrum Product Owner</span><span>Open to relocation</span></p>
+    <div class="dive-face" aria-hidden="true">
+      <picture>
+        <source srcset="assets/portrait.webp" type="image/webp">
+        <img src="assets/portrait.jpg" width="1100" height="1525" alt="" fetchpriority="high">
+      </picture>
+    </div>
+    <div class="dive-intro">
+      <p class="dive-name">Mohammed Saleeq Sunil</p>
+      <p class="dive-role">BA Lead, Analytics &amp; Operations</p>
+      <p class="dive-fact">3+ years in analytics and delivery · clients in the US, NZ and AU</p>
+      <div class="dive-actions"><a class="btn btn-primary" href="#contact">Hire me</a><span class="dive-cue" aria-hidden="true">Scroll to look closer</span></div>
+    </div>
   </div>
-  <div class="blobs" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-  <figure class="hero-visual" id="hero-visual">
-    <picture>
-      <source srcset="assets/portrait.webp" type="image/webp">
-      <img src="assets/portrait.jpg" width="1100" height="1525" alt="Portrait of Mohammed Saleeq Sunil in a charcoal suit" fetchpriority="high">
-    </picture>
-  </figure>
-  <div class="hero-fade" aria-hidden="true"></div>
 </section>
 
 <!-- ============ STATS ============ -->
-<section class="has-blobs stats dark section-tight" aria-labelledby="stats-title">
-  <div class="blobs" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<section class="stats dark section-tight" aria-labelledby="stats-title">
   <div class="wrap-wide">
     <div class="section-head center">
-      <p class="eyebrow reveal">Impact, measured</p>
       <h2 class="headline reveal" id="stats-title" style="--d:.06s">Results you can <span class="gradient-text">count.</span></h2>
     </div>
     <div class="stats-grid">
@@ -140,7 +143,6 @@
   <div class="wrap-wide">
     <div class="about-grid">
       <div class="about-copy">
-        <p class="eyebrow reveal">About</p>
         <h2 class="headline reveal" id="about-title" style="--d:.06s; margin:14px 0 26px">Engineer by training. Analyst by <span class="gradient-text">craft.</span></h2>
         <p class="reveal">I've spent over three years in business analysis and delivery, from SaaS products used on three continents to my current role leading analytics and operations at Holiday World. I build AI tools too, so I can take a problem from <strong>messy data</strong> to a <strong>shipped product</strong>.</p>
         <div class="cta-row reveal" style="justify-content:flex-start; margin-top:30px">
@@ -174,9 +176,9 @@
     </div>
 
     <div class="principles">
-      <article class="principle reveal"><span class="orb orb-1" aria-hidden="true"></span><span class="principle-n">01</span><h3>Evidence over urgency.</h3><p>I set priorities with evidence, not urgency. That's how delivery got 22% faster.</p></article>
-      <article class="principle reveal" style="--d:.08s"><span class="orb orb-2" aria-hidden="true"></span><span class="principle-n">02</span><h3>Clear for every audience.</h3><p>I build dashboards an engineer and an executive can both read in a minute.</p></article>
-      <article class="principle reveal" style="--d:.16s"><span class="orb orb-4" aria-hidden="true"></span><span class="principle-n">03</span><h3>Govern the risk. Ship the work.</h3><p>I track dependencies and set escalation paths early, so work doesn't stall.</p></article>
+      <article class="principle reveal"><h3>Evidence over urgency.</h3><p>I set priorities with evidence, not urgency. That's how delivery got 22% faster.</p></article>
+      <article class="principle reveal" style="--d:.08s"><h3>Clear for every audience.</h3><p>I build dashboards an engineer and an executive can both read in a minute.</p></article>
+      <article class="principle reveal" style="--d:.16s"><h3>Govern the risk. Ship the work.</h3><p>I track dependencies and set escalation paths early, so work doesn't stall.</p></article>
     </div>
 
     <div class="journey">
@@ -194,10 +196,8 @@
 
 <!-- ============ EXPERIENCE ============ -->
 <section class="section" id="experience" aria-labelledby="exp-title">
-  <div class="wrap-wide has-deco">
-    <div class="deco-orbs" aria-hidden="true"><span class="orb orb-1"></span><span class="orb orb-2"></span></div>
+  <div class="wrap-wide">
     <div class="section-head">
-      <p class="eyebrow reveal">Experience</p>
       <h2 class="headline reveal" id="exp-title" style="--d:.06s">Four roles. One thread: <span class="gradient-text">better decisions.</span></h2>
     </div>
     <div class="roles">
@@ -264,10 +264,8 @@
 
 <!-- ============ WORK ============ -->
 <section class="section gray" id="work" aria-labelledby="work-title">
-  <div class="wrap-wide has-deco">
-    <div class="deco-orbs" aria-hidden="true"><span class="orb orb-3"></span><span class="orb orb-4"></span></div>
+  <div class="wrap-wide">
     <div class="section-head">
-      <p class="eyebrow reveal">Selected work</p>
       <h2 class="headline reveal" id="work-title" style="--d:.06s">Seven projects. Each with a <span class="gradient-text">case study.</span></h2>
     </div>
 <!-- WORK:START -->
@@ -308,7 +306,7 @@
   </defs>
   <path d="M70 92 C130 30 260 40 340 52 C430 64 520 40 584 104 C626 148 600 222 612 284 C622 350 552 392 470 380 C390 368 320 398 236 384 C150 372 66 360 48 286 C34 226 22 142 70 92Z" fill="#121215" stroke="#2c2c30" stroke-width="1.5"/>
   <g class="pop" clip-path="url(#region)"></g><g class="hubs"></g>
-  <g font-size="11" fill="#86868b" font-family="-apple-system, Inter, sans-serif">
+  <g font-size="11" fill="#86868b" font-family="'Instrument Sans', -apple-system, sans-serif">
     <circle cx="28" cy="404" r="3" fill="#6e6e73"/><text x="38" y="408">Population</text>
     <circle cx="118" cy="404" r="5" fill="#fff" stroke="#2997ff" stroke-width="2"/><text x="130" y="408">Hub</text>
     <circle cx="176" cy="404" r="7" fill="url(#hubFill)" stroke="#2997ff" stroke-opacity=".6"/><text x="190" y="408">15-min coverage</text>
@@ -325,7 +323,7 @@
   <div class="work-media"><div class="card-viz"><svg class="viz" viewBox="0 0 640 400" role="img" aria-labelledby="tr-t">
   <title id="tr-t">143,266 registry rows narrowed to 3,446 Phase III oncology trials; industry trials enroll 1.83 times the academic median</title>
   <rect width="640" height="400" rx="20" fill="#0b0b0d"/>
-  <g font-family="-apple-system, Inter, sans-serif">
+  <g font-family="'Instrument Sans', -apple-system, sans-serif">
     <text x="40" y="58" fill="#86868b" font-size="14">ClinicalTrials.gov export</text>
     <text x="600" y="58" fill="#f5f5f7" font-size="14" font-weight="600" text-anchor="end">143,266 rows</text>
     <rect x="40" y="70" width="560" height="14" rx="7" fill="#3a3a3e"/>
@@ -354,8 +352,8 @@
   <defs><linearGradient id="imp-up" x1="0" x2="1"><stop offset="0" stop-color="#2997ff"/><stop offset="1" stop-color="#a88bff"/></linearGradient>
   <linearGradient id="imp-dn" x1="0" x2="1"><stop offset="0" stop-color="#a88bff"/><stop offset="1" stop-color="#ff8a5c"/></linearGradient></defs>
   <rect width="640" height="400" rx="20" fill="#0b0b0d"/>
-  <g font-family="-apple-system, Inter, sans-serif"><text x="40" y="70" fill="#a1a1a6" font-size="14">Manual reporting effort</text><rect x="40" y="79" width="360" height="12" rx="6" fill="#1f1f22"/><rect x="40" y="79" width="288" height="12" rx="6" fill="url(#imp-dn)"/><text x="600" y="90" fill="#f5f5f7" font-size="26" font-weight="700" text-anchor="end" letter-spacing="-1">−40%</text><text x="40" y="122" fill="#a1a1a6" font-size="14">Errors, AI content pipeline</text><rect x="40" y="131" width="360" height="12" rx="6" fill="#1f1f22"/><rect x="40" y="131" width="288" height="12" rx="6" fill="url(#imp-dn)"/><text x="600" y="142" fill="#f5f5f7" font-size="26" font-weight="700" text-anchor="end" letter-spacing="-1">−40%</text><text x="40" y="174" fill="#a1a1a6" font-size="14">Reporting discrepancies</text><rect x="40" y="183" width="360" height="12" rx="6" fill="#1f1f22"/><rect x="40" y="183" width="216" height="12" rx="6" fill="url(#imp-dn)"/><text x="600" y="194" fill="#f5f5f7" font-size="26" font-weight="700" text-anchor="end" letter-spacing="-1">−30%</text><text x="40" y="226" fill="#a1a1a6" font-size="14">Scope creep</text><rect x="40" y="235" width="360" height="12" rx="6" fill="#1f1f22"/><rect x="40" y="235" width="180" height="12" rx="6" fill="url(#imp-dn)"/><text x="600" y="246" fill="#f5f5f7" font-size="26" font-weight="700" text-anchor="end" letter-spacing="-1">−25%</text><text x="40" y="278" fill="#a1a1a6" font-size="14">Delivery velocity</text><rect x="40" y="287" width="360" height="12" rx="6" fill="#1f1f22"/><rect x="40" y="287" width="158" height="12" rx="6" fill="url(#imp-up)"/><text x="600" y="298" fill="#f5f5f7" font-size="26" font-weight="700" text-anchor="end" letter-spacing="-1">+22%</text><text x="40" y="330" fill="#a1a1a6" font-size="14">Efficiency</text><rect x="40" y="339" width="360" height="12" rx="6" fill="#1f1f22"/><rect x="40" y="339" width="108" height="12" rx="6" fill="url(#imp-up)"/><text x="600" y="350" fill="#f5f5f7" font-size="26" font-weight="700" text-anchor="end" letter-spacing="-1">+15%</text></g>
-  <text x="40" y="384" fill="#6e6e73" font-size="11" font-family="-apple-system, Inter, sans-serif">Bar length on a 0 to 50% scale</text>
+  <g font-family="'Instrument Sans', -apple-system, sans-serif"><text x="40" y="70" fill="#a1a1a6" font-size="14">Manual reporting effort</text><rect x="40" y="79" width="360" height="12" rx="6" fill="#1f1f22"/><rect x="40" y="79" width="288" height="12" rx="6" fill="url(#imp-dn)"/><text x="600" y="90" fill="#f5f5f7" font-size="26" font-weight="700" text-anchor="end" letter-spacing="-1">−40%</text><text x="40" y="122" fill="#a1a1a6" font-size="14">Errors, AI content pipeline</text><rect x="40" y="131" width="360" height="12" rx="6" fill="#1f1f22"/><rect x="40" y="131" width="288" height="12" rx="6" fill="url(#imp-dn)"/><text x="600" y="142" fill="#f5f5f7" font-size="26" font-weight="700" text-anchor="end" letter-spacing="-1">−40%</text><text x="40" y="174" fill="#a1a1a6" font-size="14">Reporting discrepancies</text><rect x="40" y="183" width="360" height="12" rx="6" fill="#1f1f22"/><rect x="40" y="183" width="216" height="12" rx="6" fill="url(#imp-dn)"/><text x="600" y="194" fill="#f5f5f7" font-size="26" font-weight="700" text-anchor="end" letter-spacing="-1">−30%</text><text x="40" y="226" fill="#a1a1a6" font-size="14">Scope creep</text><rect x="40" y="235" width="360" height="12" rx="6" fill="#1f1f22"/><rect x="40" y="235" width="180" height="12" rx="6" fill="url(#imp-dn)"/><text x="600" y="246" fill="#f5f5f7" font-size="26" font-weight="700" text-anchor="end" letter-spacing="-1">−25%</text><text x="40" y="278" fill="#a1a1a6" font-size="14">Delivery velocity</text><rect x="40" y="287" width="360" height="12" rx="6" fill="#1f1f22"/><rect x="40" y="287" width="158" height="12" rx="6" fill="url(#imp-up)"/><text x="600" y="298" fill="#f5f5f7" font-size="26" font-weight="700" text-anchor="end" letter-spacing="-1">+22%</text><text x="40" y="330" fill="#a1a1a6" font-size="14">Efficiency</text><rect x="40" y="339" width="360" height="12" rx="6" fill="#1f1f22"/><rect x="40" y="339" width="108" height="12" rx="6" fill="url(#imp-up)"/><text x="600" y="350" fill="#f5f5f7" font-size="26" font-weight="700" text-anchor="end" letter-spacing="-1">+15%</text></g>
+  <text x="40" y="384" fill="#6e6e73" font-size="11" font-family="'Instrument Sans', -apple-system, sans-serif">Bar length on a 0 to 50% scale</text>
 </svg></div></div>
   <div class="work-body">
     <p class="tile-kicker">Delivery leadership · Fingent</p>
@@ -372,7 +370,7 @@
     <marker id="fa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#ff8a5c"/></marker>
   </defs>
   <rect width="640" height="400" rx="20" fill="#0b0b0d"/>
-  <g font-family="-apple-system, Inter, sans-serif">
+  <g font-family="'Instrument Sans', -apple-system, sans-serif">
     <rect x="150" y="120" width="330" height="150" rx="16" fill="#f5f5f7"/>
     <path d="M480 160 h70 a20 20 0 0 1 20 20 v90 h-90z" fill="#e8e8ed"/>
     <rect x="500" y="172" width="50" height="40" rx="6" fill="#86868b"/>
@@ -411,10 +409,8 @@
 
 <!-- ============ RECOGNITION ============ -->
 <section class="section" id="recognition" aria-labelledby="rec-title">
-  <div class="wrap-wide has-deco">
-    <div class="deco-orbs" aria-hidden="true"><span class="orb orb-4"></span><span class="orb orb-2"></span></div>
+  <div class="wrap-wide">
     <div class="section-head">
-      <p class="eyebrow reveal">Achievements &amp; accolades</p>
       <h2 class="headline reveal" id="rec-title" style="--d:.06s">Recognized for <span class="gradient-text">rigor.</span></h2>
     </div>
     <div class="awards">
@@ -478,23 +474,21 @@
 </section>
 
 <!-- ============ SKILLS ============ -->
-<section class="has-blobs section dark" id="skills" aria-labelledby="skills-title">
-  <div class="blobs" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<section class="section dark" id="skills" aria-labelledby="skills-title">
   <div class="wrap-wide">
     <div class="section-head">
-      <p class="eyebrow reveal" style="color:var(--muted-dark)">Skills &amp; expertise</p>
       <h2 class="headline reveal" id="skills-title" style="--d:.06s">One toolkit. <span class="gradient-text">Five disciplines.</span></h2>
     </div>
     <div class="skills">
-      <div class="skill-col reveal"><span class="orb orb-1" aria-hidden="true"></span><h3>Analysis</h3><p class="sub">Raw data to clear answers.</p>
+      <div class="skill-col reveal"><h3>Analysis</h3><p class="sub">Raw data to clear answers.</p>
         <ul><li>Python (pandas, NumPy)</li><li>SQL · PostgreSQL</li><li>Excel</li><li>Statistics</li><li>Optimization modeling</li></ul></div>
-      <div class="skill-col reveal" style="--d:.05s"><span class="orb orb-2" aria-hidden="true"></span><h3>Visualization</h3><p class="sub">Stories leaders act on.</p>
+      <div class="skill-col reveal" style="--d:.05s"><h3>Visualization</h3><p class="sub">Stories leaders act on.</p>
         <ul><li>Tableau</li><li>Power BI</li><li>PowerPoint</li><li>Executive briefings</li></ul></div>
-      <div class="skill-col reveal" style="--d:.1s"><span class="orb orb-3" aria-hidden="true"></span><h3>AI &amp; ML</h3><p class="sub">Applied and shipped.</p>
+      <div class="skill-col reveal" style="--d:.1s"><h3>AI &amp; ML</h3><p class="sub">Applied and shipped.</p>
         <ul><li>Claude API · LLM apps</li><li>XGBoost</li><li>SHAP</li><li>scikit-learn</li></ul></div>
-      <div class="skill-col reveal" style="--d:.15s"><span class="orb orb-4" aria-hidden="true"></span><h3>Delivery</h3><p class="sub">Programs that land.</p>
+      <div class="skill-col reveal" style="--d:.15s"><h3>Delivery</h3><p class="sub">Programs that land.</p>
         <ul><li>Agile / Scrum</li><li>Portfolio governance</li><li>Requirements</li><li>Change management</li><li>Jira</li></ul></div>
-      <div class="skill-col reveal" style="--d:.2s"><span class="orb orb-5" aria-hidden="true"></span><h3>Build</h3><p class="sub">Working software.</p>
+      <div class="skill-col reveal" style="--d:.2s"><h3>Build</h3><p class="sub">Working software.</p>
         <ul><li>React</li><li>FastAPI</li><li>Pydantic</li><li>Salesforce CRM</li></ul></div>
     </div>
   </div>
@@ -502,10 +496,8 @@
 
 <!-- ============ EDUCATION ============ -->
 <section class="section gray" id="education" aria-labelledby="edu-title">
-  <div class="wrap-wide has-deco">
-    <div class="deco-orbs" aria-hidden="true"><span class="orb orb-5"></span><span class="orb orb-1"></span></div>
+  <div class="wrap-wide">
     <div class="section-head">
-      <p class="eyebrow reveal">Education</p>
       <h2 class="headline reveal" id="edu-title" style="--d:.06s">Built on <span class="gradient-text">two disciplines.</span></h2>
     </div>
     <div class="edu">
@@ -583,14 +575,12 @@
 </section>
 
 <!-- ============ CONTACT ============ -->
-<section class="has-blobs section dark contact" id="contact" aria-labelledby="contact-title">
-  <div class="blobs" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<section class="section dark contact" id="contact" aria-labelledby="contact-title">
   <div class="wrap">
     <picture class="reveal">
       <source srcset="assets/portrait-alt.webp" type="image/webp">
       <img class="avatar" src="assets/portrait-alt.jpg" width="200" height="200" alt="" loading="lazy">
     </picture>
-    <p class="eyebrow reveal" style="color:var(--muted-dark)">Let's talk</p>
     <h2 class="headline reveal" id="contact-title" style="--d:.06s; margin-top:12px">Let's build what's <span class="gradient-text">next.</span></h2>
     <p class="lede reveal" style="--d:.12s">Open to <strong>Data Analyst, Senior BA, Product Owner, PM and Scrum Master</strong> roles.</p>
     <a class="mail-big reveal" style="--d:.18s" href="mailto:mohammedsaleeqs@gmail.com?subject=Opportunity%20for%20Mohammed">mohammedsaleeqs@gmail.com</a>
@@ -642,6 +632,6 @@
   <a class="btn btn-primary btn-sm" href="#contact" tabindex="-1">Let's talk</a>
 </div>
 
-<script src="main.js" defer></script>
+<script src="main.js?v=b7dd6a07" defer></script>
 </body>
 </html>

@@ -20,7 +20,7 @@ HUB_SVG = """<svg class="hub-map" viewBox="0 0 640 420" role="img" aria-labelled
   </defs>
   <path d="M70 92 C130 30 260 40 340 52 C430 64 520 40 584 104 C626 148 600 222 612 284 C622 350 552 392 470 380 C390 368 320 398 236 384 C150 372 66 360 48 286 C34 226 22 142 70 92Z" fill="#121215" stroke="#2c2c30" stroke-width="1.5"/>
   <g class="pop" clip-path="url(#region)"></g><g class="hubs"></g>
-  <g font-size="11" fill="#86868b" font-family="-apple-system, Inter, sans-serif">
+  <g font-size="11" fill="#86868b" font-family="'Instrument Sans', -apple-system, sans-serif">
     <circle cx="28" cy="404" r="3" fill="#6e6e73"/><text x="38" y="408">Population</text>
     <circle cx="118" cy="404" r="5" fill="#fff" stroke="#2997ff" stroke-width="2"/><text x="130" y="408">Hub</text>
     <circle cx="176" cy="404" r="7" fill="url(#hubFill)" stroke="#2997ff" stroke-opacity=".6"/><text x="190" y="408">15-min coverage</text>
@@ -30,7 +30,7 @@ HUB_SVG = """<svg class="hub-map" viewBox="0 0 640 420" role="img" aria-labelled
 TRIALS_SVG = """<svg class="viz" viewBox="0 0 640 400" role="img" aria-labelledby="tr-t">
   <title id="tr-t">143,266 registry rows narrowed to 3,446 Phase III oncology trials; industry trials enroll 1.83 times the academic median</title>
   <rect width="640" height="400" rx="20" fill="#0b0b0d"/>
-  <g font-family="-apple-system, Inter, sans-serif">
+  <g font-family="'Instrument Sans', -apple-system, sans-serif">
     <text x="40" y="58" fill="#86868b" font-size="14">ClinicalTrials.gov export</text>
     <text x="600" y="58" fill="#f5f5f7" font-size="14" font-weight="600" text-anchor="end">143,266 rows</text>
     <rect x="40" y="70" width="560" height="14" rx="7" fill="#3a3a3e"/>
@@ -65,8 +65,8 @@ def impact_svg():
   <defs><linearGradient id="imp-up" x1="0" x2="1"><stop offset="0" stop-color="#2997ff"/><stop offset="1" stop-color="#a88bff"/></linearGradient>
   <linearGradient id="imp-dn" x1="0" x2="1"><stop offset="0" stop-color="#a88bff"/><stop offset="1" stop-color="#ff8a5c"/></linearGradient></defs>
   <rect width="640" height="400" rx="20" fill="#0b0b0d"/>
-  <g font-family="-apple-system, Inter, sans-serif">{''.join(rows)}</g>
-  <text x="40" y="384" fill="#6e6e73" font-size="11" font-family="-apple-system, Inter, sans-serif">Bar length on a 0 to 50% scale</text>
+  <g font-family="'Instrument Sans', -apple-system, sans-serif">{''.join(rows)}</g>
+  <text x="40" y="384" fill="#6e6e73" font-size="11" font-family="'Instrument Sans', -apple-system, sans-serif">Bar length on a 0 to 50% scale</text>
 </svg>"""
 
 
@@ -77,7 +77,7 @@ FLOOD_SVG = """<svg class="viz" viewBox="0 0 640 400" role="img" aria-labelledby
     <marker id="fa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#ff8a5c"/></marker>
   </defs>
   <rect width="640" height="400" rx="20" fill="#0b0b0d"/>
-  <g font-family="-apple-system, Inter, sans-serif">
+  <g font-family="'Instrument Sans', -apple-system, sans-serif">
     <rect x="150" y="120" width="330" height="150" rx="16" fill="#f5f5f7"/>
     <path d="M480 160 h70 a20 20 0 0 1 20 20 v90 h-90z" fill="#e8e8ed"/>
     <rect x="500" y="172" width="50" height="40" rx="6" fill="#86868b"/>
@@ -101,7 +101,7 @@ FLOOD_SVG = """<svg class="viz" viewBox="0 0 640 400" role="img" aria-labelledby
 
 CONFUSION = """<div class="cm-wrap"><svg class="viz" viewBox="0 0 400 330" role="img" aria-labelledby="cm-t">
   <title id="cm-t">Confusion matrix on 1,271 held-out videos: 425 true negatives, 61 false positives, 85 false negatives, 700 true positives</title>
-  <g font-family="-apple-system, Inter, sans-serif" text-anchor="middle">
+  <g font-family="'Instrument Sans', -apple-system, sans-serif" text-anchor="middle">
     <text x="250" y="20" font-size="12" fill="#86868b">Predicted</text>
     <text x="180" y="44" font-size="12" fill="#a1a1a6">Not viral</text><text x="320" y="44" font-size="12" fill="#a1a1a6">Viral</text>
     <text x="20" y="175" font-size="12" fill="#86868b" transform="rotate(-90 20 175)">Actual</text>
@@ -118,7 +118,7 @@ FLOWS = """<div class="flow-pair">
   <defs><marker id="arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#48484a"/></marker></defs>
   <ellipse cx="210" cy="110" rx="150" ry="78" fill="none" stroke="#2c2c30" stroke-width="1.5"/>
   <g fill="none" stroke="#48484a" stroke-width="1.5" marker-end="url(#arw)"><path d="M150 36 Q200 26 262 34"/><path d="M340 62 Q362 100 340 156"/><path d="M268 186 Q210 196 150 186"/><path d="M80 158 Q58 110 80 62"/></g>
-  <g font-family="-apple-system, Inter, sans-serif" font-size="13" font-weight="600" text-anchor="middle">
+  <g font-family="'Instrument Sans', -apple-system, sans-serif" font-size="13" font-weight="600" text-anchor="middle">
     <rect x="40" y="22" width="110" height="36" rx="18" fill="#1f1f22" stroke="#333336"/><text x="95" y="45" fill="#f5f5f7">Hypothesis</text>
     <rect x="268" y="22" width="110" height="36" rx="18" fill="#1f1f22" stroke="#333336"/><text x="323" y="45" fill="#f5f5f7">Test</text>
     <rect x="268" y="162" width="110" height="36" rx="18" fill="#1f1f22" stroke="#333336"/><text x="323" y="185" fill="#f5f5f7">Measure</text>
@@ -129,8 +129,8 @@ FLOWS = """<div class="flow-pair">
   <defs><marker id="arw2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#86868b"/></marker></defs>
   <g fill="none" stroke="#86868b" stroke-width="1.5" marker-end="url(#arw2)"><path d="M78 96 H96"/><path d="M164 96 H182"/><path d="M250 96 H268"/><path d="M336 96 H354"/></g>
   <path d="M390 76 C390 20 130 20 130 74" fill="none" stroke="#ff8a5c" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arw2)"/>
-  <text x="260" y="26" text-anchor="middle" font-family="-apple-system, Inter, sans-serif" font-size="11.5" fill="#ff8a5c" font-weight="600">Escalation path</text>
-  <g font-family="-apple-system, Inter, sans-serif" font-size="12.5" font-weight="600" text-anchor="middle">
+  <text x="260" y="26" text-anchor="middle" font-family="'Instrument Sans', -apple-system, sans-serif" font-size="11.5" fill="#ff8a5c" font-weight="600">Escalation path</text>
+  <g font-family="'Instrument Sans', -apple-system, sans-serif" font-size="12.5" font-weight="600" text-anchor="middle">
     <rect x="10" y="78" width="68" height="36" rx="10" fill="#f5f5f7" stroke="#d2d2d7"/><text x="44" y="100" fill="#1d1d1f">Change</text>
     <rect x="96" y="78" width="68" height="36" rx="10" fill="#f5f5f7" stroke="#d2d2d7"/><text x="130" y="100" fill="#1d1d1f">Assess</text>
     <rect x="182" y="78" width="68" height="36" rx="10" fill="#f5f5f7" stroke="#d2d2d7"/><text x="216" y="100" fill="#1d1d1f">Approve</text>
@@ -261,7 +261,7 @@ def case_page(c, nxt):
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="{P}assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@85..100,400..700&family=Instrument+Serif:ital@0;1&display=swap">
   <link rel="stylesheet" href="{P}styles.css">
   <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -273,8 +273,8 @@ def case_page(c, nxt):
   <div class="wrap-wide case-hero-copy">
     <a class="crumb" href="{P}index.html#work">All work</a>
     {f'<img class="case-logo" src="{P}assets/logos/{c["logo"][0]}" alt="{e(c["logo"][1])}" height="{30 if c["logo"][0].endswith(".svg") else 36}"{' width="116"' if c["logo"][0].endswith(".svg") else ""}>' if c.get("logo") else ""}
-    <p class="eyebrow">{e(c["kicker"])}</p>
     <h1 class="headline" id="case-title">{e(c["title"])}</h1>
+    <p class="case-kicker">{e(c["kicker"])}</p>
     <p class="lede">{e(c["tagline"])}</p>
     {f'<div class="cta-row">{links}</div>' if links else ""}
   </div>
@@ -289,7 +289,7 @@ def case_page(c, nxt):
 </div></section>
 
 <section class="section-tight gray" aria-labelledby="prob-h"><div class="wrap-wide split">
-  <div class="reveal"><p class="eyebrow">The problem</p><h2 class="problem-text" id="prob-h" style="margin-top:10px">{e(c["problem"]["text"])}</h2></div>
+  <div class="reveal"><h2 class="problem-text" id="prob-h">{e(c["problem"]["text"])}</h2></div>
   <ul class="checks reveal" style="--d:.08s">{points}</ul>
 </div></section>
 
@@ -302,7 +302,7 @@ def case_page(c, nxt):
 
 <section class="section-tight" aria-label="Next case study"><div class="wrap-wide">
   <a class="next-case reveal" href="{nxt["slug"]}.html">
-    <div><p class="eyebrow">Next case study</p><h2 class="title">{e(nxt["title"])}</h2><p>{e(nxt["card_line"])}</p><span class="more">Read it</span></div>
+    <div><h2 class="title">{e(nxt["title"])}</h2><p>{e(nxt["card_line"])}</p><span class="more">Next case study</span></div>
     <div class="next-media work-media{" light" if nxt["thumb"].startswith("yo-nb") else ""}">{nthumb}</div>
   </a>
 </div></section>
@@ -370,6 +370,8 @@ def main():
         f.writelines(f"  <url><loc>{u}</loc></url>\n" for u in urls)
         f.write("</urlset>\n")
     print("wrote sitemap.xml")
+    import bust  # cache-busting stamps on CSS/JS links
+    bust.main()
 
 
 if __name__ == "__main__":

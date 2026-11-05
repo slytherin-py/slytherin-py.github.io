@@ -190,11 +190,73 @@
     });
   }
 
-  // ---- Colour blobs: loops only run while on screen ----
-  const loopIO = new IntersectionObserver((entries) => {
-    entries.forEach((en) => en.target.toggleAttribute('data-off', !en.isIntersecting));
-  }, { rootMargin: '120px 0px' });
-  $$('.blobs, .deco-orbs, .principles, .skills').forEach((el) => loopIO.observe(el));
+  // ---- Hero dive: scrolling zooms into the portrait's eye; the headline opens through it ----
+  const dive = $('.dive');
+  const face = dive && $('.dive-face img', dive);
+  if (dive && face && !reduceMotion) {
+    dive.classList.add('is-dive');
+    const stage = $('.dive-stage', dive);
+    const EYE = { x: 611.5, y: 524, w: 69 };        // the lit eye in portrait.jpg (1100 x 1525); assets/eye.svg is its traced contour
+    const IMG = { w: 1100, h: 1525, posX: .5, posY: .3 };
+    const clamp = (v) => Math.min(1, Math.max(0, v));
+    const ease = (t) => t * t * (3 - 2 * t);
+    let eye = { x: 0, y: 0, w: 0 };
+    const measure = () => {
+      const W = stage.clientWidth, H = stage.clientHeight;
+      const k = Math.max(W / IMG.w, H / IMG.h);   // object-fit: cover
+      const ox = (W - IMG.w * k) * IMG.posX, oy = (H - IMG.h * k) * IMG.posY;
+      eye = { x: ox + EYE.x * k, y: oy + EYE.y * k, w: EYE.w * k, big: Math.hypot(W, H) };
+      stage.style.setProperty('--ex', eye.x + 'px');
+      stage.style.setProperty('--ey', eye.y + 'px');
+    };
+    let queued = false;
+    const update = () => {
+      queued = false;
+      const r = dive.getBoundingClientRect();
+      const p = clamp(-r.top / (r.height - window.innerHeight));
+      const z = ease(clamp((p - 0.04) / 0.72));      // the dive itself
+      const open = ease(clamp((z - 0.1) / 0.28));     // the eye itself opening into a window
+      const s = 1 + z * z * 16;
+      // matches the real eye once open, then widens past it until the window fills the screen
+      const hw = Math.max(1, eye.w * s * open * (1 + Math.max(0, z - 0.38) * 11));
+      const v = stage.style;
+      v.setProperty('--s', s.toFixed(3));
+      v.setProperty('--hw', hw.toFixed(1) + 'px');
+      v.setProperty('--fb', (1 - z * 0.45).toFixed(3));
+      v.setProperty('--fo', (1 - clamp((z - 0.82) / 0.16)).toFixed(3));
+      v.setProperty('--io', (1 - clamp(p / 0.1)).toFixed(3));
+      dive.classList.toggle('past-intro', p > 0.1);
+      rest = p < 0.08;
+      v.setProperty('--ss', (1.25 - 0.25 * ease(clamp((z - 0.2) / 0.7))).toFixed(3));
+      v.setProperty('--so', clamp((open - 0.05) / 0.35).toFixed(3));
+      if (open > 0.1) dive.classList.add('opened');   // headline entrance plays once, as the eye opens
+      // the face layer stops catching clicks once the scene is through
+      $('.dive-face', dive).style.pointerEvents = z > 0.6 ? 'none' : '';
+    };
+    const queue = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
+    // at rest the portrait leans toward the pointer, eased so it trails like a spring (mouse only)
+    let rest = true;
+    const drift = { x: 0, y: 0, tx: 0, ty: 0, raf: 0 };
+    const driftStep = () => {
+      drift.x += (drift.tx - drift.x) * 0.08; drift.y += (drift.ty - drift.y) * 0.08;
+      stage.style.setProperty('--mx', drift.x.toFixed(2) + 'px'); stage.style.setProperty('--my', drift.y.toFixed(2) + 'px');
+      drift.raf = Math.abs(drift.tx - drift.x) + Math.abs(drift.ty - drift.y) > 0.05 ? requestAnimationFrame(driftStep) : 0;
+    };
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      window.addEventListener('pointermove', (e) => {
+        const k = rest ? 1 : 0;
+        drift.tx = (e.clientX / innerWidth - 0.5) * -18 * k; drift.ty = (e.clientY / innerHeight - 0.5) * -12 * k;
+        if (!drift.raf) drift.raf = requestAnimationFrame(driftStep);
+      }, { passive: true });
+    }
+    // keyboard: tabbing into the hidden headline scene scrolls the dive open first
+    $('.dive-scene', dive).addEventListener('focusin', () => {
+      if (dive.getBoundingClientRect().bottom > innerHeight + 2) window.scrollTo({ top: dive.offsetTop + dive.offsetHeight - innerHeight, behavior: 'instant' });
+    });
+    measure(); update();
+    window.addEventListener('scroll', queue, { passive: true });
+    window.addEventListener('resize', () => { measure(); queue(); });
+  }
 
   // ---- Reading progress bar (CSS scroll timeline does the animating) ----
   const bar = document.createElement('div');

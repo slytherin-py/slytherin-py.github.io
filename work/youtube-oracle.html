@@ -16,8 +16,8 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@85..100,400..700&family=Instrument+Serif:ital@0;1&display=swap">
+  <link rel="stylesheet" href="../styles.css?v=85df755c">
   <script>document.documentElement.classList.add('js')</script>
 </head>
 <body class="case">
@@ -37,8 +37,8 @@
   <div class="wrap-wide case-hero-copy">
     <a class="crumb" href="../index.html#work">All work</a>
     
-    <p class="eyebrow">Machine learning · Live product</p>
     <h1 class="headline" id="case-title">YouTube Oracle</h1>
+    <p class="case-kicker">Machine learning · Live product</p>
     <p class="lede">Predicts whether a video will go viral, and shows exactly why.</p>
     <div class="cta-row"><a class="btn btn-primary" href="https://youtube-oracle.vercel.app" target="_blank" rel="noopener">Try the live demo</a><a class="more" href="https://github.com/slytherin-py/youtube-oracle" target="_blank" rel="noopener">View code</a></div>
   </div>
@@ -53,7 +53,7 @@
 </div></section>
 
 <section class="section-tight gray" aria-labelledby="prob-h"><div class="wrap-wide split">
-  <div class="reveal"><p class="eyebrow">The problem</p><h2 class="problem-text" id="prob-h" style="margin-top:10px">Most people only find out a video went viral after the fact. I wanted to make the call in the first few hours, and to show why, not just print a score.</h2></div>
+  <div class="reveal"><h2 class="problem-text" id="prob-h">Most people only find out a video went viral after the fact. I wanted to make the call in the first few hours, and to show why, not just print a score.</h2></div>
   <ul class="checks reveal" style="--d:.08s"><li>I can only use signals from the first few hours</li><li>The test score can&#x27;t be flattered by leakage</li><li>Every prediction needs a reason you can read</li><li>Live predictions get logged so anyone can check me</li></ul>
 </div></section>
 
@@ -71,7 +71,7 @@
   <p class="lede" style="margin-top:16px">On 1,271 newer videos it never saw, the model caught <strong>700 of 785</strong> viral videos and was right <strong>92%</strong> of the times it said viral.</p></div>
   <div class="reveal" style="--d:.08s"><div class="cm-wrap"><svg class="viz" viewBox="0 0 400 330" role="img" aria-labelledby="cm-t">
   <title id="cm-t">Confusion matrix on 1,271 held-out videos: 425 true negatives, 61 false positives, 85 false negatives, 700 true positives</title>
-  <g font-family="-apple-system, Inter, sans-serif" text-anchor="middle">
+  <g font-family="'Instrument Sans', -apple-system, sans-serif" text-anchor="middle">
     <text x="250" y="20" font-size="12" fill="#86868b">Predicted</text>
     <text x="180" y="44" font-size="12" fill="#a1a1a6">Not viral</text><text x="320" y="44" font-size="12" fill="#a1a1a6">Viral</text>
     <text x="20" y="175" font-size="12" fill="#86868b" transform="rotate(-90 20 175)">Actual</text>
@@ -85,7 +85,7 @@
 
 <section class="section-tight" aria-label="Next case study"><div class="wrap-wide">
   <a class="next-case reveal" href="schemaai.html">
-    <div><p class="eyebrow">Next case study</p><h2 class="title">SchemaAI</h2><p>Plain English in, ER diagram, SQL and sample data out.</p><span class="more">Read it</span></div>
+    <div><h2 class="title">SchemaAI</h2><p>Plain English in, ER diagram, SQL and sample data out.</p><span class="more">Next case study</span></div>
     <div class="next-media work-media"><picture><source srcset="../assets/work/sa-er.webp" type="image/webp"><img class="" src="../assets/work/sa-er-sm.jpg" alt="SchemaAI screenshot" loading="lazy" decoding="async"></picture></div>
   </a>
 </div></section>
@@ -103,6 +103,6 @@
   <p>© <span id="year">2026</span> Mohammed Saleeq Sunil</p>
   <nav aria-label="Footer"><a href="mailto:mohammedsaleeqs@gmail.com">Email</a><a href="https://www.linkedin.com/in/mohammed-saleeq-sunil" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/slytherin-py" target="_blank" rel="noopener">GitHub</a><a href="../assets/Mohammed_Saleeq_Sunil_Resume.pdf" download>Resume</a></nav>
 </div></footer>
-<script src="../main.js" defer></script>
+<script src="../main.js?v=b7dd6a07" defer></script>
 </body>
 </html>
