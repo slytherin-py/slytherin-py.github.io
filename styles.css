@@ -1201,3 +1201,5 @@ img.brand-mark { width: 30px; height: 30px; background: none; border-radius: 0; 
 .edu-card .capstone-facts { margin-top: 6px; font-size: 14px; color: var(--muted); }
 .award p strong { color: var(--ink); font-weight: 600; }
 .edu-card p strong { color: var(--ink); font-weight: 600; }
+.brand-sig { height: 30px; }
+@media (max-width: 420px) { .brand-sig { height: 27px; } }

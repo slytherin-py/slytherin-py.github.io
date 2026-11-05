@@ -160,7 +160,7 @@ def nav(prefix):
                     [("about", "About"), ("experience", "Experience"), ("work", "Work"), ("recognition", "Recognition"), ("skills", "Skills"), ("contact", "Contact")])
     return f"""<header class="nav" id="nav">
   <div class="wrap-wide nav-inner">
-    <a class="brand" href="{prefix}index.html" aria-label="Mohammed Saleeq Sunil, home"><img class="brand-sig" src="{prefix}assets/mark.svg?v=mk1" alt="MS, Mohammed Saleeq Sunil" width="56" height="36"></a>
+    <a class="brand" href="{prefix}index.html" aria-label="Mohammed Saleeq Sunil, home"><img class="brand-sig" src="{prefix}assets/mark.svg?v=zr1" alt="MS, Mohammed Saleeq Sunil" width="48" height="30"></a>
     <nav aria-label="Primary"><div class="nav-links" id="nav-links">{links}</div></nav>
     <div class="nav-actions">
       <a class="btn btn-primary btn-sm" href="{prefix}index.html#contact">Hire me</a>
@@ -259,7 +259,7 @@ def case_page(c, nxt):
   <meta property="og:description" content="{e(c["tagline"])}">
   <meta property="og:image" content="{SITE}assets/{"work/" + hero["img"] + "-sm.jpg" if "img" in hero else "og.jpg"}">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="{P}assets/favicon.svg?v=sig1" type="image/svg+xml">
+  <link rel="icon" href="{P}assets/favicon.svg?v=zr1" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@85..100,400..700&family=Instrument+Serif:ital@0;1&display=swap">
   <link rel="stylesheet" href="{P}styles.css">
