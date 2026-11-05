@@ -844,13 +844,13 @@ section { position: relative; }
 .dive-scene { padding-top: clamp(72px, 10vw, 140px); padding-bottom: clamp(72px, 10vw, 140px); }
 .dive-face, .dive-intro { display: none; }
 
-.js .dive.is-dive { height: 260vh; }
+.js .dive.is-dive { height: 220vh; }
 .js .is-dive .dive-stage {
   position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden;
   display: grid; place-items: center;
 }
 .js .is-dive .dive-scene {
-  transform: scale(var(--ss, 1.25)); opacity: var(--so, 0); will-change: transform, opacity;
+  transform: translate(var(--tx, 0px), var(--ty, 0px)) scale(var(--ss, 1)); opacity: var(--so, 0); will-change: transform, opacity;
 }
 .js .is-dive .dive-face {
   display: block; position: absolute; inset: 0; z-index: 3; background: #000;

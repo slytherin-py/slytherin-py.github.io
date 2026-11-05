@@ -201,11 +201,21 @@
     const clamp = (v) => Math.min(1, Math.max(0, v));
     const ease = (t) => t * t * (3 - 2 * t);
     let eye = { x: 0, y: 0, w: 0 };
+    const scene = $('.dive-scene', dive);
+    let box = { cx: 0, cy: 0, w: 1, h: 1 };
     const measure = () => {
       const W = stage.clientWidth, H = stage.clientHeight;
       const k = Math.max(W / IMG.w, H / IMG.h);   // object-fit: cover
       const ox = (W - IMG.w * k) * IMG.posX, oy = (H - IMG.h * k) * IMG.posY;
       eye = { x: ox + EYE.x * k, y: oy + EYE.y * k, w: EYE.w * k, big: Math.hypot(W, H) };
+      // the headline block's own size and centre at scale 1 (padding excluded), relative to the stage
+      const prev = scene.style.transform; scene.style.transform = 'none';
+      const st = stage.getBoundingClientRect();
+      const rs = Array.from(scene.children).map((c) => c.getBoundingClientRect());
+      const L = Math.min(...rs.map((r) => r.left)), R = Math.max(...rs.map((r) => r.right));
+      const T = Math.min(...rs.map((r) => r.top)), B = Math.max(...rs.map((r) => r.bottom));
+      box = { cx: (L + R) / 2 - st.left, cy: (T + B) / 2 - st.top, w: R - L, h: B - T };
+      scene.style.transform = prev;
       stage.style.setProperty('--ex', eye.x + 'px');
       stage.style.setProperty('--ey', eye.y + 'px');
     };
@@ -214,20 +224,25 @@
       queued = false;
       const r = dive.getBoundingClientRect();
       const p = clamp(-r.top / (r.height - window.innerHeight));
-      const z = ease(clamp((p - 0.04) / 0.72));      // the dive itself
+      const z = ease(clamp((p - 0.04) / 0.66));      // the dive itself
       const open = ease(clamp((z - 0.1) / 0.28));     // the eye itself opening into a window
-      const s = 1 + z * z * 16;
+      const s = 1 + z * z * 9;
       // matches the real eye once open, then widens past it until the window fills the screen
-      const hw = Math.max(1, eye.w * s * open * (1 + Math.max(0, z - 0.38) * 11));
+      const hw = Math.max(1, eye.w * s * open * (1 + Math.max(0, z - 0.38) * 16));
       const v = stage.style;
       v.setProperty('--s', s.toFixed(3));
       v.setProperty('--hw', hw.toFixed(1) + 'px');
-      v.setProperty('--fb', (1 - z * 0.45).toFixed(3));
+      v.setProperty('--fb', (1 - z * 0.75).toFixed(3));   // skin darkens as it magnifies, hiding the blur
       v.setProperty('--fo', (1 - clamp((z - 0.82) / 0.16)).toFixed(3));
       v.setProperty('--io', (1 - clamp(p / 0.1)).toFixed(3));
       dive.classList.toggle('past-intro', p > 0.1);
       rest = p < 0.08;
-      v.setProperty('--ss', (1.25 - 0.25 * ease(clamp((z - 0.2) / 0.7))).toFixed(3));
+      // the headline is a whole miniature inside the eye: it fits the opening and grows with it,
+      // travelling from the eye to the centre of the screen
+      const fit = Math.min(1, (hw * 0.62) / box.w, (hw * 0.29 * 0.62) / box.h);
+      v.setProperty('--ss', fit.toFixed(4));
+      v.setProperty('--tx', ((eye.x - box.cx) * (1 - fit)).toFixed(1) + 'px');
+      v.setProperty('--ty', ((eye.y - box.cy) * (1 - fit)).toFixed(1) + 'px');
       v.setProperty('--so', clamp((open - 0.05) / 0.35).toFixed(3));
       if (open > 0.1) dive.classList.add('opened');   // headline entrance plays once, as the eye opens
       // the face layer stops catching clicks once the scene is through
