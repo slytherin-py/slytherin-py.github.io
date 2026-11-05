@@ -1,1 +1,1 @@
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='#0071e3'/><text x='32' y='41' text-anchor='middle' font-family='Helvetica,Arial' font-weight='700' font-size='24' fill='white'>MS</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><g fill="none" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"><path d="M12 50V16" stroke="#0071e3"/><path d="M12 16l20 19" stroke="#8a6bff"/><path d="M32 35l20-19" stroke="#ff7a45"/><path d="M52 16v34" stroke="#12a37f"/></g></svg>
