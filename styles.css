@@ -1103,3 +1103,6 @@ html { scrollbar-color: #3a3a3e #000; accent-color: #0071e3; caret-color: #2997f
 .rc-down .rc-val { color: var(--down-ink); }
 .rc-axis span:nth-child(2) { justify-self: center; }
 .role-chart li, .rc-axis { grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr) 58px; }
+/* the nav mark is the four-colour MS monogram, drawn on the glass with no tile behind it */
+img.brand-mark { width: 30px; height: 30px; background: none; border-radius: 0; animation: none; box-shadow: none; transition: transform .3s var(--ease-out); }
+.brand:hover img.brand-mark { transform: rotate(-6deg) scale(1.06); }
