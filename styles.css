@@ -756,3 +756,6 @@ section { position: relative; }
 .pill-live { display: inline-flex; align-items: center; gap: 8px; background: #e8f5ec; color: #1a7f37; }
 .pill-live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #1a7f37; }
 @media (min-width: 961px) { .journey-track { grid-template-columns: repeat(5, 1fr); } }
+
+.award-of { font-size: .5em; letter-spacing: -0.02em; margin-left: 2px; }
+.award h3 sup { font-size: .5em; vertical-align: super; line-height: 0; }
