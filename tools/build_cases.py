@@ -257,7 +257,7 @@ def case_page(c, nxt):
   <meta property="og:site_name" content="Mohammed Saleeq Sunil">
   <meta property="og:title" content="{e(c["title"])} · Mohammed Saleeq Sunil">
   <meta property="og:description" content="{e(c["tagline"])}">
-  <meta property="og:image" content="{SITE}assets/{"work/" + hero["img"] + "-sm.jpg" if "img" in hero else "og.jpg?v=3"}">
+  <meta property="og:image" content="{SITE}assets/{"work/" + hero["img"] + "-sm.jpg" if "img" in hero else "og.jpg?v=4"}">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="{P}assets/favicon.svg?v=zr1" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

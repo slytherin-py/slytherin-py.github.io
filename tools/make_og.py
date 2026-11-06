@@ -67,9 +67,17 @@ for i, (num, label) in enumerate(proof):
     d.text((x + 18, ty + 14), num, font=sans(40, 700), fill=BLUE if i < 2 else WHITE)
     d.text((x + 18, ty + 64), label, font=sans(17, 500), fill=MUTED)
 
-# Address
-d.rounded_rectangle((PAD, 546, PAD + 330, 590), radius=22, fill=PILL)
-d.text((PAD + 22, 553), "slytherin-py.github.io", font=sans(24, 600), fill=(255, 255, 255))
+# Call to action: the whole preview is the link, so the pill names what a click does
+cta = sans(26, 600)
+label = "View portfolio"
+lw = d.textlength(label, font=cta)
+x1 = PAD + 26 + lw + 18 + 22 + 24
+d.rounded_rectangle((PAD, 542, x1, 594), radius=26, fill=PILL)
+d.text((PAD + 26, 551), label, font=cta, fill=(255, 255, 255))
+ax, ay = PAD + 26 + lw + 18, 568
+d.line([(ax, ay), (ax + 22, ay)], fill=(255, 255, 255), width=3)
+d.line([(ax + 13, ay - 9), (ax + 22, ay), (ax + 13, ay + 9)], fill=(255, 255, 255), width=3, joint="curve")
+d.text((x1 + 20, 556), "slytherin-py.github.io", font=sans(20, 500), fill=MUTED)
 
 card.save(os.path.join(ROOT, "assets", "og.jpg"), quality=90, optimize=True)
 print("wrote assets/og.jpg")
