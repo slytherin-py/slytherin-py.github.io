@@ -52,6 +52,9 @@ d.text((PAD, 52), "M", font=mf, fill=WHITE)
 d.text((PAD + d.textlength("M", font=mf) - 7, 52), "S", font=mf, fill=WHITE)
 d.line([(PAD + 88, 60), (PAD + 88, 96)], fill=LINE, width=2)
 d.text((PAD + 106, 58), "Mohammed Saleeq Sunil", font=sans(30, 600), fill=WHITE)
+# credentials after the name, quieter, the way post-nominals are set
+nx = PAD + 106 + d.textlength("Mohammed Saleeq Sunil", font=sans(30, 600)) + 16
+d.text((nx, 65), "MSBA · CSM · CSPO", font=sans(21, 500), fill=MUTED)
 
 # Headline
 d.text((PAD - 4, 128), "Data in.", font=sans(96, 700), fill=WHITE)
@@ -59,12 +62,12 @@ d.text((PAD - 2, 222), "Decisions out.", font=ImageFont.truetype(os.path.join(FO
 d.text((PAD, 360), "Product & Project Leader · Business & Data Analytics", font=sans(27, 500), fill=SOFT)
 
 # Three proof figures, each in a quiet tile
-proof = [("22%", "faster delivery"), ("40%", "fewer AI errors"), ("3.97/4", "GPA · CSM · CSPO")]
+proof = [("22%", "faster delivery"), ("40%", "fewer AI errors"), ("50+", "dashboards built")]
 tx, ty, tw, th, gap = PAD, 420, 196, 98, 14
 for i, (num, label) in enumerate(proof):
     x = tx + i * (tw + gap)
     d.rounded_rectangle((x, ty, x + tw, ty + th), radius=18, fill=TILE, outline=LINE, width=1)
-    d.text((x + 18, ty + 14), num, font=sans(40, 700), fill=BLUE if i < 2 else WHITE)
+    d.text((x + 18, ty + 14), num, font=sans(40, 700), fill=BLUE)
     d.text((x + 18, ty + 64), label, font=sans(17, 500), fill=MUTED)
 
 # Call to action: the whole preview is the link, so the pill names what a click does
