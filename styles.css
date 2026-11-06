@@ -1203,3 +1203,14 @@ img.brand-mark { width: 30px; height: 30px; background: none; border-radius: 0; 
 .edu-card p strong { color: var(--ink); font-weight: 600; }
 .brand-sig { height: 30px; }
 @media (max-width: 420px) { .brand-sig { height: 27px; } }
+
+/* IELTS: the nine bands as rising bars, filled to 8.5 */
+.band { margin-top: auto; padding-top: 18px; }
+.band-bars { display: grid; grid-template-columns: repeat(9, 1fr); align-items: end; gap: 5px; height: 64px; }
+.band-bars i { position: relative; height: calc(18% + var(--i) * 9%); border-radius: 5px; background: #e3e3e8; overflow: hidden; }
+.band-bars i::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, #2997ff, var(--blue)); transform-origin: left; transform: scaleX(0); transition: transform .5s var(--ease-out) calc(var(--i) * .07s); }
+.in .band-bars i::after, .award:not(.reveal) .band-bars i::after { transform: scaleX(var(--f)); }
+.band-scale { display: flex; justify-content: space-between; margin-top: 8px; font-size: 12px; color: var(--muted); }
+.band-scale span:nth-child(2) { color: var(--link); font-weight: 600; }
+.band + h3 { margin-top: 14px; }
+@media (prefers-reduced-motion: reduce) { .band-bars i::after { transition: none; transform: scaleX(var(--f)); } }
