@@ -189,24 +189,6 @@
     window.addEventListener('scroll', scrolled, { passive: true }); scrolled();
   }
 
-  // ---- Easter egg: the straw hat over "craft." pops up at random while the About section is on screen ----
-  const peek = $('.peek-host');
-  if (peek && !reduceMotion) {
-    let timer = 0, visible = false, busy = false;
-    const play = () => {
-      if (busy) return;
-      busy = true; peek.classList.remove('go'); void peek.offsetWidth; peek.classList.add('go');
-      setTimeout(() => { peek.classList.remove('go'); busy = false; }, 3500);
-    };
-    const schedule = (first) => {
-      clearTimeout(timer);
-      if (!visible) return;
-      timer = setTimeout(() => { play(); schedule(false); }, (first ? 1800 : 9000 + Math.random() * 9000));
-    };
-    new IntersectionObserver(([en]) => { visible = en.isIntersecting; schedule(true); }, { threshold: 0.6 }).observe(peek);
-    if (window.matchMedia('(hover: hover)').matches) peek.addEventListener('pointerenter', play);
-  }
-
   // ---- Contact form → prefilled email ----
   const form = $('#contact-form');
   if (form) {

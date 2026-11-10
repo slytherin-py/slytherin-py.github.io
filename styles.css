@@ -1221,97 +1221,6 @@ img.brand-mark { width: 30px; height: 30px; background: none; border-radius: 0; 
 /* marks with no clean one-colour form keep their drawing, rendered in greys */
 .sk-gray img { filter: grayscale(1) brightness(1.25) contrast(1.05); opacity: .9; }
 
-/* ==========================================================
-   Easter egg: now and then a straw hat peeks over "craft.", a rubber
-   arm shoots out and waves, snaps back, and the hat ducks out of sight.
-   An original doodle, a nod to an anime habit. Mouse users can summon
-   it by hovering the word; it never runs under reduced motion.
-   ========================================================== */
-.peek-host { position: relative; display: inline-block; }
-.peek { position: absolute; inset: 0; pointer-events: none; }
-/* the window sits on top of the word; anything below its floor is hidden behind the letters */
-.peek-win { position: absolute; left: 34%; bottom: 74%; width: 0.92em; height: 0.62em; overflow: hidden; }
-.peek-hat { position: absolute; left: 0; bottom: 0; width: 100%; height: auto; transform: translateY(105%); transform-origin: 50% 80%; }
-.ph-brim { fill: #e9c46a; stroke: #b8892e; stroke-width: 1; }
-.ph-dome { fill: #f2d283; stroke: #b8892e; stroke-width: 1; }
-.ph-band { fill: #d62f2f; }
-.ph-weave { fill: none; stroke: #c99a3d; stroke-width: .8; stroke-linecap: round; opacity: .7; }
-.ph-shade { fill: rgba(0, 0, 0, .18); }
-.ph-eyes ellipse { fill: #1d1d1f; transform-box: fill-box; transform-origin: center; }
-/* the arm: a rubber line that stretches from behind the full stop */
-.peek-arm { position: absolute; left: 88%; top: 46%; height: 0; width: 0; }
-.pa-line { position: absolute; left: 0; top: -2px; width: 2.4em; height: 4px; border-radius: 4px; background: #f0c39b; box-shadow: inset 0 -1px 0 rgba(0,0,0,.12); transform-origin: left; transform: scaleX(0); }
-.pa-hand { position: absolute; left: 2.25em; top: -0.32em; width: .42em; height: .42em; fill: #f0c39b; stroke: #c98e62; stroke-width: 1; opacity: 0; transform-origin: 30% 80%; }
-
-.peek-host.go .peek-hat { animation: peek-hat 3.4s var(--ease-out) both; }
-.peek-host.go .ph-eyes ellipse { animation: peek-blink 3.4s linear both; }
-.peek-host.go .pa-line { animation: peek-arm 3.4s both; }
-.peek-host.go .pa-hand { animation: peek-hand 3.4s both; }
-@keyframes peek-hat {
-  0% { transform: translateY(105%); }
-  10% { transform: translateY(-6%); }
-  14% { transform: translateY(2%); }
-  18%, 30% { transform: translateY(0) rotate(0); }
-  36%, 44% { transform: translateY(0) rotate(-12deg); }
-  52%, 80% { transform: translateY(0) rotate(0); }
-  90%, 100% { transform: translateY(105%); }
-}
-@keyframes peek-blink { 0%, 40% { transform: scaleY(1); } 42% { transform: scaleY(.1); } 44%, 100% { transform: scaleY(1); } }
-/* shoots out with an overshoot, holds while the hand waves, then snaps back */
-@keyframes peek-arm {
-  0%, 46% { transform: scaleX(0); animation-timing-function: cubic-bezier(.2, 1.6, .4, 1); }
-  54% { transform: scaleX(1.12); }
-  58%, 72% { transform: scaleX(1); animation-timing-function: cubic-bezier(.7, 0, .9, .4); }
-  77%, 100% { transform: scaleX(0); }
-}
-@keyframes peek-hand {
-  0%, 46% { opacity: 0; transform: translateX(-2.25em); animation-timing-function: cubic-bezier(.2, 1.6, .4, 1); }
-  54% { opacity: 1; transform: translateX(.3em) rotate(0); }
-  58% { transform: translateX(0) rotate(-18deg); }
-  62% { transform: rotate(16deg); }
-  66% { transform: rotate(-14deg); }
-  70% { transform: rotate(10deg); }
-  72% { opacity: 1; transform: translateX(0) rotate(0); animation-timing-function: cubic-bezier(.7, 0, .9, .4); }
-  77%, 100% { opacity: 0; transform: translateX(-2.25em); }
-}
-@media (prefers-reduced-motion: reduce) { .peek { display: none; } }
-/* the hat peeks sideways out from behind the full stop, into the empty space to its right */
-.peek-win { left: 96%; bottom: 6%; width: 1.05em; height: 0.95em; }
-.peek-hat { left: auto; right: 0; bottom: 0; transform: translateX(-102%); transform-origin: 50% 85%; }
-@keyframes peek-hat {
-  0% { transform: translateX(-102%); }
-  10% { transform: translateX(6%); }
-  14% { transform: translateX(-2%); }
-  18%, 30% { transform: translateX(0) rotate(0); }
-  36%, 44% { transform: translateX(0) rotate(-14deg); }
-  52%, 80% { transform: translateX(0) rotate(0); }
-  90%, 100% { transform: translateX(-102%); }
-}
-/* the arm reaches out from under the brim */
-.peek-arm { left: calc(96% + 0.62em); top: 72%; }
-.pa-line { top: -0.035em; height: 0.07em; width: 2.2em; }
-.pa-hand { max-width: none; left: 2.05em; top: -0.3em; width: 0.5em; height: 0.5em; }
-@keyframes peek-hand {
-  0%, 46% { opacity: 0; transform: translateX(-2.05em); animation-timing-function: cubic-bezier(.2, 1.6, .4, 1); }
-  54% { opacity: 1; transform: translateX(.3em) rotate(0); }
-  58% { transform: translateX(0) rotate(-18deg); }
-  62% { transform: rotate(16deg); }
-  66% { transform: rotate(-14deg); }
-  70% { transform: rotate(10deg); }
-  72% { opacity: 1; transform: translateX(0) rotate(0); animation-timing-function: cubic-bezier(.7, 0, .9, .4); }
-  77%, 100% { opacity: 0; transform: translateX(-2.05em); }
-}
-/* Haki: a crackle of black lightning with a red edge, flashing as the fist lands */
-.pa-haki { position: absolute; max-width: none; left: 1.88em; top: -0.48em; width: 0.84em; height: 0.84em; fill: none; stroke: #111; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 2px #e0262b) drop-shadow(0 0 5px rgba(224, 38, 43, .6)); opacity: 0; transform: scale(.5); }
-.peek-host.go .pa-haki { animation: peek-haki 3.4s both; }
-@keyframes peek-haki {
-  0%, 52% { opacity: 0; transform: scale(.5) rotate(0); }
-  55% { opacity: 1; transform: scale(1.15) rotate(8deg); }
-  58% { opacity: .2; transform: scale(1.25) rotate(-6deg); }
-  61% { opacity: 1; transform: scale(1.05) rotate(4deg); }
-  66%, 100% { opacity: 0; transform: scale(1.4) rotate(0); }
-}
-
 /* footer sign-off */
 .tbc { display: inline-flex; align-items: center; gap: 10px; margin: 0; font-family: var(--serif); font-style: italic; font-size: 20px; color: #f5f5f7; letter-spacing: 0; }
 .tbc svg { width: 46px; height: 12px; fill: none; stroke: var(--link-dark); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
@@ -1323,33 +1232,6 @@ img.brand-mark { width: 30px; height: 30px; background: none; border-radius: 0; 
 .tbc svg { animation: tbc-nudge 2.4s var(--ease-in-out) infinite; }
 @keyframes tbc-nudge { 0%, 60%, 100% { transform: translateX(0); } 30% { transform: translateX(5px); } }
 @media (prefers-reduced-motion: reduce) { .tbc svg { animation: none; } }
-/* the move gets shouted in a manga-style burst bubble as the arm fires */
-.peek-shout {
-  position: absolute; left: calc(96% + 1.1em); bottom: 92%; display: flex; flex-direction: column; align-items: flex-start;
-  padding: .32em .55em .36em; background: #fff; border: 2px solid #111; border-radius: .5em .5em .5em .1em;
-  box-shadow: 3px 3px 0 #111; white-space: nowrap; transform-origin: 0 100%; opacity: 0; transform: scale(.4) rotate(-6deg);
-}
-.peek-shout b { font-family: var(--font); font-stretch: 85%; font-style: italic; font-weight: 700; letter-spacing: -0.01em; line-height: 1.05; color: #111; }
-.peek-shout b:first-child { font-size: .2em; }
-.peek-shout b:last-child { font-size: .32em; color: #d62f2f; text-transform: uppercase; }
-.peek-host.go .peek-shout { animation: peek-shout 3.4s both; }
-@keyframes peek-shout {
-  0%, 38% { opacity: 0; transform: scale(.4) rotate(-6deg); }
-  44% { opacity: 1; transform: scale(1.06) rotate(-3deg); }
-  48%, 70% { opacity: 1; transform: scale(1) rotate(-3deg); }
-  76%, 100% { opacity: 0; transform: scale(.85) rotate(-3deg); }
-}
 .off-clock { margin-top: 16px; font-size: 17px; }
 .off-clock em { font-family: var(--serif); font-size: 1.1em; color: var(--link); }
-@media (max-width: 640px) { .peek-shout { left: auto; right: -0.2em; bottom: 105%; } }
-/* the shout sits on the same line, in the empty space beside the hat, and clears before the arm fires */
-.peek-shout { left: calc(96% + 1.2em); bottom: auto; top: 50%; margin-top: -.42em; padding: .18em .45em .2em; border-radius: .45em; box-shadow: 2px 2px 0 #111; transform-origin: 0 50%; }
-.peek-shout b:first-child { font-size: .19em; }
-.peek-shout b:last-child { font-size: .3em; }
-@keyframes peek-shout {
-  0%, 22% { opacity: 0; transform: scale(.4) rotate(-4deg); }
-  27% { opacity: 1; transform: scale(1.08) rotate(-2deg); }
-  30%, 42% { opacity: 1; transform: scale(1) rotate(-2deg); }
-  46%, 100% { opacity: 0; transform: scale(.8) rotate(-2deg); }
-}
-@media (max-width: 640px) { .peek-shout { left: calc(96% + 1.2em); right: auto; bottom: auto; } }
+
