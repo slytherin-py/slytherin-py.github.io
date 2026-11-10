@@ -1265,3 +1265,21 @@ img.brand-mark { width: 30px; height: 30px; background: none; border-radius: 0; 
 @keyframes op-spin { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
 @media (max-width: 640px) { .off-clock { line-height: inherit; } .op-hat { width: 100%; top: auto; } }
 @media (prefers-reduced-motion: reduce) { .op-hat { animation: none; } }
+/* the hat rests, then a gust lifts it: it loops up and away, tumbling a little, and floats back down onto the line */
+.op-btn { perspective: none; overflow: visible; position: relative; z-index: 2; }
+.op-hat { animation: op-fly 7s var(--ease-in-out) infinite; offset-path: path("M0 0 C 14 -34, 64 -58, 92 -30 C 118 -4, 80 22, 52 2 C 30 -14, 16 -10, 0 0"); offset-rotate: 0deg; offset-distance: 0%; }
+@keyframes op-fly {
+  0%, 52% { offset-distance: 0%; transform: rotate(0); }
+  58% { transform: rotate(-16deg); }
+  66% { transform: rotate(10deg); }
+  74% { transform: rotate(-12deg); }
+  82% { transform: rotate(8deg); }
+  92% { offset-distance: 100%; transform: rotate(-4deg); }
+  95% { offset-distance: 100%; transform: translateY(-2px) rotate(0); }
+  100% { offset-distance: 100%; transform: rotate(0); }
+}
+.op-btn:hover .op-hat, .op-btn.charged .op-hat { animation-duration: 3.5s; }
+@media (prefers-reduced-motion: reduce) { .op-hat { animation: none; offset-path: none; } }
+.op-btn { margin-left: .3em; }
+.op-hat { offset-path: path("M0 0 C 20 -18, 62 -24, 94 -14 C 124 -4, 104 14, 66 7 C 38 2, 16 5, 0 0"); }
+.op-hat { offset-path: path("M0 0 C 30 -10, 70 -14, 104 -8 C 134 -2, 112 12, 72 6 C 40 2, 18 4, 0 0"); }
