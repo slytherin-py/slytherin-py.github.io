@@ -1258,3 +1258,10 @@ img.brand-mark { width: 30px; height: 30px; background: none; border-radius: 0; 
 .op-btn { display: inline-block; }
 .op-hat { width: 2em; left: -0.42em; top: -1.12em; }
 @media (max-width: 640px) { .off-clock { line-height: 2.05; } .op-hat { width: 1.7em; top: -0.95em; } }
+/* the hat stands in for the crew's name: inline, on the baseline, turning slowly like a coin */
+.op-btn { display: inline-block; vertical-align: -0.28em; width: 2.1em; height: 1.2em; margin-left: .15em; text-decoration: none; perspective: 200px; }
+.op-hat { position: static; display: block; width: 100%; height: 100%; transform: none; animation: op-spin 4s linear infinite; transform-origin: 50% 50%; }
+.op-btn:hover .op-hat, .op-btn.charged .op-hat { animation-duration: .9s; transform: none; }
+@keyframes op-spin { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
+@media (max-width: 640px) { .off-clock { line-height: inherit; } .op-hat { width: 100%; top: auto; } }
+@media (prefers-reduced-motion: reduce) { .op-hat { animation: none; } }
