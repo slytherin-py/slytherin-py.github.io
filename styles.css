@@ -1323,3 +1323,33 @@ img.brand-mark { width: 30px; height: 30px; background: none; border-radius: 0; 
 .tbc svg { animation: tbc-nudge 2.4s var(--ease-in-out) infinite; }
 @keyframes tbc-nudge { 0%, 60%, 100% { transform: translateX(0); } 30% { transform: translateX(5px); } }
 @media (prefers-reduced-motion: reduce) { .tbc svg { animation: none; } }
+/* the move gets shouted in a manga-style burst bubble as the arm fires */
+.peek-shout {
+  position: absolute; left: calc(96% + 1.1em); bottom: 92%; display: flex; flex-direction: column; align-items: flex-start;
+  padding: .32em .55em .36em; background: #fff; border: 2px solid #111; border-radius: .5em .5em .5em .1em;
+  box-shadow: 3px 3px 0 #111; white-space: nowrap; transform-origin: 0 100%; opacity: 0; transform: scale(.4) rotate(-6deg);
+}
+.peek-shout b { font-family: var(--font); font-stretch: 85%; font-style: italic; font-weight: 700; letter-spacing: -0.01em; line-height: 1.05; color: #111; }
+.peek-shout b:first-child { font-size: .2em; }
+.peek-shout b:last-child { font-size: .32em; color: #d62f2f; text-transform: uppercase; }
+.peek-host.go .peek-shout { animation: peek-shout 3.4s both; }
+@keyframes peek-shout {
+  0%, 38% { opacity: 0; transform: scale(.4) rotate(-6deg); }
+  44% { opacity: 1; transform: scale(1.06) rotate(-3deg); }
+  48%, 70% { opacity: 1; transform: scale(1) rotate(-3deg); }
+  76%, 100% { opacity: 0; transform: scale(.85) rotate(-3deg); }
+}
+.off-clock { margin-top: 16px; font-size: 17px; }
+.off-clock em { font-family: var(--serif); font-size: 1.1em; color: var(--link); }
+@media (max-width: 640px) { .peek-shout { left: auto; right: -0.2em; bottom: 105%; } }
+/* the shout sits on the same line, in the empty space beside the hat, and clears before the arm fires */
+.peek-shout { left: calc(96% + 1.2em); bottom: auto; top: 50%; margin-top: -.42em; padding: .18em .45em .2em; border-radius: .45em; box-shadow: 2px 2px 0 #111; transform-origin: 0 50%; }
+.peek-shout b:first-child { font-size: .19em; }
+.peek-shout b:last-child { font-size: .3em; }
+@keyframes peek-shout {
+  0%, 22% { opacity: 0; transform: scale(.4) rotate(-4deg); }
+  27% { opacity: 1; transform: scale(1.08) rotate(-2deg); }
+  30%, 42% { opacity: 1; transform: scale(1) rotate(-2deg); }
+  46%, 100% { opacity: 0; transform: scale(.8) rotate(-2deg); }
+}
+@media (max-width: 640px) { .peek-shout { left: calc(96% + 1.2em); right: auto; bottom: auto; } }
