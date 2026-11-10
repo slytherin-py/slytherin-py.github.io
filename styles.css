@@ -1235,3 +1235,26 @@ img.brand-mark { width: 30px; height: 30px; background: none; border-radius: 0; 
 .off-clock { margin-top: 16px; font-size: 17px; }
 .off-clock em { font-family: var(--serif); font-size: 1.1em; color: var(--link); }
 
+
+/* About easter egg: "One Piece" wears a small straw hat and releases Haki when clicked (main.js) */
+.op-btn {
+  position: relative; display: inline; padding: 0; border: 0; background: none; cursor: pointer;
+  font: inherit; font-weight: 600; color: var(--ink);
+  text-decoration: underline; text-decoration-color: rgba(214, 47, 47, .5); text-decoration-thickness: 2px; text-underline-offset: 4px;
+  transition: text-decoration-color .2s;
+}
+.op-btn:hover { text-decoration-color: #d62f2f; }
+.op-btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+.op-hat { position: absolute; left: -0.55em; top: -0.92em; width: 1.5em; height: auto; transform: rotate(-14deg); transform-origin: 70% 90%; transition: transform .35s var(--ease-out); pointer-events: none; }
+.op-btn:hover .op-hat, .op-btn.charged .op-hat { transform: rotate(-4deg) translateY(-3px); }
+.op-hat .b { fill: #e9c46a; stroke: #a87a26; stroke-width: 1; }
+.op-hat .d { fill: #f2d283; stroke: #a87a26; stroke-width: 1; }
+.op-hat .r { fill: #d62f2f; }
+
+.haki { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 200; pointer-events: none; }
+.haki-shake main, .haki-shake .footer { animation: haki-shake .12s steps(2) 8; }
+@keyframes haki-shake { 0% { transform: translate(2px, -1px); } 50% { transform: translate(-2px, 1px); } 100% { transform: none; } }
+.haki-calm main { filter: brightness(.6); transition: filter .3s; }
+.op-btn { display: inline-block; }
+.op-hat { width: 2em; left: -0.42em; top: -1.12em; }
+@media (max-width: 640px) { .off-clock { line-height: 2.05; } .op-hat { width: 1.7em; top: -0.95em; } }

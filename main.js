@@ -189,6 +189,85 @@
     window.addEventListener('scroll', scrolled, { passive: true }); scrolled();
   }
 
+  // ---- Easter egg: clicking "One Piece" in About releases a burst of Haki, black lightning with a
+  //      red edge crackling in from the screen edges for about a second ----
+  const op = $('.op-btn');
+  if (op) {
+    let running = false;
+    op.addEventListener('click', () => {
+      if (running) return;
+      running = true;
+      op.classList.add('charged');
+      if (reduceMotion) {   // no lightning: a single dark pulse instead
+        document.body.classList.add('haki-calm');
+        setTimeout(() => { document.body.classList.remove('haki-calm'); op.classList.remove('charged'); running = false; }, 700);
+        return;
+      }
+      const cv = document.createElement('canvas');
+      cv.className = 'haki';
+      cv.setAttribute('aria-hidden', 'true');
+      const dpr = Math.min(2, window.devicePixelRatio || 1);
+      const W = innerWidth, H = innerHeight;
+      cv.width = W * dpr; cv.height = H * dpr;
+      document.body.appendChild(cv);
+      const ctx = cv.getContext('2d');
+      ctx.scale(dpr, dpr);
+      // a bolt: a jagged path from a point on the edge toward the middle, with forks
+      const bolt = (x, y, ang, len, w, depth) => {
+        const pts = [[x, y]];
+        let cx = x, cy = y;
+        const steps = 10 + Math.floor(Math.random() * 8);
+        for (let i = 0; i < steps; i++) {
+          ang += (Math.random() - 0.5) * 0.9;
+          const seg = len / steps;
+          cx += Math.cos(ang) * seg; cy += Math.sin(ang) * seg;
+          pts.push([cx, cy]);
+          if (depth < 2 && Math.random() < 0.18) bolt(cx, cy, ang + (Math.random() < .5 ? -1 : 1) * (0.5 + Math.random() * 0.6), len * 0.45, w * 0.6, depth + 1);
+        }
+        ctx.lineJoin = 'miter';
+        for (const [lw, col, blur] of [[w * 2.4, 'rgba(225,30,40,.75)', 12], [w, '#050505', 3]]) {
+          ctx.beginPath();
+          pts.forEach(([px, py], i) => (i ? ctx.lineTo(px, py) : ctx.moveTo(px, py)));
+          ctx.lineWidth = lw; ctx.strokeStyle = col; ctx.shadowColor = '#e0262b'; ctx.shadowBlur = blur;
+          ctx.stroke();
+        }
+      };
+      const edgePoint = () => {
+        const s = Math.floor(Math.random() * 4), r = Math.random();
+        const p = [[r * W, -10], [W + 10, r * H], [r * W, H + 10], [-10, r * H]][s];
+        return [p[0], p[1], Math.atan2(H / 2 - p[1], W / 2 - p[0])];
+      };
+      const start = performance.now();
+      let last = 0;
+      const frame = (now) => {
+        const t = now - start;
+        if (now - last > 70) {   // redraw in bursts, like a strobe, not every frame
+          last = now;
+          ctx.clearRect(0, 0, W, H);
+          const strength = t < 900 ? 1 : Math.max(0, 1 - (t - 900) / 500);
+          ctx.globalAlpha = strength;
+          ctx.fillStyle = `rgba(4,2,4,${0.62 + Math.random() * 0.2})`;
+          ctx.fillRect(0, 0, W, H);
+          const n = t < 900 ? 7 + Math.floor(Math.random() * 6) : 3;
+          for (let i = 0; i < n; i++) {
+            const [x, y, a] = edgePoint();
+            bolt(x, y, a, Math.hypot(W, H) * (0.35 + Math.random() * 0.3), 2.2 + Math.random() * 2.4, 0);
+          }
+          ctx.globalAlpha = 1;
+        }
+        if (t < 1400) requestAnimationFrame(frame);
+        else {
+          cv.remove();
+          document.body.classList.remove('haki-shake');
+          op.classList.remove('charged');
+          running = false;
+        }
+      };
+      document.body.classList.add('haki-shake');
+      requestAnimationFrame(frame);
+    });
+  }
+
   // ---- Contact form → prefilled email ----
   const form = $('#contact-form');
   if (form) {
