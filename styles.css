@@ -1221,17 +1221,6 @@ img.brand-mark { width: 30px; height: 30px; background: none; border-radius: 0; 
 /* marks with no clean one-colour form keep their drawing, rendered in greys */
 .sk-gray img { filter: grayscale(1) brightness(1.25) contrast(1.05); opacity: .9; }
 
-/* footer sign-off */
-.tbc { display: inline-flex; align-items: center; gap: 10px; margin: 0; font-family: var(--serif); font-style: italic; font-size: 20px; color: #f5f5f7; letter-spacing: 0; }
-.tbc svg { width: 46px; height: 12px; fill: none; stroke: var(--link-dark); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.tbc svg path { stroke-dasharray: 80; stroke-dashoffset: 80; transition: stroke-dashoffset 1s var(--ease-out) .4s; }
-.tbc.in svg path, .tbc:not(.reveal) svg path { stroke-dashoffset: 0; }
-.tbc:hover svg { transform: translateX(4px); transition: transform .3s var(--ease-out); }
-.tbc { color: var(--ink); font-size: 18px; }
-.tbc svg { stroke: var(--link); }
-.tbc svg { animation: tbc-nudge 2.4s var(--ease-in-out) infinite; }
-@keyframes tbc-nudge { 0%, 60%, 100% { transform: translateX(0); } 30% { transform: translateX(5px); } }
-@media (prefers-reduced-motion: reduce) { .tbc svg { animation: none; } }
 .off-clock { margin-top: 16px; font-size: 17px; }
 .off-clock em { font-family: var(--serif); font-size: 1.1em; color: var(--link); }
 
