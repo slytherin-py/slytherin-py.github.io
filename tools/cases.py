@@ -229,7 +229,7 @@ CASES = [
             "points": ["Water enters the exhaust outlet", "Back-pressure drives it toward the engine", "Engine stalls mid-route"],
         },
         "steps": [
-            ("See it firsthand", "When the floods hit Kerala in August 2018, I was on the ground in Thrissur, packing and loading relief supplies for affected families. Seeing rescue vehicles stall in the water is what started this project."),
+            ("See it firsthand", "When the floods hit Kerala in August 2018, I was on the ground in Thrissur, packing and loading relief supplies for affected families."),
             ("Study the failure", "We traced how floodwater gets into a standard exhaust and stalls the engine."),
             ("Modify the design", "We designed changes to the exhaust system that keep water out."),
             ("Publish", "I presented it at the International Conference on Recent Innovations in Science and Technology (RIST 2021), where it won Best Paper. It was published in AIP Conference Proceedings by the American Institute of Physics."),
