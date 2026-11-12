@@ -222,14 +222,14 @@ CASES = [
         "hero": {"svg": "flood"},
         "facts": [("Role", "Student team lead, first author"), ("When", "2018 to 2022"), ("Published", "AIP Conference Proceedings 2463, 020063 (American Institute of Physics)"), ("Recognition", "Best Paper Award, International Conference on Recent Innovations in Science and Technology (RIST 2021), state level")],
         "links": [("Read the paper", "https://doi.org/10.1063/5.0080439", True)],
-        "metrics": [("Best Paper", "RIST 2021, state level"), ("1st", "Author of 5"), ("25 hrs", "Flood relief volunteering"), ("2022", "Published by the American Institute of Physics")],
+        "metrics": [("Best Paper", "RIST 2021, state level"), ("1st", "Author of 5"), ("On site", "Kerala flood relief, 2018"), ("2022", "Published by the American Institute of Physics")],
         "metrics_note": "",
         "problem": {
             "text": "During the 2018 Kerala floods, vehicles stalled when water entered the exhaust. Back-pressure pushes water toward the engine. For an ambulance, a stall can cost lives.",
             "points": ["Water enters the exhaust outlet", "Back-pressure drives it toward the engine", "Engine stalls mid-route"],
         },
         "steps": [
-            ("See it firsthand", "In August 2018 I spent 25 hours over five days packing and loading relief supplies in Thrissur."),
+            ("See it firsthand", "When the floods hit Kerala in August 2018, I was on the ground in Thrissur, packing and loading relief supplies for affected families. Seeing rescue vehicles stall in the water is what started this project."),
             ("Study the failure", "We traced how floodwater gets into a standard exhaust and stalls the engine."),
             ("Modify the design", "We designed changes to the exhaust system that keep water out."),
             ("Publish", "I presented it at the International Conference on Recent Innovations in Science and Technology (RIST 2021), where it won Best Paper. It was published in AIP Conference Proceedings by the American Institute of Physics."),
